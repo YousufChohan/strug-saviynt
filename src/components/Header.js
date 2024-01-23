@@ -8,7 +8,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const isScrolled = window.scrollY > 100;
       setScrolled(isScrolled);
     };
 
@@ -22,21 +22,24 @@ const Header = () => {
 
   return (
     <div
-      className={`justify-between flex px-16 py-2  text-center items-center fixed w-full transition ${
+      className={`justify-between flex px-16 py-4 text-center items-center fixed w-full transition ${
         scrolled
-          ? "bg-gray-400 duration-400 ease-in"
-          : "bg-transparent duration-400 ease-out"
+          ? "bg-gray-400 duration-500 ease-in"
+          : "bg-transparent duration-500 ease-out"
       }`}
     >
       <LuMenu
-        className={`font-semibold text-2xl transition ${
+        className={`font-semibold text-4xl transition ${
           scrolled
-            ? "text-white duration-400 ease-in"
-            : "text-black duration-400 ease-out"
+            ? "text-white duration-500 ease-in"
+            : "text-black duration-500 ease-out"
         }`}
       />
-      <img src={logo} alt="Logo" className="max-w-[120px] h-8" />
-      <Button>JOIN BETI</Button>
+      {/* <img src={logo} alt="Logo" className="max-w-[120px] h-8" /> */}
+      <p className="font-bold text-white text-5xl text-center">LOGO</p>
+      <div className="sm:block hidden">
+        <Button link={"/signup"}>JOIN BETI</Button>
+      </div>
     </div>
   );
 };
