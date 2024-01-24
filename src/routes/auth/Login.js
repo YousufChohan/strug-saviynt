@@ -1,26 +1,96 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { VscClose } from "react-icons/vsc";
-import backgroundImage from "../../assets/images/bg-example.jpg";
-import axios from "axios";
+import backgroundImage from "../../assets/images/bg-example.png";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/AuthSlice";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    rememberMe: false,
   });
 
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Move the useSelector hook outside the handleLogin function
+  // const authState = useSelector((state) => state.auth);
+  // const { userData } = authState;
 
   const handleChange = (e) => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // If validation passes, you can submit the form (make API call, etc.)
+    handleLogin();
+  };
+
+  const handleLogin = async () => {
+    try {
+      // Form validation
+      if (!formData.email || !formData.password) {
+        window.alert("Please enter your Email and Password.");
+        return;
+      }
+
+      // Email format validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        window.alert("Please enter a valid email address.");
+        return;
+      }
+
+      // Password length validation
+      if (formData.password.length < 6) {
+        window.alert("Password must be at least 6 characters long.");
+        return;
+      }
+
+      const params = {
+        email: formData.email,
+        password: formData.password,
+      };
+
+      console.log("Login Params:", params);
+
+      // Dispatch the login action
+      dispatch(login(params))
+        .then((userData) => {
+          // Check if login was successful
+          console.log("userData log above if in login screen", userData.type);
+          if (userData.type === "login/fulfilled") {
+            // Login successful, navigate to the home page
+            navigate("/");
+          } else {
+            // Login failed, show an alert
+          }
+        })
+        .catch((error) => {
+          setErrors(error);
+          console.error("Login failed:", error);
+
+          // Display an alert for login error
+          window.alert("Login failed. Please check your credentials.");
+
+          // Handle login error
+        });
+    } catch (error) {
+      setErrors(error);
+      console.error("Login failed 22:", error);
+
+      // Display an alert for login error
+      window.alert("Login failed. Please check your credentials.");
+
+      // Handle login error
+    }
   };
 
   return (
@@ -31,7 +101,7 @@ const Login = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <div className="flex flex-col p-6 rounded-md bg-slate-400 w-[25rem] relative items-center ">
+        <div className="mx-4 flex flex-col p-6 rounded-md bg-slate-400 w-[25rem] relative items-center ">
           {/* Use a Link component for navigation */}
           <Link
             to="/"
@@ -88,7 +158,7 @@ const Login = () => {
             </div>
 
             {/* Keep me logged in (Checkbox) */}
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="flex items-center">
                 <input
                   type="checkbox"
@@ -99,7 +169,7 @@ const Login = () => {
                 />
                 <span className="ml-2 text-gray-700">Keep me logged in</span>
               </label>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button

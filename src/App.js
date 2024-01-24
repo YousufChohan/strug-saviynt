@@ -1,41 +1,184 @@
 import React from "react";
-import backgroundImage from "./assets/images/bg-example.jpg"; // Replace with the actual path to your image
+import backgroundImage from "./assets/images/bg-example.png";
+import backgroundImage2 from "./assets/images/pole-bg.png"; // Replace with the actual path to your image
 import Button from "./components/Button";
+import grid1 from "../src/assets/images/grid1.png";
+import grid2 from "../src/assets/images/grid2.png";
+import grid3 from "../src/assets/images/grid3.png";
+import grid4 from "../src/assets/images/grid4.png";
+import grid5 from "../src/assets/images/grid5.png";
+import grid6 from "../src/assets/images/grid6.png";
+import intro from "../src/assets/images/intro.png";
 
 export default function App() {
   return (
     <>
       <div
-        className="flex flex-col items-center justify-center w-full h-screen bg-cover bg-no-repeat bg-center gap-6 bg-opacity-50"
+        className="flex flex-col items-center justify-center w-full pb-4 pt-20 sm:h-screen bg-cover bg-no-repeat bg-center px-2 gap-6 bg-opacity-50"
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <h1 className="text-primary text-6xl font-bold text-center ">
+        <h1 className="text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] ">
           Lorem Ipsum Dolor
         </h1>
-        <p className="text-black text-xl font-semibold text-center w-[400px] ">
+        <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation.
         </p>
         <Button>Read More</Button>
       </div>
-      <div
-        className="flex flex-col items-center justify-center w-full h-screen bg-cover bg-no-repeat bg-center"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
-      >
-        <h1 className="text-primary text-6xl font-bold text-center ">
-          Lorem Ipsum Dolor
+      <div className="flex flex-col items-center w-full my-5 px-1">
+        <h1 className="text-primary text-3xl font-bold text-center ">
+          About BETI
         </h1>
-        <p className="text-black text-xl text-center w-[400px] font-semibold">
+        <p className="text-m font-semibold text-center max-w-[900px] mt-5 text-gray-700">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation.
         </p>
-        <Button>Read More</Button>
+        <div className="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-2/3">
+          {/* Column 1 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid1} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans']">
+              System Perspective
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans text-center sm:text-left	']">
+              Emphasizing a holistic approach to project management and
+              engineering solutions.
+            </div>
+          </div>
+
+          {/* Column 2 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid2} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+              Agility:
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
+              Rapid adaptation to changing market demands and technological
+              advancements.
+            </div>
+          </div>
+
+          {/* Column 3 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid3} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+              New Innovation:
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
+              Commitment to pioneering cutting-edge technologies and
+              methodologies.{" "}
+            </div>
+          </div>
+
+          {/* Column 4 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid4} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+              Process Excellence:{" "}
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
+              Continuous improvement in all operational processes for optimal
+              efficiency.{" "}
+            </div>
+          </div>
+
+          {/* Column 5 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid5} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+              Ecosystem Innovation:
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
+              Collaborative innovation within the business ecosystem, including
+              partners and suppliers.{" "}
+            </div>
+          </div>
+
+          {/* Column 6 */}
+          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+            <div className="Group8  h-16 ">
+              <img src={grid6} alt="Engineering Solutions" />
+            </div>
+            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+              Community & Co-Creation:{" "}
+            </div>
+            <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
+              Engaging with communities and stakeholders for shared value
+              creation.{" "}
+            </div>
+          </div>
+          {/* Grid closing div below this comment  */}
+        </div>
+        <p className="text-m font-semibold text-center max-w-[900px] mt-5 text-gray-700 mt-20">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation.
+        </p>
+      </div>
+      <div className="flex flex-col items-center w-full bg-primary sm:py-20 py-5 sm:px-10 px-3 gap-3">
+        <div className=" text-center text-orange-500 text-4xl font-semibold font-['General Sans']">
+          About SANPEC
+        </div>
+        <div className=" text-center text-white text-base font-normal font-['General Sans'] max-w-[700px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation.
+        </div>
+        <img
+          className="sm:mt-20 rounded-2xl"
+          src={intro}
+          alt="Greenery with Electric Poles"
+        />
+        <div className="Rectangle95  bg-white rounded-lg" />
+      </div>
+      <div
+        className="flex flex-col sm:py-14 sm:px-5 py-4 w-full bg-cover bg-no-repeat bg-center px-4 gap-6 bg-opacity-50"
+        style={{
+          backgroundImage: `url(${backgroundImage2})`,
+        }}
+      >
+        <div>
+          <div className="text-sky-900 sm:text-4xl text-2xl font-semibold mb-2 font-['General Sans']">
+            Mission
+          </div>
+          <div className="text-black max-w-[500px] text-opacity-80 font-normal sm:text-base text-xs font-['General Sans']">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation.
+          </div>
+        </div>
+        {/* 2nd Heading */}
+        <div className="md:self-end md:justify-end">
+          <div className="text-sky-900 sm:text-4xl text-2xl font-semibold mb-2 font-['General Sans']">
+            Vision
+          </div>
+          <div className="text-black max-w-[500px] text-opacity-80 font-normal sm:text-base text-xs font-['General Sans']">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation.Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation.
+          </div>
+        </div>
       </div>
     </>
   );

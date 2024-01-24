@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import Root from "./routes/Root";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./routes/Error";
 import Login from "./routes/auth/Login";
 import Signup from "./routes/auth/Signup";
-// import { Fundraising } from "./Routes/Fundraising";
-// import "@fortawesome/fontawesome-free/css/all.min.css";
-// import Signup from "./Routes/Auth/Signup";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +20,8 @@ const router = createBrowserRouter([
         element: <App />,
       },
       // {
-      //   path: "/fundraising",
-      //   element: <Fundraising />,
+      //   path: "/events",
+      //   element: <Events />,
       // },
     ],
   },
@@ -41,7 +39,9 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </Provider>
 );

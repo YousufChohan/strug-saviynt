@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../../assets/images/bg-example.jpg";
+import backgroundImage from "../../assets/images/bg-example.png";
 import { VscClose } from "react-icons/vsc";
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <div className="flex flex-col py-6 px-6 rounded-md bg-slate-400 w-[25rem] relative items-center">
+        <div className="mx-4 flex flex-col py-6 px-6 rounded-md bg-slate-400 w-[25rem] relative items-center">
           {/* Use a Link component for navigation */}
           <Link
             to="/"

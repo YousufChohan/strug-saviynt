@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/images/logo.png";
 import { LuMenu } from "react-icons/lu";
+import { VscClose } from "react-icons/vsc";
 import Button from "./Button";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/features/AuthSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [sidemenu, setSideMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 100;
+      const isScrolled = window.scrollY > 50;
       setScrolled(isScrolled);
     };
 
@@ -18,27 +22,101 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }, []);
+
+  const { userData } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div
-      className={`justify-between flex px-16 py-4 text-center items-center fixed w-full transition ${
+      className={`justify-between flex px-2 py-4 sm:px-16 text-center items-center fixed w-full transition ${
         scrolled
-          ? "bg-gray-400 duration-500 ease-in"
+          ? "bg-black duration-500 ease-in"
           : "bg-transparent duration-500 ease-out"
       }`}
     >
-      <LuMenu
-        className={`font-semibold text-4xl transition ${
+      <p
+        className={`font-bold  text-5xl text-center ${
           scrolled
-            ? "text-white duration-500 ease-in"
-            : "text-black duration-500 ease-out"
+            ? " text-white duration-500 ease-in"
+            : " text-black duration-500 ease-out"
         }`}
-      />
-      {/* <img src={logo} alt="Logo" className="max-w-[120px] h-8" /> */}
-      <p className="font-bold text-white text-5xl text-center">LOGO</p>
+      >
+        LOGO
+      </p>
+      <ul className="justify-normal gap-4 text-lg font-bold text-white sm:flex hidden">
+        <li
+          className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+            scrolled
+              ? " text-white duration-500 ease-in"
+              : " text-black duration-500 ease-out"
+          }`}
+        >
+          Home
+        </li>
+        <li
+          className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+            scrolled
+              ? " text-white duration-500 ease-in"
+              : " text-black duration-500 ease-out"
+          }`}
+        >
+          {" "}
+          Events
+        </li>
+      </ul>
+
+      {sidemenu ? (
+        <VscClose
+          className={`font-semibold sm:hidden block text-4xl transition ${
+            scrolled
+              ? "text-white duration-500 ease-in"
+              : "text-black duration-500 ease-out"
+          }`}
+          onClick={() => setSideMenu(!sidemenu)}
+        />
+      ) : (
+        <LuMenu
+          className={`font-semibold sm:hidden block text-4xl transition ${
+            scrolled
+              ? "text-white duration-500 ease-in"
+              : "text-black duration-500 ease-out"
+          }`}
+          onClick={() => setSideMenu(!sidemenu)}
+        />
+      )}
+
+      {sidemenu && (
+        <ul className="absolute w-40 top-16 right-0 px-4 py-2 bg-white justify-normal gap-4 text-lg font-bold text-white sm:hidden block">
+          <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+            Home
+          </li>
+          <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+            Events
+          </li>
+          {!userData ? (
+            <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+              <Link to={"/signup"}>JOIN BETI</Link>
+            </li>
+          ) : (
+            <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          )}
+        </ul>
+      )}
       <div className="sm:block hidden">
-        <Button link={"/signup"}>JOIN BETI</Button>
+        {!userData ? (
+          <Button link={"/signup"}>JOIN BETI</Button>
+        ) : (
+          <button onClick={handleLogout}>
+            <Button>LOGOUT</Button>
+          </button>
+        )}
       </div>
     </div>
   );
