@@ -30,6 +30,9 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+  const handleCloseAfterRoute = () => {
+    setSideMenu(!sidemenu);
+  };
 
   return (
     <div
@@ -82,7 +85,7 @@ const Header = () => {
               ? "text-white duration-500 ease-in"
               : "text-black duration-500 ease-out"
           }`}
-          onClick={() => setSideMenu(!sidemenu)}
+          onClick={handleCloseAfterRoute}
         />
       ) : (
         <LuMenu
@@ -98,14 +101,20 @@ const Header = () => {
       {sidemenu && (
         <ul className="absolute border-black border-l border-b rounded-bl-xl rounded-tr-xl w-40 sm:top-16 top-14 right-0 px-4 py-2 bg-white justify-normal gap-4 text-lg font-bold text-white sm:hidden block">
           <li className="hover:bg-primary px-3 py-1  text-black border-b border-black transition duration-300">
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} onClick={handleCloseAfterRoute}>
+              Home
+            </Link>
           </li>
           <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
-            <Link to={"/events"}>Events</Link>
+            <Link to={"/events"} onClick={handleCloseAfterRoute}>
+              Events
+            </Link>
           </li>
           {!userData ? (
             <li className="hover:bg-primary px-3 py-1 text-black  transition duration-300">
-              <Link to={"/signup"}>JOIN BETI</Link>
+              <Link to={"/signup"} onClick={handleCloseAfterRoute}>
+                JOIN BETI
+              </Link>
             </li>
           ) : (
             <li className="hover:bg-primary px-3 py-1 text-black transition duration-300">

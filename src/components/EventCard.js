@@ -14,7 +14,7 @@ const EventCard = ({
   console.log(title);
   return (
     <Link
-      //   to={`/events/${id}`}
+      to={`/events/${id}`}
       className="cardwrapper max-w-[600px] bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
     >
       {imageUrl ? (
