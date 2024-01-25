@@ -13,7 +13,6 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // Move the useSelector hook outside the handleLogin function
   // const authState = useSelector((state) => state.auth);
@@ -93,6 +92,12 @@ const Login = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-2); // Go back one step in history
+  };
+
   return (
     <>
       <div
@@ -104,8 +109,9 @@ const Login = () => {
         <div className="mx-4 flex flex-col p-6 rounded-md bg-slate-400 w-[25rem] relative items-center ">
           {/* Use a Link component for navigation */}
           <Link
-            to="/"
+            to="#"
             className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
+            onClick={handleGoBack}
           >
             <VscClose className="w-5 h-5 font-bold" />
           </Link>

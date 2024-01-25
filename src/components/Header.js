@@ -33,14 +33,14 @@ const Header = () => {
 
   return (
     <div
-      className={`justify-between flex px-2 py-4 sm:px-16 text-center items-center fixed w-full transition ${
+      className={`justify-between z-50 flex px-3 sm:px-16 text-center items-center fixed w-full transition ${
         scrolled
-          ? "bg-black duration-500 ease-in"
-          : "bg-transparent duration-500 ease-out"
+          ? "bg-black py-2 pb-3 bg-opacity-70 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-in"
+          : "bg-transparent py-6 transition-all duration-500 ease-out"
       }`}
     >
       <p
-        className={`font-bold  text-5xl text-center ${
+        className={`font-bold  sm:text-5xl text-2xl text-center ${
           scrolled
             ? " text-white duration-500 ease-in"
             : " text-black duration-500 ease-out"
@@ -49,30 +49,35 @@ const Header = () => {
         LOGO
       </p>
       <ul className="justify-normal gap-4 text-lg font-bold text-white sm:flex hidden">
-        <li
-          className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
-            scrolled
-              ? " text-white duration-500 ease-in"
-              : " text-black duration-500 ease-out"
-          }`}
-        >
-          Home
+        <li>
+          <Link
+            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+              scrolled
+                ? " text-white duration-500 ease-in"
+                : " text-black duration-500 ease-out"
+            }`}
+            to={"/"}
+          >
+            Home
+          </Link>
         </li>
-        <li
-          className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
-            scrolled
-              ? " text-white duration-500 ease-in"
-              : " text-black duration-500 ease-out"
-          }`}
-        >
-          {" "}
-          Events
+        <li>
+          <Link
+            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+              scrolled
+                ? " text-white duration-500 ease-in"
+                : " text-black duration-500 ease-out"
+            }`}
+            to={"/events"}
+          >
+            Events
+          </Link>
         </li>
       </ul>
 
       {sidemenu ? (
         <VscClose
-          className={`font-semibold sm:hidden block text-4xl transition ${
+          className={`font-semibold sm:hidden block sm:text-4xl text-2xl transition ${
             scrolled
               ? "text-white duration-500 ease-in"
               : "text-black duration-500 ease-out"
@@ -81,7 +86,7 @@ const Header = () => {
         />
       ) : (
         <LuMenu
-          className={`font-semibold sm:hidden block text-4xl transition ${
+          className={`font-semibold sm:hidden block sm:text-4xl text-2xl transition ${
             scrolled
               ? "text-white duration-500 ease-in"
               : "text-black duration-500 ease-out"
@@ -91,19 +96,19 @@ const Header = () => {
       )}
 
       {sidemenu && (
-        <ul className="absolute w-40 top-16 right-0 px-4 py-2 bg-white justify-normal gap-4 text-lg font-bold text-white sm:hidden block">
-          <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
-            Home
+        <ul className="absolute border-black border-l border-b rounded-bl-xl rounded-tr-xl w-40 sm:top-16 top-14 right-0 px-4 py-2 bg-white justify-normal gap-4 text-lg font-bold text-white sm:hidden block">
+          <li className="hover:bg-primary px-3 py-1  text-black border-b border-black transition duration-300">
+            <Link to={"/"}>Home</Link>
           </li>
-          <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
-            Events
+          <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
+            <Link to={"/events"}>Events</Link>
           </li>
           {!userData ? (
-            <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+            <li className="hover:bg-primary px-3 py-1 text-black  transition duration-300">
               <Link to={"/signup"}>JOIN BETI</Link>
             </li>
           ) : (
-            <li className="hover:bg-primary px-3 py-1 text-black rounded-xl transition duration-300">
+            <li className="hover:bg-primary px-3 py-1 text-black transition duration-300">
               <button onClick={handleLogout}>Logout</button>
             </li>
           )}

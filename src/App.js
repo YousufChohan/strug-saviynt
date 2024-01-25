@@ -25,7 +25,7 @@ export default function App() {
         <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation.
+          minim veniam, quis nostrud exerpitationtation
         </p>
         <Button>Read More</Button>
       </div>

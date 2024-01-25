@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/images/bg-example.png";
 import { VscClose } from "react-icons/vsc";
+import axios from "axios";
 
-const Login = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -18,12 +20,47 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Form validation logic goes here
+    // Add form validation logic here
 
-    // If validation passes, you can submit the form (make API call, etc.)
+    try {
+      await signUp(); // Call the signUp function
+      // Additional logic after successful signup if needed
+    } catch (error) {
+      // Handle error if needed
+      console.error("Signup failed:", error);
+    }
+  };
+
+  const signUp = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/signup`,
+        {
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          password: formData.password,
+          mobile: formData.mobile, // Assuming mobile is added to the formData
+        }
+      );
+
+      console.log("Signup response:", response.data);
+      // Additional logic after successful signup if needed
+    } catch (error) {
+      console.error("Signup failed:", error);
+
+      // Handle signup error
+
+      throw error;
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1); // Go back one step in history
   };
 
   return (
@@ -37,8 +74,9 @@ const Login = () => {
         <div className="mx-4 flex flex-col py-6 px-6 rounded-md bg-slate-400 w-[25rem] relative items-center">
           {/* Use a Link component for navigation */}
           <Link
-            to="/"
+            to="#"
             className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
+            onClick={handleGoBack}
           >
             <VscClose className="w-5 h-5 font-bold" />
           </Link>
@@ -114,6 +152,28 @@ const Login = () => {
               )}
             </div>
 
+            {/* phone */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="phone"
+              >
+                Phone
+              </label>
+              <input
+                type="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`appearance-none border ${
+                  errors.phone ? "border-red-500" : "border-gray-300"
+                } rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline`}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-xs italic">{errors.phone}</p>
+              )}
+            </div>
+
             {/* Password */}
             <div className="mb-4">
               <label
@@ -182,4 +242,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
