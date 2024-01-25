@@ -9,7 +9,8 @@ import Login from "./routes/auth/Login";
 import Signup from "./routes/auth/Signup";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Events from "./routes/Events";
+import Events from "./routes/events/Events";
+import EventDetails from "./routes/events/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "/events",
         element: <Events />,
       },
+      // {
+      //   path: "/products/id",
+      //   element: <EventDetails />,
+      // },
     ],
   },
   {

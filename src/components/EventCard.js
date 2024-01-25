@@ -1,9 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import fallbackbg from "../assets/images/pole-bg2.jpg";
 
-const EventCard = ({ imageUrl, date, title, location, price, description }) => {
+const EventCard = ({
+  id,
+  imageUrl,
+  date,
+  title,
+  location,
+  price,
+  description,
+}) => {
+  console.log(title);
   return (
-    <div className="max-w-[600px] bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg  transition duration-400 gap-2 sm:flex sm:flex-row flex-col  ">
+    <Link
+      //   to={`/events/${id}`}
+      className="cardwrapper max-w-[600px] bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
+    >
       {imageUrl ? (
         <img
           src={imageUrl}
@@ -36,7 +49,7 @@ const EventCard = ({ imageUrl, date, title, location, price, description }) => {
           <p className="text-black sm:text-md text-sm font-semibold">{price}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

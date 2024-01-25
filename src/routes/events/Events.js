@@ -1,11 +1,12 @@
 import React from "react";
-import backgroundImage from "../assets/images/pole-bg2.jpg";
-import EventCard from "../components/EventCard";
+import backgroundImage from "../../assets/images/pole-bg2.jpg";
+import EventCard from "../../components/EventCard";
 // import Button from "../components/Button";
 
 export default function Events() {
   const dummyData = [
     {
+      id: 121,
       imageUrl: "https://placekitten.com/250/200",
       title: "Digital Transformation Summit",
       description:
@@ -15,6 +16,7 @@ export default function Events() {
       price: "$25",
     },
     {
+      id: 122,
       imageUrl: "https://placekitten.com/200/200",
       title: "Agile Development Workshop",
       description:
@@ -24,6 +26,7 @@ export default function Events() {
       price: "$30",
     },
     {
+      id: 123,
       imageUrl: "https://placekitten.com/550/200",
       title: "Data Analytics Conference",
       description:
@@ -33,6 +36,7 @@ export default function Events() {
       price: "$20",
     },
     {
+      id: 124,
       imageUrl: "https://placekitten.com/350/200",
       title: "Cloud Solutions Seminar",
       description:
@@ -42,6 +46,7 @@ export default function Events() {
       price: "$35",
     },
     {
+      id: 125,
       imageUrl: "https://placekitten.com/450/200",
       title: "Ecosystem Innovation Forum",
       description:
@@ -51,6 +56,7 @@ export default function Events() {
       price: "$45",
     },
     {
+      id: 126,
       imageUrl: "https://placekitten.com/230/200",
       title: "Cybersecurity Workshop",
       description:
