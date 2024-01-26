@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import backgroundImage from "../../assets/images/event-bg.jpg";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -9,6 +9,18 @@ function EventDetails() {
   const { id } = useParams();
   console.log("id:", id);
 
+  const [ticketCount, setTicketCount] = useState(1);
+
+  const handleIncrement = () => {
+    setTicketCount(ticketCount + 1);
+  };
+
+  const handleDecrement = () => {
+    if (ticketCount > 1) {
+      setTicketCount(ticketCount - 1);
+    }
+  };
+
   return (
     <>
       <section
@@ -18,13 +30,14 @@ function EventDetails() {
         }}
       >
         {/* <div className="absolute inset-0 sm:h-screen bg-black bg-opacity-50"></div> */}
-
-        <p className="z-20 text-white sm:text-2xl text-md font-semibold text-center max-w-[600px] ">
-          April 14, 2024
-        </p>
-        <h1 className="z-20 text-white sm:text-[80px] leading-tight text-4xl font-normal line text-center mb-[10px] bg-opacity-60 px-5 pb-3 rounded-lg">
-          Event Name
-        </h1>
+        <div className="p-1 bg-black flex flex-col items-center justify-center rounded-xl bg-opacity-50">
+          <p className="z-20 text-white sm:text-2xl text-md font-semibold text-center max-w-[600px] ">
+            April 14, 2024
+          </p>
+          <h1 className="z-20 text-white sm:text-6xl leading-tight text-2xl font-normal line text-center mb-[10px] bg-opacity-60 px-5 pb-3 rounded-lg">
+            Power Innovation Summit 2024{" "}
+          </h1>
+        </div>
       </section>
       <section className="flex flex-col items-center justify-center sm:my-5 my-1 px-1">
         <div className="flex sm:flex-row flex-col sm:gap-32 gap-1 gap-y-2 sm:w-10/12 w-full p-2">
@@ -79,18 +92,18 @@ function EventDetails() {
             <h2 className="text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Event Overview:
             </h2>
-            <p className="text-xs sm:text-sm text-justify">
+            <p className="md:text-sm text-xs text-justify">
               Join us at the Power Innovation Summit 2024, a flagship event
-              hosted by [Company Name]. This exclusive summit brings together
-              industry leaders, experts, and innovators in the field of power
-              generation to discuss the latest trends, technological
-              advancements, and sustainable practices shaping the future of the
-              energy sector. Agenda: Day 1: Powering Tomorrow 9:00 AM - 9:30 AM:
-              Registration and Networking 9:30 AM - 10:00 AM: Opening Keynote:
-              "The Future of Power Generation" 10:15 AM - 11:30 AM: Panel
-              Discussion: "Innovations in Renewable Energy" 11:45 AM - 1:00 PM:
-              Technical Sessions: "Advanced Turbine Technologies" 1:00 PM - 2:00
-              PM: Networking Lunch 2:15 PM - 3:30 PM: Workshop: "Smart Grid
+              hosted by SANPEC. This exclusive summit brings together industry
+              leaders, experts, and innovators in the field of power generation
+              to discuss the latest trends, technological advancements, and
+              sustainable practices shaping the future of the energy sector.
+              Agenda: Day 1: Powering Tomorrow 9:00 AM - 9:30 AM: Registration
+              and Networking 9:30 AM - 10:00 AM: Opening Keynote: "The Future of
+              Power Generation" 10:15 AM - 11:30 AM: Panel Discussion:
+              "Innovations in Renewable Energy" 11:45 AM - 1:00 PM: Technical
+              Sessions: "Advanced Turbine Technologies" 1:00 PM - 2:00 PM:
+              Networking Lunch 2:15 PM - 3:30 PM: Workshop: "Smart Grid
               Solutions for Sustainable Power" 3:45 PM - 5:00 PM: Company
               Showcase: "Powering the Future - Our Latest Projects" 5:15 PM -
               6:00 PM: Networking Reception Day 2: Sustainability in Action 9:30
@@ -107,25 +120,62 @@ function EventDetails() {
               sessions to connect with key stakeholders and decision-makers.
               Interactive workshops providing hands-on experience with
               cutting-edge power solutions. Registration: To secure your spot at
-              the Power Innovation Summit 2024, register online at [event
-              website] or contact our event coordinator at [contact
-              email/phone]. Don't miss this opportunity to be part of shaping
-              the future of power generation. We look forward to welcoming you
-              to an event that promises insights, collaboration, and a vision
-              for a sustainable energy future.
+              the Power Innovation Summit 2024, register online at beti.com or
+              contact our event coordinator at info@beti.com. Don't miss this
+              opportunity to be part of shaping the future of power generation.
+              We look forward to welcoming you to an event that promises
+              insights, collaboration, and a vision for a sustainable energy
+              future.
             </p>
           </div>
         </div>
         <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
       </section>
-      <section className="bg-primary flex flex-col items-center justify-center sm:mt-5 mt-1 sm:pb-4 pb-1">
+      <section
+        id="ticket_box"
+        className="bg-primary flex flex-col items-center justify-center sm:mt-5 mt-1 sm:pb-4 pb-1"
+      >
         <h2 className=" text-white sm:text-5xl text-lg font-bold sm:my-2 my-1">
           TICKETS
         </h2>
-        <div className="bg-white rounded-xl sm:px-5 px-1 sm:py-2 py-1 flex flex-col items-center justify-center md:w-10/12">
+        <div className="bg-white sm:gap-y-5 rounded-xl sm:px-5 px-1 sm:py-5 py-1 flex flex-col items-center justify-center w-1/2">
           <h2 className=" text-black sm:text-3xl text-md font-bold sm:my-2 my-1">
             Book Now!
           </h2>
+          <div className="flex sm:mb-5 sm:flex-row flex-col gap-2 justify-between w-11/12 items-center">
+            <div className="flex sm:flex-row flex-col sm:gap-2 justify-between items-center ">
+              <p className="sm:text-xl text-black font-semibold">
+                Standard Ticket:
+              </p>
+              <div id="input" className="flex  items-center">
+                <button
+                  className="bg-gray-200 border border-solid border-black rounded-l-lg p-2"
+                  onClick={handleDecrement}
+                >
+                  -
+                </button>
+                <input
+                  className="bg-gray-200 border-t border-b border-solid border-black p-2 w-9 items-center justify-center text-center"
+                  value={ticketCount}
+                  readOnly
+                />
+
+                <button
+                  className="bg-gray-200 border border-solid border-black rounded-r-lg p-2"
+                  onClick={handleIncrement}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <p className="sm:text-xl text-black font-semibold">
+              Total: ${(100 * ticketCount).toFixed(2)}
+            </p>
+          </div>
+
+          <div className="">
+            <Button>CHECKOUT</Button>
+          </div>
         </div>
       </section>
     </>
