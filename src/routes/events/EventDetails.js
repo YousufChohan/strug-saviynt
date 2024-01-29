@@ -174,7 +174,7 @@ function EventDetails() {
           </div>
 
           <div className="">
-            <Button>CHECKOUT</Button>
+            <Button>CHECKOUT NOW</Button>
           </div>
         </div>
       </section>
