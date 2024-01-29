@@ -42,15 +42,16 @@ const Header = () => {
           : "bg-transparent py-6 transition-all duration-500 ease-out"
       }`}
     >
-      <p
+      <Link
         className={`font-bold  sm:text-5xl text-2xl text-center ${
           scrolled
             ? " text-white duration-500 ease-in"
             : " text-black duration-500 ease-out"
         }`}
+        to={"/"}
       >
         LOGO
-      </p>
+      </Link>
       <ul className="justify-normal gap-4 text-lg font-bold text-white sm:flex hidden">
         <li>
           <Link

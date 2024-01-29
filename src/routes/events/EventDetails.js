@@ -1,13 +1,44 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import backgroundImage from "../../assets/images/event-bg.jpg";
-import { FaCalendarAlt } from "react-icons/fa";
+import React, { useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { BsAlarmFill } from "react-icons/bs";
+import { FaCalendarAlt } from "react-icons/fa";
 import Button from "../../components/Button";
+import { REACT_APP_BASE_URL } from "../../constants/url";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import bgExampe from "../../assets/images/bg-example.png";
 
 function EventDetails() {
-  const { id } = useParams();
-  console.log("id:", id);
+  const location = useLocation(); // Use useLocation hook
+
+  const events = useSelector((state) => state.events.events);
+
+  const { state } = location;
+  const eventId = state?.data?._id;
+
+  const eventData = eventId
+    ? events.find((event) => event._id === eventId)
+    : null;
+
+  const [image, setImage] = useState("");
+
+  useLayoutEffect(() => {
+    if (eventData) {
+      async function getEventImages() {
+        try {
+          const response = await axios.get(
+            `${REACT_APP_BASE_URL}/files/${eventData.eventPicture[0]}/true`
+          );
+          setImage(
+            `data:${response.headers["content-type"]};base64,${response.data}`
+          );
+        } catch (error) {
+          console.error("Error fetching image:", error);
+        }
+      }
+      getEventImages();
+    }
+  }, [eventData]);
 
   const [ticketCount, setTicketCount] = useState(1);
 
@@ -21,21 +52,31 @@ function EventDetails() {
     }
   };
 
+  // if (!eventData) {
+  //   // Handle the case where the event data is not available
+  //   return (
+  //     <section className="z-10 flex flex-col items-center justify-center w-full pb-4 pt-20 sm:h-screen bg-cover bg-black bg-no-repeat bg-center px-2 gap-1 bg-opacity-50">
+  //       Loading...
+  //     </section>
+  //   );
+  // }
+
   return (
     <>
       <section
         className="z-10 flex flex-col items-center justify-center w-full pb-4 pt-20 sm:h-screen bg-cover bg-black bg-no-repeat bg-center px-2 gap-1 bg-opacity-50"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: image ? `url("${image}")` : `url(${bgExampe})`, // Added quotes and url()
         }}
       >
         {/* <div className="absolute inset-0 sm:h-screen bg-black bg-opacity-50"></div> */}
         <div className="p-1 bg-black flex flex-col items-center justify-center rounded-xl bg-opacity-50">
           <p className="z-20 text-white sm:text-2xl text-md font-semibold text-center max-w-[600px] ">
-            April 14, 2024
+            {eventData.dayStarts} {eventData.dateStarts} - {eventData.dayEnds}{" "}
+            {eventData.dateEnds}
           </p>
           <h1 className="z-20 text-white sm:text-6xl leading-tight text-2xl font-normal line text-center mb-[10px] bg-opacity-60 px-5 pb-3 rounded-lg">
-            Power Innovation Summit 2024{" "}
+            {eventData.name}
           </h1>
         </div>
       </section>
@@ -46,13 +87,14 @@ function EventDetails() {
               <div className="flex gap-1 sm:gap-2 items-center">
                 <BsAlarmFill className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
-                  Friday, April 14, 2024
+                  {eventData.dayStarts} {eventData.dateStarts} -{" "}
+                  {eventData.dayEnds} {eventData.dateEnds}
                 </p>
               </div>
               <div className="flex gap-1 sm:gap-2 items-center">
                 <FaCalendarAlt className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
-                  6:30 PM - 9:30 PM
+                  {eventData.timeStarts} - {eventData.timeEnds}
                 </p>
               </div>
             </div>
@@ -61,7 +103,7 @@ function EventDetails() {
             <div className="flex flex-col">
               <p className="text-black sm:text-base text-xs">Price </p>
               <p className="text-primary sm:text-xl text-sm font-bold">
-                $62.50 - $20.00{" "}
+                ${eventData.price}{" "}
               </p>
             </div>
             <Button>TICKETS</Button>
@@ -73,18 +115,12 @@ function EventDetails() {
             <h2 className=" text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Venue:
             </h2>
-            <p className="text-xs sm:text-sm">
-              Empire Convention Center 123 Energy Drive Cityville, State
-            </p>
+            <p className="text-xs sm:text-sm">{eventData.venue} </p>
             <h2 className=" text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Special Features:
             </h2>
-            <p className="text-xs sm:text-sm ">
-              Exclusive access to the latest technologies and products in the
-              exhibition area. Opportunities for one-on-one discussions with
-              industry experts. Networking sessions to connect with key
-              stakeholders and decision-makers. Interactive workshops providing
-              hands-on experience with cutting-edge power solutions.
+            <p className="text-xs sm:text-sm md:pb-3">
+              {eventData.specialFeatures}
             </p>
           </div>
 
@@ -93,39 +129,7 @@ function EventDetails() {
               Event Overview:
             </h2>
             <p className="md:text-sm text-xs text-justify">
-              Join us at the Power Innovation Summit 2024, a flagship event
-              hosted by SANPEC. This exclusive summit brings together industry
-              leaders, experts, and innovators in the field of power generation
-              to discuss the latest trends, technological advancements, and
-              sustainable practices shaping the future of the energy sector.
-              Agenda: Day 1: Powering Tomorrow 9:00 AM - 9:30 AM: Registration
-              and Networking 9:30 AM - 10:00 AM: Opening Keynote: "The Future of
-              Power Generation" 10:15 AM - 11:30 AM: Panel Discussion:
-              "Innovations in Renewable Energy" 11:45 AM - 1:00 PM: Technical
-              Sessions: "Advanced Turbine Technologies" 1:00 PM - 2:00 PM:
-              Networking Lunch 2:15 PM - 3:30 PM: Workshop: "Smart Grid
-              Solutions for Sustainable Power" 3:45 PM - 5:00 PM: Company
-              Showcase: "Powering the Future - Our Latest Projects" 5:15 PM -
-              6:00 PM: Networking Reception Day 2: Sustainability in Action 9:30
-              AM - 10:00 AM: Morning Coffee and Networking 10:15 AM - 11:30 AM:
-              Keynote Address: "Sustainable Practices in Power Generation" 11:45
-              AM - 1:00 PM: Panel Discussion: "Environmental Impact and
-              Corporate Responsibility" 1:00 PM - 2:00 PM: Networking Lunch 2:15
-              PM - 3:30 PM: Roundtable Discussions: "Future Trends in Power
-              Infrastructure" 3:45 PM - 4:30 PM: Awards Ceremony: "Recognizing
-              Excellence in Power Innovation" 4:30 PM - 5:00 PM: Closing Remarks
-              and Networking Special Features: Exclusive access to the latest
-              technologies and products in the exhibition area. Opportunities
-              for one-on-one discussions with industry experts. Networking
-              sessions to connect with key stakeholders and decision-makers.
-              Interactive workshops providing hands-on experience with
-              cutting-edge power solutions. Registration: To secure your spot at
-              the Power Innovation Summit 2024, register online at beti.com or
-              contact our event coordinator at info@beti.com. Don't miss this
-              opportunity to be part of shaping the future of power generation.
-              We look forward to welcoming you to an event that promises
-              insights, collaboration, and a vision for a sustainable energy
-              future.
+              {eventData.overview}
             </p>
           </div>
         </div>
@@ -169,13 +173,11 @@ function EventDetails() {
               </div>
             </div>
             <p className="sm:text-xl text-black font-semibold">
-              Total: ${(100 * ticketCount).toFixed(2)}
+              Total: ${(eventData.price * ticketCount).toFixed(2)}
             </p>
           </div>
 
-          <div className="">
-            <Button>CHECKOUT NOW</Button>
-          </div>
+          <Button link={"/"}>CHECKOUT NOW</Button>
         </div>
       </section>
     </>

@@ -1,71 +1,22 @@
-import React from "react";
+// Import your action creator
+import { fetchEvents } from "../../redux/features/EventSlice";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import backgroundImage from "../../assets/images/pole-bg2.jpg";
 import EventCard from "../../components/EventCard";
-// import Button from "../components/Button";
 
 export default function Events() {
-  const dummyData = [
-    {
-      id: 121,
-      imageUrl: "https://placekitten.com/250/200",
-      title: "Digital Transformation Summit",
-      description:
-        "Join us for a summit on leveraging technology to transform business processes and operations.",
-      date: "Mon, APR 09, 7:00 PM",
-      location: "Tech Hub, San Francisco, CA",
-      price: "$25",
-    },
-    {
-      id: 122,
-      imageUrl: "https://placekitten.com/200/200",
-      title: "Agile Development Workshop",
-      description:
-        "Learn about implementing Agile methodologies to enhance software development practices.",
-      date: "Tue, APR 10, 6:30 PM",
-      location: "Agile Center, Silicon Valley, CA",
-      price: "$30",
-    },
-    {
-      id: 123,
-      imageUrl: "https://placekitten.com/550/200",
-      title: "Data Analytics Conference",
-      description:
-        "Explore the power of data and gain insights to drive informed decision-making.",
-      date: "Wed, APR 11, 6:00 PM",
-      location: "Data Plaza, Palo Alto, CA",
-      price: "$20",
-    },
-    {
-      id: 124,
-      imageUrl: "https://placekitten.com/350/200",
-      title: "Cloud Solutions Seminar",
-      description:
-        "Discover the benefits of utilizing cloud computing services for scalability and efficiency.",
-      date: "Thu, APR 12, 5:30 PM",
-      location: "Cloud Tower, Mountain View, CA",
-      price: "$35",
-    },
-    {
-      id: 125,
-      imageUrl: "https://placekitten.com/450/200",
-      title: "Ecosystem Innovation Forum",
-      description:
-        "Participate in collaborative innovation within the business ecosystem with partners and suppliers.",
-      date: "Fri, APR 13, 7:30 PM",
-      location: "Innovation Hub, San Jose, CA",
-      price: "$45",
-    },
-    {
-      id: 126,
-      imageUrl: "https://placekitten.com/230/200",
-      title: "Cybersecurity Workshop",
-      description:
-        "Learn about securing digital assets and protecting against cyber threats and attacks.",
-      date: "Sat, APR 14, 4:00 PM",
-      location: "SecureTech Center, Santa Clara, CA",
-      price: "$50",
-    },
-  ];
+  const token =
+    "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2NWFmYmZmNDBlYTk0YmUzODQ3MDA2YWMiLCJyb2xlIjoiQ3VzdG9tZXIifQ.WvhZavvK4gWPKYLq0kqUi6cPm1ewwKlUbwtThrB8U_4";
+
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.events.events);
+
+  useEffect(() => {
+    // Dispatch the fetchEvents action with the token
+    dispatch(fetchEvents({ token: token }));
+  }, [dispatch, token]); // Dependency array includes 'dispatch' and 'token'
+
   return (
     <>
       <section
@@ -88,8 +39,8 @@ export default function Events() {
           Latest Events
         </h1>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
-          {dummyData.map((data, index) => (
-            <EventCard key={index} {...data} />
+          {events.map((event, index) => (
+            <EventCard key={index} event={event} />
           ))}
         </div>
       </section>
