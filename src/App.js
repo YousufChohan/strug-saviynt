@@ -27,7 +27,9 @@ export default function App() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exerpitationtation
         </p>
-        <Button>Read More</Button>
+        <button className="bg-primary md:px-10 md:py-3 py-1 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
+          Read More
+        </button>
       </div>
       <div className="flex flex-col items-center w-full my-5 px-1">
         <h1 className="text-primary text-3xl font-bold text-center ">

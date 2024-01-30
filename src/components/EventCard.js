@@ -42,7 +42,7 @@ const EventCard = (event) => {
           className="md:w-64 md:h-64 sm:w-48 sm:h-48 w-full h-48 object-cover"
         />
       )}
-      <div className="flex flex-col gap-3 justify-between py-1 pr-2 pl-2 sm:pl-0">
+      <div className="flex flex-col flex-grow gap-3 justify-between py-1 pr-2 pl-2 sm:pl-0">
         <div className="text-black text-sm font-semibold font-['General Sans'] text-left">
           {data.dayStarts} {data.dateStarts} - {data.dayEnds} {data.dateEnds}
         </div>

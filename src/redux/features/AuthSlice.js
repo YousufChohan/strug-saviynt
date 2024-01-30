@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { REACT_APP_BASE_URL } from "../../constants/url";
+import { setUserData } from "../actions/AuthActions"; // Adjust the path accordingly
 
 const initialState = {
   userData: null,
@@ -34,15 +35,12 @@ export const login = createAsyncThunk(
 // logout
 export const logout = createAsyncThunk(
   "logout",
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       console.log("Logging out...");
 
-      // Access the current state to get the user data
-      const currentState = getState();
-
-      //reset userData to null
-      currentState.authSlice.userData = null;
+      // Dispatch an action to reset userData
+      dispatch(setUserData(null));
 
       return true; // Indicate successful logout
     } catch (error) {

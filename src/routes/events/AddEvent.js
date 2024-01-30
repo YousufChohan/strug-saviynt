@@ -9,6 +9,7 @@ import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { REACT_APP_BASE_URL } from "../../constants/url";
+import { useSelector } from "react-redux";
 
 const AddEvent = () => {
   const [eventData, setEventData] = useState({
@@ -25,6 +26,8 @@ const AddEvent = () => {
     timeEnds: "",
     eventPicture: null, // New state for storing the selected image file
   });
+
+  const { userData } = useSelector((state) => state.auth);
 
   const [value, setValue] = useState({
     startDate: null,
@@ -89,6 +92,28 @@ const AddEvent = () => {
 
       formData.append("eventPicture", eventData.eventPicture); // Append the image file
 
+      if (
+        !eventData.name ||
+        !eventData.price ||
+        !eventData.venue ||
+        !eventData.overview ||
+        !eventData.specialFeatures ||
+        !eventData.dateStarts ||
+        !eventData.dateEnds ||
+        !eventData.dayEnds ||
+        !eventData.dayStarts ||
+        !eventData.timeEnds ||
+        !eventData.timeStarts
+      ) {
+        window.alert("Please fill all the fields.");
+        return;
+      }
+
+      if (!eventData.eventPicture) {
+        window.alert("Please uplaod an image for the Event");
+        return;
+      }
+
       console.log("eventData added", formData);
 
       await addEvent(formData); // Call the addEvent function with the FormData
@@ -133,238 +158,258 @@ const AddEvent = () => {
 
   return (
     <>
-      <div
-        className="flex w-100 items-center justify-center bg-cover bg-no-repeat bg-center"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
-      >
-        <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-slate-400 min-w-[260px] max-w-[50rem] relative items-center">
-          {/* Use a Link component for navigation */}
-          <Link
-            to="#"
-            className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
-            onClick={handleGoBack}
-          >
-            <VscClose className="w-5 h-5 font-bold" />
-          </Link>
-          <h2 className="text-center md:text-lg text-md font-bold text-primary">
-            Add an Event to BETI
-          </h2>
-
-          {/* AddEvent Form */}
-          <form
-            className="mt-4 flex flex-wrap flex-grow gap-x-8 justify-between"
-            onSubmit={handleSubmit}
-          >
-            {/* Event Name */}
-            <div className="mb-4 md:w-[30%] w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
-              >
-                Event Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={eventData.name}
-                onChange={handleChange}
-                className={`appearance-none border ${
-                  errors.name ? "border-red-500" : "border-gray-300"
-                } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
-              />
-              {errors.name && (
-                <p className="text-red-500 text-xs italic">{errors.name}</p>
-              )}
-            </div>
-
-            {/* venue */}
-            <div className="mb-4 md:w-[30%] w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="venue"
-              >
-                Venue
-              </label>
-              <input
-                type="text"
-                name="venue"
-                value={eventData.venue}
-                onChange={handleChange}
-                className={`appearance-none border ${
-                  errors.venue ? "border-red-500" : "border-gray-300"
-                } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
-              />
-              {errors.venue && (
-                <p className="text-red-500 text-xs italic">{errors.venue}</p>
-              )}
-            </div>
-
-            {/* price */}
-            <div className="mb-4 md:w-[30%] w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="price"
-              >
-                Price
-              </label>
-              <input
-                type="number"
-                name="price"
-                value={eventData.price}
-                onChange={handleChange}
-                className={`appearance-none border ${
-                  errors.price ? "border-red-500" : "border-gray-300"
-                } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
-              />
-              {errors.price && (
-                <p className="text-red-500 text-xs italic">{errors.price}</p>
-              )}
-            </div>
-
-            {/* Overview */}
-            <div className="mb-4 w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="overview"
-              >
-                Overview
-              </label>
-              <textarea
-                type="text"
-                name="overview"
-                value={eventData.overview}
-                onChange={handleChange}
-                className={`appearance-none border ${
-                  errors.overview ? "border-red-500" : "border-gray-300"
-                } rounded-lg w-full py-2 px-3 md:min-h-48 min-h-32 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
-              />
-              {errors.overview && (
-                <p className="text-red-500 text-xs italic">{errors.overview}</p>
-              )}
-            </div>
-
-            {/* specialFeatures */}
-            <div className="mb-4 w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="specialFeatures"
-              >
-                Special Features
-              </label>
-              <textarea
-                type="text"
-                name="specialFeatures"
-                value={eventData.specialFeatures}
-                onChange={handleChange}
-                className={`appearance-none border ${
-                  errors.specialFeatures ? "border-red-500" : "border-gray-300"
-                } rounded-lg w-full py-2 px-3 md:text-base text-xs md:min-h-32 min-h-24 leading-tight focus:outline-none focus:shadow-outline`}
-              />
-              {errors.specialFeatures && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.specialFeatures}
-                </p>
-              )}
-            </div>
-
-            <div className="mb-4 w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="startdate"
-              >
-                Event Dates
-              </label>
-              <Datepicker
-                inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
-                separator={"to"}
-                useRange={false}
-                showFooter={true}
-                displayFormat={"MM/DD/YYYY (dddd)"}
-                value={value}
-                readOnly={true}
-                // dateFormat="MM/DD/YYYY (dddd)" // Use "dddd" for day of the week
-                onChange={handleValueChange}
-                showShortcuts={true}
-              />
-            </div>
-
-            <div className="w-full flex flex-col md:flex-row items-center justify-around">
-              <div className="mb-4 md:w-[30%] w-full">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="starttime"
-                >
-                  Event Start Time
-                </label>
-                <div className="relative">
-                  <TimePicker
-                    onChange={(time) =>
-                      setEventData((prevData) => ({
-                        ...prevData,
-                        timeStarts: time,
-                      }))
-                    }
-                    value={eventData.timeStarts}
-                    className="appearance-none border  bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                </div>
-              </div>
-
-              <div className="mb-4 md:w-[30%] w-full">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="endtime"
-                >
-                  Event End Time
-                </label>
-                <div className="relative">
-                  <TimePicker
-                    onChange={(time) =>
-                      setEventData((prevData) => ({
-                        ...prevData,
-                        timeEnds: time,
-                      }))
-                    }
-                    value={eventData.timeEnds}
-                    className="appearance-none border bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-4 w-full">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="eventPicture"
-              >
-                Event Picture (Landscape 1440 x 820)
-              </label>
-              <input
-                type="file"
-                name="eventPicture"
-                accept="image/*"
-                onChange={handleChange}
-                className="bg-white border rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
-              />
-              {errors.eventPicture && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.eventPicture}
-                </p>
-              )}
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-primary text-white w-full self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+      {userData ? (
+        <div
+          className="flex w-100 items-center justify-center bg-cover bg-no-repeat bg-center"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+          }}
+        >
+          <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-slate-400 min-w-[260px] max-w-[50rem] relative items-center">
+            {/* Use a Link component for navigation */}
+            <Link
+              to="#"
+              className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
+              onClick={handleGoBack}
             >
-              ADD EVENT
-            </button>
-          </form>
+              <VscClose className="w-5 h-5 font-bold" />
+            </Link>
+            <h2 className="text-center md:text-lg text-md font-bold text-primary">
+              Add an Event to BETI
+            </h2>
+
+            {/* AddEvent Form */}
+            <form
+              className="mt-4 flex flex-wrap flex-grow gap-x-8 justify-between"
+              onSubmit={handleSubmit}
+            >
+              {/* Event Name */}
+              <div className="mb-4 md:w-[30%] w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="name"
+                >
+                  Event Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={eventData.name}
+                  onChange={handleChange}
+                  className={`appearance-none border ${
+                    errors.name ? "border-red-500" : "border-gray-300"
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-xs italic">{errors.name}</p>
+                )}
+              </div>
+
+              {/* venue */}
+              <div className="mb-4 md:w-[30%] w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="venue"
+                >
+                  Venue
+                </label>
+                <input
+                  type="text"
+                  name="venue"
+                  value={eventData.venue}
+                  onChange={handleChange}
+                  className={`appearance-none border ${
+                    errors.venue ? "border-red-500" : "border-gray-300"
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                />
+                {errors.venue && (
+                  <p className="text-red-500 text-xs italic">{errors.venue}</p>
+                )}
+              </div>
+
+              {/* price */}
+              <div className="mb-4 md:w-[30%] w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="price"
+                >
+                  Price
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  value={eventData.price}
+                  onChange={handleChange}
+                  className={`appearance-none border ${
+                    errors.price ? "border-red-500" : "border-gray-300"
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                />
+                {errors.price && (
+                  <p className="text-red-500 text-xs italic">{errors.price}</p>
+                )}
+              </div>
+
+              {/* Overview */}
+              <div className="mb-4 w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="overview"
+                >
+                  Overview
+                </label>
+                <textarea
+                  type="text"
+                  name="overview"
+                  value={eventData.overview}
+                  onChange={handleChange}
+                  className={`appearance-none border ${
+                    errors.overview ? "border-red-500" : "border-gray-300"
+                  } rounded-lg w-full py-2 px-3 md:min-h-48 min-h-32 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                />
+                {errors.overview && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.overview}
+                  </p>
+                )}
+              </div>
+
+              {/* specialFeatures */}
+              <div className="mb-4 w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="specialFeatures"
+                >
+                  Special Features
+                </label>
+                <textarea
+                  type="text"
+                  name="specialFeatures"
+                  value={eventData.specialFeatures}
+                  onChange={handleChange}
+                  className={`appearance-none border ${
+                    errors.specialFeatures
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs md:min-h-32 min-h-24 leading-tight focus:outline-none focus:shadow-outline`}
+                />
+                {errors.specialFeatures && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.specialFeatures}
+                  </p>
+                )}
+              </div>
+
+              <div className="mb-4 w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="startdate"
+                >
+                  Event Dates
+                </label>
+                <Datepicker
+                  inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
+                  separator={"to"}
+                  useRange={false}
+                  showFooter={true}
+                  displayFormat={"MM/DD/YYYY (dddd)"}
+                  value={value}
+                  readOnly={true}
+                  // dateFormat="MM/DD/YYYY (dddd)" // Use "dddd" for day of the week
+                  onChange={handleValueChange}
+                  showShortcuts={true}
+                />
+              </div>
+
+              <div className="w-full flex flex-col md:flex-row items-center justify-around">
+                <div className="mb-4 md:w-[30%] w-full">
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="starttime"
+                  >
+                    Event Start Time
+                  </label>
+                  <div className="relative">
+                    <TimePicker
+                      onChange={(time) =>
+                        setEventData((prevData) => ({
+                          ...prevData,
+                          timeStarts: time,
+                        }))
+                      }
+                      value={eventData.timeStarts}
+                      className="appearance-none border  bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-4 md:w-[30%] w-full">
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="endtime"
+                  >
+                    Event End Time
+                  </label>
+                  <div className="relative">
+                    <TimePicker
+                      onChange={(time) =>
+                        setEventData((prevData) => ({
+                          ...prevData,
+                          timeEnds: time,
+                        }))
+                      }
+                      value={eventData.timeEnds}
+                      className="appearance-none border bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-4 w-full">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="eventPicture"
+                >
+                  Event Picture (Landscape 1440 x 820)
+                </label>
+                <input
+                  type="file"
+                  name="eventPicture"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="bg-white border rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
+                />
+                {errors.eventPicture && (
+                  <p className="text-red-500 text-xs italic">
+                    {errors.eventPicture}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="bg-primary text-white w-full self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+              >
+                ADD EVENT
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div
+          className="flex flex-col w-100 h-screen  items-center justify-center bg-cover bg-no-repeat bg-center"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+          }}
+        >
+          <h1 className="text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] ">
+            Not Authorized{" "}
+          </h1>
+          <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
+            Dear user, you are not authorised to access this page.
+          </p>
+        </div>
+      )}
     </>
   );
 };
