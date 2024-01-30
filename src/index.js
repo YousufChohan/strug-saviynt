@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import Events from "./routes/events/Events";
 import EventDetails from "./routes/events/EventDetails";
+import AddEvent from "./routes/events/AddEvent";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/events/:id",
         element: <EventDetails />,
+      },
+      {
+        path: "/addevent",
+        element: <AddEvent />,
       },
     ],
   },

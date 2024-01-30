@@ -77,6 +77,18 @@ const Header = () => {
             Events
           </Link>
         </li>
+        <li>
+          <Link
+            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+              scrolled
+                ? " text-white duration-500 ease-in"
+                : " text-black duration-500 ease-out"
+            }`}
+            to={"/addevent"}
+          >
+            Add Event
+          </Link>
+        </li>
       </ul>
 
       {sidemenu ? (
@@ -109,6 +121,11 @@ const Header = () => {
           <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
             <Link to={"/events"} onClick={handleCloseAfterRoute}>
               Events
+            </Link>
+          </li>
+          <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
+            <Link to={"/addevent"} onClick={handleCloseAfterRoute}>
+              Add Event
             </Link>
           </li>
           {!userData ? (
