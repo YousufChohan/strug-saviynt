@@ -50,7 +50,7 @@ const Header = () => {
         }`}
         to={"/"}
       >
-        LOGO
+        L0G0
       </Link>
       <ul className="justify-normal gap-4 text-lg font-semibold text-white sm:flex hidden">
         <li>
