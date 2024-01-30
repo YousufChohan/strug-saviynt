@@ -52,7 +52,7 @@ const Header = () => {
       >
         LOGO
       </Link>
-      <ul className="justify-normal gap-4 text-lg font-bold text-white sm:flex hidden">
+      <ul className="justify-normal gap-4 text-lg font-semibold text-white sm:flex hidden">
         <li>
           <Link
             className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
