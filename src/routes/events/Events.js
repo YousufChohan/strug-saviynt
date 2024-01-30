@@ -36,7 +36,7 @@ export default function Events() {
       </section>
       <section className="z-10 flex flex-col items-center  w-full pb-4 pt-10 bg-cover bg-primary bg-no-repeat bg-center px-2 gap-6">
         <h1 className="z-20 text-white sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
-          Latest Events:
+          Latest Events
         </h1>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
           {events.map((event, index) => (
