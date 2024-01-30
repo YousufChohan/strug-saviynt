@@ -95,7 +95,7 @@ const AddEvent = () => {
       navigate("/events"); // Go back one step in history
     } catch (error) {
       // Handle error if needed
-      console.error("Adding Event failed:", error);
+      console.error("Adding Event faileds:", error);
     }
   };
 
