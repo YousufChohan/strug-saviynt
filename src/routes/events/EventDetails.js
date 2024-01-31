@@ -72,7 +72,7 @@ function EventDetails() {
       deleteEvent();
     } else {
       // User clicked Cancel
-      console.log("Deletion canceled");
+      console.log("Deletion has been canceled");
     }
   };
 
