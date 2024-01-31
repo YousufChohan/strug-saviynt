@@ -15,16 +15,12 @@ export const fetchEvents = createAsyncThunk(
 
   async (params, { rejectWithValue }) => {
     try {
-      const { token } = params; // Destructure token from params
+      // const { token } = params; // Destructure token from params
       //   console.log("Fetching events with token:", token);
 
       const response = await axios.get(
         `${REACT_APP_BASE_URL}/event?userID=abgh`,
-        {
-          headers: {
-            "x-auth-token": token,
-          },
-        }
+        {}
       );
       //   console.log("Events response:", response.data);
 

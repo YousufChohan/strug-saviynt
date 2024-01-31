@@ -28,6 +28,9 @@ const AddEvent = () => {
   });
 
   const { userData } = useSelector((state) => state.auth);
+  // console.log("token quick check", userData.token);
+  // console.log("userData in header:", userData.role);
+  const userRole = userData?.role || "";
 
   const [value, setValue] = useState({
     startDate: null,
@@ -119,22 +122,22 @@ const AddEvent = () => {
       await addEvent(formData); // Call the addEvent function with the FormData
       navigate("/events"); // Go back one step in history
     } catch (error) {
+      setErrors(error);
+
       // Handle error if needed
-      console.error("Adding Event faileds:", error);
+      console.error("Adding Event failed:", error);
     }
   };
 
   const addEvent = async (formData, token) => {
     try {
-      const token =
-        "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2NWFmYmZmNDBlYTk0YmUzODQ3MDA2YWMiLCJyb2xlIjoiQ3VzdG9tZXIifQ.WvhZavvK4gWPKYLq0kqUi6cPm1ewwKlUbwtThrB8U_4";
       const response = await axios.post(
         `${REACT_APP_BASE_URL}/event`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "x-auth-token": token,
+            "x-auth-token": userData.token,
           },
         }
       );
@@ -158,7 +161,7 @@ const AddEvent = () => {
 
   return (
     <>
-      {userData ? (
+      {userRole === "Admin" ? (
         <div
           className="flex w-100 items-center justify-center bg-cover bg-no-repeat bg-center"
           style={{

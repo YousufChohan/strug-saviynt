@@ -25,6 +25,9 @@ const Header = () => {
   }, []);
 
   const { userData } = useSelector((state) => state.auth);
+  // console.log("userData in header:", userData.role);
+  const userRole = userData?.role || ""; // Set an initial value for userRole
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -39,7 +42,7 @@ const Header = () => {
       className={`justify-between z-50 flex px-3 sm:px-16 text-center items-center fixed w-full transition ${
         scrolled
           ? "bg-black py-2 pb-3 bg-opacity-70 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-in"
-          : "bg-transparent py-6 transition-all duration-500 ease-out"
+          : "bg-white bg-opacity-30 sm:py-4 py-2 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-out"
       }`}
     >
       <Link
@@ -50,15 +53,15 @@ const Header = () => {
         }`}
         to={"/"}
       >
-        L0G0
+        BETI
       </Link>
       <ul className="justify-normal gap-4 text-lg font-semibold text-white sm:flex hidden">
         <li>
           <Link
-            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+            className={`px-4 py-2 rounded-xl transition duration-300 ${
               scrolled
-                ? " text-white duration-500 ease-in"
-                : " text-black duration-500 ease-out"
+                ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
+                : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
             }`}
             to={"/"}
           >
@@ -67,28 +70,30 @@ const Header = () => {
         </li>
         <li>
           <Link
-            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
+            className={`px-4 py-2 rounded-xl transition duration-300 ${
               scrolled
-                ? " text-white duration-500 ease-in"
-                : " text-black duration-500 ease-out"
+                ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
+                : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
             }`}
             to={"/events"}
           >
             Events
           </Link>
         </li>
-        <li>
-          <Link
-            className={`hover:bg-primary px-3 py-1 rounded-xl transition duration-300 ${
-              scrolled
-                ? " text-white duration-500 ease-in"
-                : " text-black duration-500 ease-out"
-            }`}
-            to={"/addevent"}
-          >
-            Add Event
-          </Link>
-        </li>
+        {userRole === "Admin" && (
+          <li>
+            <Link
+              className={`px-4 py-2 rounded-xl transition duration-300 ${
+                scrolled
+                  ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
+                  : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
+              }`}
+              to={"/addevent"}
+            >
+              Add Event
+            </Link>
+          </li>
+        )}
       </ul>
 
       {sidemenu ? (
@@ -123,15 +128,17 @@ const Header = () => {
               Events
             </Link>
           </li>
-          <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
-            <Link to={"/addevent"} onClick={handleCloseAfterRoute}>
-              Add Event
-            </Link>
-          </li>
+          {userRole === "Admin" && (
+            <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
+              <Link to={"/addevent"} onClick={handleCloseAfterRoute}>
+                Add Event
+              </Link>
+            </li>
+          )}
           {!userData ? (
             <li className="hover:bg-primary px-3 py-1 text-black  transition duration-300">
               <Link to={"/signup"} onClick={handleCloseAfterRoute}>
-                JOIN BETI
+                JOIN NOW
               </Link>
             </li>
           ) : (
@@ -143,7 +150,7 @@ const Header = () => {
       )}
       <div className="sm:block hidden">
         {!userData ? (
-          <Button link={"/signup"}>JOIN BETI</Button>
+          <Button link={"/signup"}>JOIN NOW</Button>
         ) : (
           <button onClick={handleLogout}>
             <Button>LOGOUT</Button>

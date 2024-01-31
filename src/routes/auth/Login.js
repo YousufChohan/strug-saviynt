@@ -5,6 +5,8 @@ import backgroundImage from "../../assets/images/bg-example.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/features/AuthSlice";
 
+// import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -47,24 +49,23 @@ const Login = () => {
         return;
       }
 
-      // Password length validation
-      if (formData.password.length < 6) {
-        window.alert("Password must be at least 6 characters long.");
-        return;
-      }
+      // // Password length validation
+      // if (formData.password.length < 6) {
+      //   window.alert("Password must be at least 6 characters long.");
+      //   return;
+      // }
 
       const params = {
         email: formData.email,
         password: formData.password,
       };
 
-      console.log("Login Params:", params);
+      // console.log("Login Params:", params);
 
       // Dispatch the login action
       dispatch(login(params))
         .then((userData) => {
           // Check if login was successful
-          console.log("userData log above if in login screen", userData.type);
           if (userData.type === "login/fulfilled") {
             // Login successful, navigate to the home page
             navigate("/");
@@ -74,10 +75,10 @@ const Login = () => {
         })
         .catch((error) => {
           setErrors(error);
-          console.error("Login failed:", error);
+          console.error("Login has failed:", error);
 
           // Display an alert for login error
-          window.alert("Login failed. Please check your credentials.");
+          window.alert("Login failed due to incorrect Email or Password.");
 
           // Handle login error
         });
@@ -86,7 +87,7 @@ const Login = () => {
       console.error("Login failed 22:", error);
 
       // Display an alert for login error
-      window.alert("Login failed. Please check your credentials.");
+      window.alert("Login failed due to incorrect Email or Password.");
 
       // Handle login error
     }

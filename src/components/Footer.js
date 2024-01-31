@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <footer className="flex py-10 px-2 flex-col items-center justify-center w-100 bg-black gap-5">
         <div className="text-white text-5xl font-bold font-['General Sans'] capitalize">
-          lOGO
+          BETI
         </div>
         <div className="max-w-[500px] text-center text-white text-sm sm:text-lg font-normal font-['General Sans'] capitalize leading-normal">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

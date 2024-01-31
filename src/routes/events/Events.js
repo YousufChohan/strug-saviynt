@@ -6,16 +6,15 @@ import backgroundImage from "../../assets/images/pole-bg2.jpg";
 import EventCard from "../../components/EventCard";
 
 export default function Events() {
-  const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2NWFmYmZmNDBlYTk0YmUzODQ3MDA2YWMiLCJyb2xlIjoiQ3VzdG9tZXIifQ.WvhZavvK4gWPKYLq0kqUi6cPm1ewwKlUbwtThrB8U_4";
+  // const { userData } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
 
   useEffect(() => {
     // Dispatch the fetchEvents action with the token
-    dispatch(fetchEvents({ token: token }));
-  }, [dispatch, token]); // Dependency array includes 'dispatch' and 'token'
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   return (
     <>

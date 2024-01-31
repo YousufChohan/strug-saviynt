@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import { setUserData } from "../actions/AuthActions"; // Adjust the path accordingly
+import { toast } from "react-toastify";
 
 const initialState = {
   userData: null,
@@ -16,10 +17,10 @@ export const login = createAsyncThunk(
 
   async (params, { rejectWithValue, getState }) => {
     try {
-      console.log("Sending login request with params:", params);
+      // console.log("Sending login request with params:", params);
       const response = await axios.post(`${REACT_APP_BASE_URL}/login`, params);
-      console.log("Login response:", response.data);
-
+      // console.log("Login response:", response.data);
+      toast.success("Welcome To BETI");
       return response.data;
     } catch (error) {
       console.error("Login failed xx:", error);
@@ -41,6 +42,7 @@ export const logout = createAsyncThunk(
 
       // Dispatch an action to reset userData
       dispatch(setUserData(null));
+      window.alert("You have been logged out.");
 
       return true; // Indicate successful logout
     } catch (error) {

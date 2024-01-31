@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import backgroundImage from "../../assets/images/bg-example.png";
 import { VscClose } from "react-icons/vsc";
 import axios from "axios";
+import { REACT_APP_BASE_URL } from "../../constants/url";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
+    mobile: "",
     password: "",
     confirmPassword: "",
   });
@@ -23,12 +24,23 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add form validation logic here
-
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.mobile ||
+      !formData.confirmPassword
+    ) {
+      window.alert("Please fill all the fields.");
+      return;
+    }
     try {
       await signUp(); // Call the signUp function
       // Additional logic after successful signup if needed
     } catch (error) {
+      setErrors(error);
+
       // Handle error if needed
       console.error("Signup failed:", error);
     }
@@ -36,19 +48,25 @@ const Signup = () => {
 
   const signUp = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/signup`,
-        {
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          password: formData.password,
-          mobile: formData.mobile, // Assuming mobile is added to the formData
-        }
-      );
+      const response = await axios.post(`${REACT_APP_BASE_URL}/signup`, {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        password: formData.password,
+        mobile: formData.mobile, // Assuming mobile is added to the formData
+      });
 
-      console.log("Signup response:", response.data);
+      console.log("Signup response:", response.data.message);
       // Additional logic after successful signup if needed
+
+      if (response.data.message === "Account Created Sucessfully") {
+        window.alert("Your account has been created. Please Login.");
+        navigate("/login");
+      } else {
+        // Login failed, show an alert
+      }
     } catch (error) {
+      setErrors(error);
+
       console.error("Signup failed:", error);
 
       // Handle signup error
@@ -152,25 +170,25 @@ const Signup = () => {
               )}
             </div>
 
-            {/* phone */}
+            {/* mobile */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="phone"
+                htmlFor="mobile"
               >
-                Phone
+                mobile
               </label>
               <input
-                type="phone"
-                name="phone"
-                value={formData.phone}
+                type="mobile"
+                name="mobile"
+                value={formData.mobile}
                 onChange={handleChange}
                 className={`appearance-none border ${
-                  errors.phone ? "border-red-500" : "border-gray-300"
+                  errors.mobile ? "border-red-500" : "border-gray-300"
                 } rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline`}
               />
-              {errors.phone && (
-                <p className="text-red-500 text-xs italic">{errors.phone}</p>
+              {errors.mobile && (
+                <p className="text-red-500 text-xs italic">{errors.mobile}</p>
               )}
             </div>
 

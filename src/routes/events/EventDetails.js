@@ -70,7 +70,7 @@ function EventDetails() {
         }}
       >
         {/* <div className="absolute inset-0 sm:h-screen bg-black bg-opacity-50"></div> */}
-        <div className="p-1 bg-black flex flex-col items-center justify-center rounded-xl bg-opacity-50">
+        <div className="sm:py-2 sm:px-2 py-1 px-1 bg-black flex flex-col items-center justify-center rounded-xl bg-opacity-50">
           <p className="z-20 text-white sm:text-2xl text-md font-semibold text-center max-w-[600px] ">
             {eventData.dayStarts} {eventData.dateStarts} - {eventData.dayEnds}{" "}
             {eventData.dateEnds}
@@ -106,7 +106,9 @@ function EventDetails() {
                 ${eventData.price}{" "}
               </p>
             </div>
-            <Button>TICKETS</Button>
+            <button className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
+              TICKETS{" "}
+            </button>{" "}
           </div>
         </div>
         <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />

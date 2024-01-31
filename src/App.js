@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import backgroundImage from "./assets/images/bg-example.png";
 import backgroundImage2 from "./assets/images/pole-bg.png"; // Replace with the actual path to your image
-import Button from "./components/Button";
+// import Button from "./components/Button";
 import grid1 from "../src/assets/images/grid1.png";
 import grid2 from "../src/assets/images/grid2.png";
 import grid3 from "../src/assets/images/grid3.png";
@@ -9,8 +9,16 @@ import grid4 from "../src/assets/images/grid4.png";
 import grid5 from "../src/assets/images/grid5.png";
 import grid6 from "../src/assets/images/grid6.png";
 import intro from "../src/assets/images/intro.png";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
+  const cardsWrapperRef = useRef(null);
+
+  const handleReadMoreClick = () => {
+    // Scroll to the cards-wrapper div when "Read More" is clicked
+    cardsWrapperRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <div
@@ -27,11 +35,17 @@ export default function App() {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exerpitationtation
         </p>
-        <button className="bg-primary md:px-10 md:py-3 py-1 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
+        <button
+          onClick={handleReadMoreClick}
+          className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+        >
           Read More
         </button>
       </div>
-      <div className="flex flex-col items-center w-full my-5 px-1">
+      <div
+        ref={cardsWrapperRef}
+        className="flex flex-col items-center w-full my-5 px-1"
+      >
         <h1 className="text-primary text-3xl font-bold text-center ">
           About BETI
         </h1>
@@ -42,7 +56,7 @@ export default function App() {
         </p>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-2/3">
           {/* Column 1 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid1} alt="Engineering Solutions" />
             </div>
@@ -56,7 +70,7 @@ export default function App() {
           </div>
 
           {/* Column 2 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid2} alt="Engineering Solutions" />
             </div>
@@ -70,7 +84,7 @@ export default function App() {
           </div>
 
           {/* Column 3 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid3} alt="Engineering Solutions" />
             </div>
@@ -84,11 +98,11 @@ export default function App() {
           </div>
 
           {/* Column 4 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid4} alt="Engineering Solutions" />
             </div>
-            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+            <div className="text-black text-base font-semibold font-['General Sans'] text-center sm:text-left	">
               Process Excellence:{" "}
             </div>
             <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
@@ -98,25 +112,25 @@ export default function App() {
           </div>
 
           {/* Column 5 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid5} alt="Engineering Solutions" />
             </div>
-            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+            <div className="text-black text-base font-semibold font-['General Sans'] text-center sm:text-left	">
               Ecosystem Innovation:
             </div>
             <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
               Collaborative innovation within the business ecosystem, including
-              partners and suppliers.{" "}
+              partners.{" "}
             </div>
           </div>
 
           {/* Column 6 */}
-          <div className="border border-white hover:border-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 shadow-md shadow-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid6} alt="Engineering Solutions" />
             </div>
-            <div className="text-black text-base font-semibold font-['General Sans'] 	">
+            <div className="text-black text-base font-semibold font-['General Sans'] text-center sm:text-left	">
               Community & Co-Creation:{" "}
             </div>
             <div className=" text-black  text-sm font-normal font-['General Sans'] text-center sm:text-left">
@@ -144,7 +158,7 @@ export default function App() {
         <img
           className="sm:mt-20 rounded-2xl"
           src={intro}
-          alt="Greenery with Electric Poles"
+          alt="Introduction to BETI (SANPEC)"
         />
         <div className="Rectangle95  bg-white rounded-lg" />
       </div>
@@ -182,6 +196,7 @@ export default function App() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
