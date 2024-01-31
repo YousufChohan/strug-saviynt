@@ -10,6 +10,7 @@ import grid5 from "../src/assets/images/grid5.png";
 import grid6 from "../src/assets/images/grid6.png";
 import intro from "../src/assets/images/intro.png";
 import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function App() {
   const cardsWrapperRef = useRef(null);
@@ -18,6 +19,8 @@ export default function App() {
     // Scroll to the cards-wrapper div when "Read More" is clicked
     cardsWrapperRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  const { userData } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -28,7 +31,7 @@ export default function App() {
         }}
       >
         <h1 className="text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] ">
-          Lorem Ipsum Dolor
+          {userData ? `${userData.name} is logged in` : `Lorem Ipsum Dolor`}
         </h1>
         <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

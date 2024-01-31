@@ -2,7 +2,8 @@
 import { fetchEvents } from "../../redux/features/EventSlice";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
-import backgroundImage from "../../assets/images/pole-bg2.jpg";
+import backgroundImage from "../../assets/images/pole-bg22.jpg";
+import backgroundImage2 from "../../assets/images/events-bg-poles.jpg";
 import EventCard from "../../components/EventCard";
 
 export default function Events() {
@@ -24,7 +25,7 @@ export default function Events() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <h1 className="z-20 text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] bg-white bg-opacity-60 px-5 pb-3 rounded-lg">
+        <h1 className="z-20 text-white sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] bg-transparent bg-opacity-60 px-5 pb-3 rounded-lg">
           Events at BETI{" "}
         </h1>
         <p className="z-20 text-white sm:text-xl text-sm font-normal text-center max-w-[600px] ">
@@ -33,8 +34,13 @@ export default function Events() {
           minim veniam, quis nostrud exerpitationtation
         </p>
       </section>
-      <section className="z-10 flex flex-col items-center  w-full pb-4 pt-10 bg-cover bg-primary bg-no-repeat bg-center px-2 gap-6">
-        <h1 className="z-20 text-white sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
+      <section
+        className="z-10 flex flex-col mt-4 items-center  w-full pb-4 pt-10 bg-cover bg-no-repeat bg-opacity-50 bg-center px-2 gap-6"
+        style={{
+          backgroundImage: `url(${backgroundImage2})`,
+        }}
+      >
+        <h1 className="z-20 text-black sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
           Latest Events
         </h1>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">

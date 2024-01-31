@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   const { userData } = useSelector((state) => state.auth);
-  // console.log("userData in header:", userData.role);
+  // console.log("userData in header:", userData);
   const userRole = userData?.role || ""; // Set an initial value for userRole
 
   const dispatch = useDispatch();
@@ -152,8 +152,11 @@ const Header = () => {
         {!userData ? (
           <Button link={"/signup"}>JOIN NOW</Button>
         ) : (
-          <button onClick={handleLogout}>
-            <Button>LOGOUT</Button>
+          <button
+            className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+            onClick={handleLogout}
+          >
+            LOGOUT ({userData?.name})
           </button>
         )}
       </div>

@@ -27,13 +27,13 @@ const EventCard = (event) => {
         pathname: `/events/${data._id}`,
       }}
       state={{ data }}
-      className="cardwrapper max-w-[600px] bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
+      className="cardwrapper max-w-[600px] rounded-md bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
     >
       {image ? (
         <img
           src={image}
           alt={data.name}
-          className="md:w-64 md:h-64 sm:w-48 sm:h-48 w-full h-48 object-cover"
+          className="md:w-64 md:h-64 sm:w-48 sm:h-48 w-full h-48 object-cover sm:rounded-l-md sm:rounded-bl-md"
         />
       ) : (
         <img

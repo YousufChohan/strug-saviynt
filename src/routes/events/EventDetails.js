@@ -1,11 +1,11 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BsAlarmFill } from "react-icons/bs";
 import { FaCalendarAlt } from "react-icons/fa";
 import Button from "../../components/Button";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import bgExampe from "../../assets/images/bg-example.png";
 
 function EventDetails() {
@@ -21,6 +21,11 @@ function EventDetails() {
     : null;
 
   const [image, setImage] = useState("");
+
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   useLayoutEffect(() => {
     if (eventData) {
@@ -52,6 +57,41 @@ function EventDetails() {
     }
   };
 
+  const navigate = useNavigate();
+  const { userData } = useSelector((state) => state.auth);
+  const userRole = userData?.role || ""; // Set an initial value for userRole
+
+  const handleDelete = () => {
+    // Use window.confirm to show a confirmation dialog
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this event?"
+    );
+
+    if (confirmed) {
+      // User clicked OK in the confirmation dialog
+      deleteEvent();
+    } else {
+      // User clicked Cancel
+      console.log("Deletion canceled");
+    }
+  };
+
+  const deleteEvent = async () => {
+    try {
+      await axios.delete(`${REACT_APP_BASE_URL}/event?id=${eventId}`, {
+        headers: {
+          "x-auth-token": userData.token,
+        },
+      });
+
+      // Redirect to the events page after successful deletion
+      navigate("/events");
+      window.alert("Event Deleted");
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      window.alert("There was an error deleting the event.");
+    }
+  };
   // if (!eventData) {
   //   // Handle the case where the event data is not available
   //   return (
@@ -106,9 +146,19 @@ function EventDetails() {
                 ${eventData.price}{" "}
               </p>
             </div>
-            <button className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
-              TICKETS{" "}
-            </button>{" "}
+            <div className="flex sm:flex-row flex-col sm:gap-3 gap-1">
+              {userRole === "Admin" && (
+                <button
+                  onClick={handleDelete}
+                  className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+                >
+                  DELETE
+                </button>
+              )}
+              <button className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
+                TICKETS
+              </button>
+            </div>
           </div>
         </div>
         <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
