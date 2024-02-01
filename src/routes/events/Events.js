@@ -35,10 +35,10 @@ export default function Events() {
         </p>
       </section>
       <section
-        className="z-10 flex flex-col mt-4 items-center  w-full pb-4 pt-10 bg-cover bg-no-repeat bg-opacity-50 bg-center px-2 gap-6"
-        style={{
-          backgroundImage: `url(${backgroundImage2})`,
-        }}
+        className="z-10 flex flex-col mt-4 items-center  w-full pb-4 pt-10 bg-white bg-cover bg-no-repeat bg-center px-2 gap-6"
+        // style={{
+        //   backgroundImage: `url(${backgroundImage2})`,
+        // }}
       >
         <h1 className="z-20 text-black sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
           Latest Events

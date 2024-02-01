@@ -31,6 +31,19 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    // Use window.confirm to show a confirmation dialog
+    const confirmed = window.confirm("Are you sure you want to logout?");
+
+    if (confirmed) {
+      // User clicked OK in the confirmation dialog
+      goLogout();
+    } else {
+      // User clicked Cancel
+      console.log("Logout canceled");
+    }
+  };
+
+  const goLogout = () => {
     dispatch(logout());
   };
   const handleCloseAfterRoute = () => {
@@ -156,7 +169,7 @@ const Header = () => {
             className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
             onClick={handleLogout}
           >
-            LOGOUT ({userData?.name})
+            LOGOUT {userData.name && userData.name}
           </button>
         )}
       </div>

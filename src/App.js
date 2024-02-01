@@ -31,7 +31,7 @@ export default function App() {
         }}
       >
         <h1 className="text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] ">
-          {userData ? `${userData.name} is logged in` : `Lorem Ipsum Dolor`}
+          Lorem Ipsum Dolor
         </h1>
         <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

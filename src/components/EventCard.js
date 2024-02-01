@@ -27,7 +27,7 @@ const EventCard = (event) => {
         pathname: `/events/${data._id}`,
       }}
       state={{ data }}
-      className="cardwrapper max-w-[600px] rounded-md bg-white hover:border-gray-500 hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
+      className="cardwrapper max-w-[600px] rounded-md bg-primary text-white hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
     >
       {image ? (
         <img
@@ -43,28 +43,24 @@ const EventCard = (event) => {
         />
       )}
       <div className="flex flex-col flex-grow gap-3 justify-between py-1 pr-2 pl-2 sm:pl-0">
-        <div className="text-black text-sm font-semibold font-['General Sans'] text-left">
+        <div className="text-sm font-semibold font-['General Sans'] text-left">
           {data.dayStarts} {data.dateStarts} - {data.dayEnds} {data.dateEnds}
         </div>
         <div>
-          <div className="text-black text-xs sm:text-base font-semibold font-['General Sans']">
+          <div className="text-xs sm:text-base font-semibold font-['General Sans']">
             {data.name.length > 78
               ? `${data.name.substring(0, 78)}...`
               : data.name}{" "}
           </div>
-          <div className="text-black sm:text-sm text-xs font-normal font-['General Sans'] text-left">
+          <div className="sm:text-sm text-xs font-normal font-['General Sans'] text-left">
             {data.overview.length > 100
               ? `${data.overview.substring(0, 130)}...`
               : data.overview}{" "}
           </div>
         </div>
         <div className="flex justify-between items-end">
-          <p className="text-black sm:text-sm text-xs font-bold">
-            {data.venue}
-          </p>
-          <p className="text-black sm:text-md text-sm font-semibold">
-            ${data.price}
-          </p>
+          <p className="sm:text-sm text-xs font-bold">{data.venue}</p>
+          <p className="sm:text-md text-sm font-semibold">${data.price}</p>
         </div>
       </div>
     </Link>
