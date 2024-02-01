@@ -52,7 +52,7 @@ const Header = () => {
 
   return (
     <div
-      className={`justify-between z-50 flex px-3 sm:px-16 text-center items-center fixed w-full transition ${
+      className={`justify-between z-50 flex px-3 sm:px-10 md:16 text-center items-center fixed w-full transition ${
         scrolled
           ? "bg-black py-2 pb-3 bg-opacity-70 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-in"
           : "bg-white bg-opacity-30 sm:py-4 py-2 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-out"
@@ -68,7 +68,7 @@ const Header = () => {
       >
         BETI
       </Link>
-      <ul className="justify-normal gap-4 text-lg font-semibold text-white sm:flex hidden">
+      <ul className="justify-normal md:gap-4 gap-2 md:text-lg text-sm  font-semibold text-white sm:flex hidden">
         <li>
           <Link
             className={`px-4 py-2 rounded-xl transition duration-300 ${

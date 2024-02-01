@@ -5,8 +5,10 @@ import { FaCalendarAlt } from "react-icons/fa";
 import Button from "../../components/Button";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import bgExampe from "../../assets/images/bg-example.png";
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 function EventDetails() {
   const location = useLocation(); // Use useLocation hook
@@ -139,23 +141,37 @@ function EventDetails() {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center w-auto flex-grow">
+          <div className="flex justify-between sm:gap-x-6 items-center w-auto flex-grow">
             <div className="flex flex-col">
               <p className="text-black sm:text-base text-xs">Price </p>
               <p className="text-primary sm:text-xl text-sm font-bold">
                 ${eventData.price}{" "}
               </p>
             </div>
-            <div className="flex sm:flex-row flex-col sm:gap-3 gap-1">
+            <div className="flex sm:flex-row sm:gap-3 gap-3 items-center">
               {userRole === "Admin" && (
-                <button
-                  onClick={handleDelete}
-                  className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
-                >
-                  DELETE
-                </button>
+                <div className="text-primary flex sm:flex-row sm:gap-3 gap-2 md:text-3xl text-xl">
+                  <MdDelete
+                    onClick={handleDelete}
+                    className="cursor-pointer hover:text-black transition-all duration-300"
+                  />
+                  <Link
+                    to={{
+                      pathname: `/editevent/${eventData._id}`,
+                    }}
+                    state={{ eventData }}
+                  >
+                    <FaRegEdit className="cursor-pointer hover:text-black transition-all duration-300" />
+                  </Link>
+                  {/* <button
+                    onClick={handleDelete}
+                    className="bg-black md:px-10 md:py-3 py-1 px-2 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+                  >
+                    DELETE
+                  </button> */}
+                </div>
               )}
-              <button className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-sm rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300">
+              <button className="bg-primary sm:px-10 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-black hover:text-white transition duration-300">
                 TICKETS
               </button>
             </div>

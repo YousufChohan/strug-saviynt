@@ -14,6 +14,7 @@ import { store, persistor } from "./redux/store";
 import Events from "./routes/events/Events";
 import EventDetails from "./routes/events/EventDetails";
 import AddEvent from "./routes/events/AddEvent";
+import EditEvent from "./routes/events/EditEvent";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/addevent",
         element: <AddEvent />,
+      },
+      {
+        path: "/editevent/:id",
+        element: <EditEvent />,
       },
     ],
   },
