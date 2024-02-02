@@ -144,7 +144,7 @@ const AddEvent = () => {
       );
 
       console.log("Adding Event response:", response.data);
-      // Additional logic after successful addEvent if needed
+      window.alert("Event Added Successfully.");
     } catch (error) {
       console.error("Adding Event failed:", error);
 
