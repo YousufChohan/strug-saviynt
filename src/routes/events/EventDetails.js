@@ -2,13 +2,13 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { BsAlarmFill } from "react-icons/bs";
 import { FaCalendarAlt } from "react-icons/fa";
-import Button from "../../components/Button";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import bgExampe from "../../assets/images/bg-example.png";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+import PayButton from "../../components/StripePayButton";
 
 function EventDetails() {
   const location = useLocation(); // Use useLocation hook
@@ -244,8 +244,8 @@ function EventDetails() {
               Total: ${(eventData.price * ticketCount).toFixed(2)}
             </p>
           </div>
-
-          <Button link={"/"}>CHECKOUT NOW</Button>
+          <PayButton items={eventData} qty={ticketCount} />
+          {/* <Button link={"/"}>CHECKOUT NOW</Button> */}
         </div>
       </section>
     </>

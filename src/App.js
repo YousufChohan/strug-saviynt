@@ -11,6 +11,7 @@ import grid6 from "../src/assets/images/grid6.png";
 import intro from "../src/assets/images/intro.png";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
+import Map from "./components/Map";
 
 export default function App() {
   const cardsWrapperRef = useRef(null);
@@ -24,7 +25,7 @@ export default function App() {
 
   return (
     <>
-      <div
+      {/* <div
         className="flex flex-col items-center justify-center w-full pb-4 pt-20 sm:h-screen bg-cover bg-no-repeat bg-center px-2 gap-6 bg-opacity-50"
         style={{
           backgroundImage: `url(${backgroundImage})`,
@@ -44,18 +45,38 @@ export default function App() {
         >
           Read More
         </button>
-      </div>
+      </div> */}
+      <section className="flex bg-white md:flex-row flex-col-reverse items-center w-full px-1 md:pb-12 gap-x-4">
+        <div className="md:w-4/12 2-full">
+          <h1 className="text-primary text-3xl font-bold text-center md:text-right">
+            Welcome to BETI
+          </h1>
+          <h2 className="text-black text-1xl font-bold text-center md:text-right">
+            Where Power is Collaborating{" "}
+          </h2>
+          <p className="text-black text-sm md:ml-20 font-semibold mt-2 text-center md:text-right">
+            Join us in a dynamic community, uniting strengths to drive progress
+            and shape a brighter future together.{" "}
+          </p>
+        </div>
+        <div className="md:w-8/12 md:ml-0 w-full flex justify-center items-center">
+          <Map />
+        </div>
+      </section>
+
       <div
         ref={cardsWrapperRef}
-        className="flex flex-col items-center w-full my-5 px-1"
+        className="flex flex-col items-center w-full my-5 md:mt-5 px-1"
       >
+        <div className="h-[1px] bg-gray-300 sm:w-10/12 mb-2 w-full" />
+
         <h1 className="text-primary text-3xl font-bold text-center ">
           About BETI
         </h1>
         <p className="text-m font-semibold text-center max-w-[900px] mt-5 text-gray-700">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation.
+          minim veniam, quis nostrud exercitation.sdf
         </p>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-2/3">
           {/* Column 1 */}
