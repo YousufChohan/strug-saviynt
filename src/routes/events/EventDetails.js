@@ -244,7 +244,7 @@ function EventDetails() {
               Total: ${(eventData.price * ticketCount).toFixed(2)}
             </p>
           </div>
-          <PayButton items={eventData} qty={ticketCount} />
+          <PayButton items={eventData} qty={ticketCount} image={image} />
           {/* <Button link={"/"}>CHECKOUT NOW</Button> */}
         </div>
       </section>

@@ -2,8 +2,8 @@
 import { fetchEvents } from "../../redux/features/EventSlice";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
+
 import backgroundImage from "../../assets/images/pole-bg22.jpg";
-import backgroundImage2 from "../../assets/images/events-bg-poles.jpg";
 import EventCard from "../../components/EventCard";
 
 export default function Events() {

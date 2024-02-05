@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import backgroundImage from "./assets/images/bg-example.png";
+// import backgroundImage from "./assets/images/bg-example.png";
 import backgroundImage2 from "./assets/images/pole-bg.png"; // Replace with the actual path to your image
 // import Button from "./components/Button";
 import grid1 from "../src/assets/images/grid1.png";
@@ -10,18 +10,18 @@ import grid5 from "../src/assets/images/grid5.png";
 import grid6 from "../src/assets/images/grid6.png";
 import intro from "../src/assets/images/intro.png";
 import { ToastContainer } from "react-toastify";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import Map from "./components/Map";
 
 export default function App() {
   const cardsWrapperRef = useRef(null);
 
-  const handleReadMoreClick = () => {
-    // Scroll to the cards-wrapper div when "Read More" is clicked
-    cardsWrapperRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const handleReadMoreClick = () => {
+  //   // Scroll to the cards-wrapper div when "Read More" is clicked
+  //   cardsWrapperRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  const { userData } = useSelector((state) => state.auth);
+  // const { userData } = useSelector((state) => state.auth);
 
   return (
     <>

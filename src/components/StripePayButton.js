@@ -5,15 +5,17 @@ import { REACT_APP_BASE_URL } from "../constants/url";
 
 const PayButton = (props) => {
   const { userData } = useSelector((state) => state.auth);
-  const price = props.items.price * props.qty.toFixed(2);
+  // const price = props.items.price * props.qty;
 
   const handleCheckout = () => {
-    console.log(price);
-
+    console.log("items log in handlecheckout function", props.items);
     axios
-      .post(`${REACT_APP_BASE_URL}/stripe/create-checkout-session`, {
+      .post(`${REACT_APP_BASE_URL}/create-checkout-session`, {
         items: props.items,
         userId: userData._id,
+        qty: props.qty,
+        image: props.image,
+        price: props.items.price,
       })
       .then((res) => {
         if (res.data.url) {
@@ -23,7 +25,10 @@ const PayButton = (props) => {
         }
       })
       .catch((err) => {
-        console.error("Error during checkout:", err.message);
+        window.alert(
+          "There was an error in processing to checkout. Sorry for the inconvenience. Please try again later"
+        );
+        console.error("Error during checkout (API not hit):", err.message);
       });
   };
 
