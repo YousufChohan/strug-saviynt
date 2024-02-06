@@ -255,6 +255,7 @@ const EditEvent = () => {
                   Event Name
                 </label>
                 <input
+                  maxLength={100}
                   type="text"
                   name="name"
                   value={editeventData.name}
@@ -277,6 +278,7 @@ const EditEvent = () => {
                   Venue
                 </label>
                 <input
+                  maxLength={60}
                   type="text"
                   name="venue"
                   value={editeventData.venue}
@@ -299,6 +301,7 @@ const EditEvent = () => {
                   Price
                 </label>
                 <input
+                  maxLength={10}
                   type="number"
                   name="price"
                   value={editeventData.price}
@@ -321,6 +324,7 @@ const EditEvent = () => {
                   Overview
                 </label>
                 <textarea
+                  maxLength={3000}
                   type="text"
                   name="overview"
                   value={editeventData.overview}
@@ -345,6 +349,7 @@ const EditEvent = () => {
                   Special Features
                 </label>
                 <textarea
+                  maxLength={800}
                   type="text"
                   name="specialFeatures"
                   value={editeventData.specialFeatures}

@@ -8,13 +8,13 @@ const PayButton = (props) => {
   // const price = props.items.price * props.qty;
 
   const handleCheckout = () => {
-    console.log("items log in handlecheckout function", props.items);
+    // console.log("items log in handlecheckout function", props.items);
     axios
       .post(`${REACT_APP_BASE_URL}/create-checkout-session`, {
         items: props.items,
         userId: userData._id,
         qty: props.qty,
-        image: props.image,
+        // image: props.image,
         price: props.items.price,
       })
       .then((res) => {
@@ -35,10 +35,10 @@ const PayButton = (props) => {
   return (
     <>
       <button
-        className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+        className="bg-primary sm:hover:-translate-y-2 md:px-10 md:py-3 py-3 px-5 md:text-md text-xs rounded-lg font-normal text-white hover:bg-black hover:text-white transition duration-300"
         onClick={() => handleCheckout()}
       >
-        CHECKOUT NOW
+        BUY NOW
       </button>
     </>
   );

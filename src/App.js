@@ -80,7 +80,7 @@ export default function App() {
         </p>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-2/3">
           {/* Column 1 */}
-          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid1} alt="Engineering Solutions" />
             </div>
@@ -94,7 +94,7 @@ export default function App() {
           </div>
 
           {/* Column 2 */}
-          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid2} alt="Engineering Solutions" />
             </div>
@@ -108,7 +108,7 @@ export default function App() {
           </div>
 
           {/* Column 3 */}
-          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid3} alt="Engineering Solutions" />
             </div>
@@ -122,7 +122,7 @@ export default function App() {
           </div>
 
           {/* Column 4 */}
-          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid4} alt="Engineering Solutions" />
             </div>
@@ -136,7 +136,7 @@ export default function App() {
           </div>
 
           {/* Column 5 */}
-          <div className="border border-gray-500 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid5} alt="Engineering Solutions" />
             </div>
@@ -150,7 +150,7 @@ export default function App() {
           </div>
 
           {/* Column 6 */}
-          <div className="border border-gray-500 shadow-md shadow-gray-500 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
+          <div className="border border-gray-500 shadow-md shadow-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
               <img src={grid6} alt="Engineering Solutions" />
             </div>

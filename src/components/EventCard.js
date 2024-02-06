@@ -27,7 +27,7 @@ const EventCard = (event) => {
         pathname: `/events/${data._id}`,
       }}
       state={{ data }}
-      className="cardwrapper max-w-[600px] rounded-md bg-primary text-white hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
+      className="cardwrapper hover:-translate-y-2 max-w-[600px] rounded-md bg-primary text-white hover:shadow-black hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
     >
       {image ? (
         <img
@@ -58,7 +58,7 @@ const EventCard = (event) => {
               : data.overview}{" "}
           </div>
         </div>
-        <div className="flex justify-between items-end">
+        <div className="flex justify-between items-end sm:gap-3">
           <p className="sm:text-sm text-xs font-bold">{data.venue}</p>
           <p className="sm:text-md text-sm font-semibold">${data.price}</p>
         </div>

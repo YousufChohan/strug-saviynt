@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { BsAlarmFill } from "react-icons/bs";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -50,7 +50,9 @@ function EventDetails() {
   const [ticketCount, setTicketCount] = useState(1);
 
   const handleIncrement = () => {
-    setTicketCount(ticketCount + 1);
+    if (ticketCount < 10) {
+      setTicketCount(ticketCount + 1);
+    }
   };
 
   const handleDecrement = () => {
@@ -102,6 +104,13 @@ function EventDetails() {
   //     </section>
   //   );
   // }
+
+  const handleReadMoreClick = () => {
+    // Scroll to the cards-wrapper div when "Read More" is clicked
+    ticketsWrapperRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const ticketsWrapperRef = useRef(null);
 
   return (
     <>
@@ -171,7 +180,10 @@ function EventDetails() {
                   </button> */}
                 </div>
               )}
-              <button className="bg-primary sm:px-10 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-black hover:text-white transition duration-300">
+              <button
+                onClick={handleReadMoreClick}
+                className="bg-primary sm:px-10 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-black hover:text-white transition duration-300"
+              >
                 TICKETS
               </button>
             </div>
@@ -205,16 +217,17 @@ function EventDetails() {
       </section>
       <section
         id="ticket_box"
+        ref={ticketsWrapperRef}
         className="bg-primary flex flex-col items-center justify-center sm:mt-5 mt-1 sm:pb-4 pb-1"
       >
         <h2 className=" text-white sm:text-5xl text-lg font-bold sm:my-2 my-1">
           TICKETS
         </h2>
-        <div className="bg-white sm:gap-y-5 rounded-xl sm:px-5 px-1 sm:py-5 py-1 flex flex-col items-center justify-center w-1/2">
+        <div className="bg-white sm:gap-y-5 gap-y-3 rounded-xl sm:px-5 px-1 sm:py-5 py-1 flex flex-col items-center justify-center sm:w-8/12 w-1/2">
           <h2 className=" text-black sm:text-3xl text-md font-bold sm:my-2 my-1">
             Book Now!
           </h2>
-          <div className="flex sm:mb-5 sm:flex-row flex-col gap-2 justify-between w-11/12 items-center">
+          <div className="flex sm:mb-5 md:flex-row flex-col gap-2 justify-between w-11/12 items-center">
             <div className="flex sm:flex-row flex-col sm:gap-2 justify-between items-center ">
               <p className="sm:text-xl text-black font-semibold">
                 Standard Ticket:
@@ -239,7 +252,13 @@ function EventDetails() {
                   +
                 </button>
               </div>
+              {ticketCount > 9 && (
+                <p className="sm:text-md text-xs text-black sm:ml-2 text-center font-semibold">
+                  You cannot buy more than 10 tickets.
+                </p>
+              )}
             </div>
+
             <p className="sm:text-xl text-black font-semibold">
               Total: ${(eventData.price * ticketCount).toFixed(2)}
             </p>

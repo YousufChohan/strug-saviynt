@@ -198,6 +198,7 @@ const AddEvent = () => {
                 <input
                   type="text"
                   name="name"
+                  maxLength={100}
                   value={eventData.name}
                   onChange={handleChange}
                   className={`appearance-none border ${
@@ -218,6 +219,7 @@ const AddEvent = () => {
                   Venue
                 </label>
                 <input
+                  maxLength={60}
                   type="text"
                   name="venue"
                   value={eventData.venue}
@@ -240,6 +242,7 @@ const AddEvent = () => {
                   Price
                 </label>
                 <input
+                  maxLength={10}
                   type="number"
                   name="price"
                   value={eventData.price}
@@ -264,6 +267,7 @@ const AddEvent = () => {
                 <textarea
                   type="text"
                   name="overview"
+                  maxLength={3000}
                   value={eventData.overview}
                   onChange={handleChange}
                   className={`appearance-none border ${
@@ -286,6 +290,7 @@ const AddEvent = () => {
                   Special Features
                 </label>
                 <textarea
+                  maxLength={800}
                   type="text"
                   name="specialFeatures"
                   value={eventData.specialFeatures}
