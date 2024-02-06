@@ -162,7 +162,7 @@ function EventDetails() {
                 <div className="text-primary flex sm:flex-row sm:gap-3 gap-2 md:text-3xl text-xl">
                   <MdDelete
                     onClick={handleDelete}
-                    className="cursor-pointer hover:text-black transition-all duration-300"
+                    className="cursor-pointer hover:-translate-y-1 hover:text-secondary transition-all duration-300"
                   />
                   <Link
                     to={{
@@ -170,7 +170,7 @@ function EventDetails() {
                     }}
                     state={{ eventData }}
                   >
-                    <FaRegEdit className="cursor-pointer hover:text-black transition-all duration-300" />
+                    <FaRegEdit className="cursor-pointer hover:-translate-y-1 hover:text-secondary transition-all duration-300" />
                   </Link>
                   {/* <button
                     onClick={handleDelete}
@@ -182,7 +182,7 @@ function EventDetails() {
               )}
               <button
                 onClick={handleReadMoreClick}
-                className="bg-primary sm:px-10 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-black hover:text-white transition duration-300"
+                className="bg-primary sm:px-10 hover:-translate-y-1 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:text-white transition duration-300"
               >
                 TICKETS
               </button>
@@ -254,7 +254,7 @@ function EventDetails() {
               </div>
               {ticketCount > 9 && (
                 <p className="sm:text-md text-xs text-black sm:ml-2 text-center font-semibold">
-                  You cannot buy more than 10 tickets.
+                  You cannot buy more than 10 tickets at once.
                 </p>
               )}
             </div>

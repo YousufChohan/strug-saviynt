@@ -10,6 +10,7 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import { useSelector } from "react-redux";
+import { CiImageOn } from "react-icons/ci";
 
 const AddEvent = () => {
   const [eventData, setEventData] = useState({
@@ -169,17 +170,17 @@ const AddEvent = () => {
             backgroundImage: `url(${backgroundImage})`,
           }}
         >
-          <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-slate-400 min-w-[260px] max-w-[50rem] relative items-center">
+          <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-black min-w-[260px] max-w-[50rem] relative items-center">
             {/* Use a Link component for navigation */}
             <Link
               to="#"
               className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
               onClick={handleGoBack}
             >
-              <VscClose className="w-5 h-5 font-bold" />
+              <VscClose className="w-5 h-5 text-secondary font-bold" />
             </Link>
-            <h2 className="text-center md:text-lg text-md font-bold text-primary">
-              Add an Event to BETI
+            <h2 className="text-center md:text-3xl underline text-md font-bold text-secondary">
+              Add an Event
             </h2>
 
             {/* AddEvent Form */}
@@ -190,7 +191,7 @@ const AddEvent = () => {
               {/* Event Name */}
               <div className="mb-4 md:w-[30%] w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="name"
                 >
                   Event Name
@@ -203,7 +204,7 @@ const AddEvent = () => {
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.name ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
                 />
                 {errors.name && (
                   <p className="text-red-500 text-xs italic">{errors.name}</p>
@@ -213,7 +214,7 @@ const AddEvent = () => {
               {/* venue */}
               <div className="mb-4 md:w-[30%] w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="venue"
                 >
                   Venue
@@ -226,7 +227,7 @@ const AddEvent = () => {
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.venue ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
                 />
                 {errors.venue && (
                   <p className="text-red-500 text-xs italic">{errors.venue}</p>
@@ -236,20 +237,21 @@ const AddEvent = () => {
               {/* price */}
               <div className="mb-4 md:w-[30%] w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="price"
                 >
                   Price
                 </label>
                 <input
-                  maxLength={10}
+                  maxLength={4}
+                  max={200}
                   type="number"
                   name="price"
                   value={eventData.price}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.price ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
                 />
                 {errors.price && (
                   <p className="text-red-500 text-xs italic">{errors.price}</p>
@@ -259,7 +261,7 @@ const AddEvent = () => {
               {/* Overview */}
               <div className="mb-4 w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="overview"
                 >
                   Overview
@@ -272,7 +274,7 @@ const AddEvent = () => {
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.overview ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:min-h-48 min-h-32 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline`}
+                  } rounded-lg w-full py-2 px-3 md:min-h-48 min-h-32 md:text-base text-xs border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline`}
                 />
                 {errors.overview && (
                   <p className="text-red-500 text-xs italic">
@@ -284,7 +286,7 @@ const AddEvent = () => {
               {/* specialFeatures */}
               <div className="mb-4 w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="specialFeatures"
                 >
                   Special Features
@@ -299,7 +301,7 @@ const AddEvent = () => {
                     errors.specialFeatures
                       ? "border-red-500"
                       : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs md:min-h-32 min-h-24 leading-tight focus:outline-none focus:shadow-outline`}
+                  } rounded-lg w-full py-2 px-3 md:text-base text-xs md:min-h-32 min-h-24 border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline`}
                 />
                 {errors.specialFeatures && (
                   <p className="text-red-500 text-xs italic">
@@ -310,13 +312,13 @@ const AddEvent = () => {
 
               <div className="mb-4 w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="startdate"
                 >
                   Event Dates
                 </label>
                 <Datepicker
-                  inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
+                  inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline"
                   separator={"to"}
                   useRange={false}
                   showFooter={true}
@@ -332,7 +334,7 @@ const AddEvent = () => {
               <div className="w-full flex flex-col md:flex-row items-center justify-around">
                 <div className="mb-4 md:w-[30%] w-full">
                   <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-white text-sm font-bold mb-2"
                     htmlFor="starttime"
                   >
                     Event Start Time
@@ -346,14 +348,14 @@ const AddEvent = () => {
                         }))
                       }
                       value={eventData.timeStarts}
-                      className="appearance-none border  bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
+                      className="appearance-none border border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
                 </div>
 
                 <div className="mb-4 md:w-[30%] w-full">
                   <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-white text-sm font-bold mb-2"
                     htmlFor="endtime"
                   >
                     Event End Time
@@ -367,7 +369,7 @@ const AddEvent = () => {
                         }))
                       }
                       value={eventData.timeEnds}
-                      className="appearance-none border bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
+                      className="appearance-none border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
                 </div>
@@ -375,7 +377,7 @@ const AddEvent = () => {
 
               <div className="mb-4 w-full">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-sm font-bold mb-2"
                   htmlFor="eventPicture"
                 >
                   Event Picture (Landscape 1440 x 820)
@@ -389,9 +391,14 @@ const AddEvent = () => {
                 ) : (
                   <div
                     alt="tachtpg"
-                    className="my-2 rounded-xl sm:min-w-80 w-full h-24 self-center border-dashed border border-white justify-center items-center flex"
+                    className="my-2 rounded-xl sm:min-w-80 w-full h-36 self-center border-dashed flex flex-col-reverse border border-secondary justify-center items-center"
                   >
-                    No Image Selected
+                    <div className="text-md font-normal text-white">
+                      No Image Selected
+                    </div>
+                    <div>
+                      <CiImageOn className="text-6xl font-bold text-white h-30" />
+                    </div>
                   </div>
                 )}
 
@@ -400,7 +407,7 @@ const AddEvent = () => {
                   name="eventPicture"
                   accept="image/*"
                   onChange={handleChange}
-                  className="bg-white border rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
+                  className="bg-white border rounded-lg w-full border-2 border-secondary py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
                 />
                 {errors.eventPicture && (
                   <p className="text-red-500 text-xs italic">
@@ -412,7 +419,7 @@ const AddEvent = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-primary text-white w-full self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+                className="bg-secondary text-white w-full self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
               >
                 ADD EVENT
               </button>

@@ -171,7 +171,7 @@ export default function App() {
         </p>
       </div>
       <div className="flex flex-col items-center w-full bg-primary sm:py-20 py-5 sm:px-10 px-3 gap-3">
-        <div className=" text-center text-orange-500 text-4xl font-semibold font-['General Sans']">
+        <div className=" text-center text-secondary text-4xl font-semibold font-['General Sans']">
           About SANPEC
         </div>
         <div className=" text-center text-white text-base font-normal font-['General Sans'] max-w-[700px]">

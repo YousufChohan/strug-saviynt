@@ -40,7 +40,7 @@ export default function Events() {
         //   backgroundImage: `url(${backgroundImage2})`,
         // }}
       >
-        <h1 className="z-20 text-black sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
+        <h1 className="z-20 text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
           Latest Events
         </h1>
         <div className="my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
