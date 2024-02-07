@@ -1,13 +1,17 @@
 import React from "react";
 import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <>
       <footer className="flex py-10 px-2 flex-col items-center justify-center w-100 bg-black gap-5">
-        <div className="text-white text-5xl font-bold font-['General Sans'] capitalize">
-          BETI
+        <div className="group font-bold flex flex-col sm:text-5xl text-2xl text-center">
+          <Link className="text-white" to={"/"}>
+            BETI
+          </Link>
+          <span className="w-0 h-[1px] bg-white duration-400 transition-all group-hover:w-full"></span>
         </div>
         <div className="max-w-[500px] text-center text-white text-sm sm:text-lg font-normal font-['General Sans'] capitalize leading-normal">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

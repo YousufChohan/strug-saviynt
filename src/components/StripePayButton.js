@@ -35,7 +35,7 @@ const PayButton = (props) => {
   return (
     <>
       <button
-        className="bg-primary sm:hover:-translate-y-2 md:px-10 md:py-3 py-3 px-5 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:text-white transition duration-300"
+        className="bg-primary sm:hover:text-black sm:hover:px-14 md:px-10 md:py-3 py-3 px-5 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:text-white transition-all duration-300"
         onClick={() => handleCheckout()}
       >
         BUY NOW

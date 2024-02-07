@@ -25,7 +25,7 @@ export default function Events() {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <h1 className="z-20 text-white sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] bg-transparent bg-opacity-60 px-5 pb-3 rounded-lg">
+        <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-white to-white sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] bg-transparent bg-opacity-60 px-5 pb-3 rounded-lg">
           Events at BETI{" "}
         </h1>
         <p className="z-20 text-white sm:text-xl text-sm font-normal text-center max-w-[600px] ">
@@ -35,15 +35,29 @@ export default function Events() {
         </p>
       </section>
       <section
-        className="z-10 flex flex-col mt-4 items-center  w-full pb-4 pt-10 bg-white bg-cover bg-no-repeat bg-center px-2 gap-6"
+        className="z-10 flex flex-col relative items-center min-h-52 w-full pb-4 md:pt-10 bg-white bg-cover bg-no-repeat bg-center px-2 gap-6"
         // style={{
         //   backgroundImage: `url(${backgroundImage2})`,
         // }}
       >
-        <h1 className="z-20 text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 pb-3 rounded-lg">
+        <div className="-z-50">
+          <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 md:pb-3 rounded-lg">
           Latest Events
         </h1>
-        <div className="my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+        <div className="md:my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
           {events.map((event, index) => (
             <EventCard key={index} event={event} />
           ))}

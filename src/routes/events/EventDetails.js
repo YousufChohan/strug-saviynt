@@ -131,19 +131,34 @@ function EventDetails() {
           </h1>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center sm:my-5 my-1 px-1">
+      <section className="flex min-h-20 relative flex-col items-center justify-center px-1">
+        <div className="-z-50">
+          <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+
         <div className="flex sm:flex-row flex-col sm:gap-32 gap-1 gap-y-2 sm:w-10/12 w-full p-2">
           <div className="flex flex-col sm:flex-row gap-2 items-center justify-between">
             <div className="flex sm:flex-col gap-2">
               <div className="flex gap-1 sm:gap-2 items-center">
-                <BsAlarmFill className="text-primary sm:text-base text-xs" />
+                <FaCalendarAlt className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
                   {eventData.dayStarts} {eventData.dateStarts} -{" "}
                   {eventData.dayEnds} {eventData.dateEnds}
                 </p>
               </div>
               <div className="flex gap-1 sm:gap-2 items-center">
-                <FaCalendarAlt className="text-primary sm:text-base text-xs" />
+                <BsAlarmFill className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
                   {eventData.timeStarts} - {eventData.timeEnds}
                 </p>
@@ -182,7 +197,7 @@ function EventDetails() {
               )}
               <button
                 onClick={handleReadMoreClick}
-                className="bg-primary sm:px-10 hover:-translate-y-1 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:text-white transition duration-300"
+                className="bg-gradient-to-r from-primary to-black sm:px-10 hover:-translate-y-1 sm:py-3 py-2 px-3 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:text-white transition duration-300"
               >
                 TICKETS
               </button>
@@ -192,11 +207,11 @@ function EventDetails() {
         <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
         <div className="flex flex-col md:flex-row-reverse sm:w-10/12 w-full px-1 md:pb-0 gap-x-3">
           <div className="md:w-3/12 md:border-l md:border-gray-300 md:pl-3  ">
-            <h2 className=" text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
+            <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Venue:
             </h2>
             <p className="text-xs sm:text-sm">{eventData.venue} </p>
-            <h2 className=" text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
+            <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Special Features:
             </h2>
             <p className="text-xs sm:text-sm md:pb-3">
@@ -205,7 +220,7 @@ function EventDetails() {
           </div>
 
           <div className="md:w-9/12 md:pb-3 ">
-            <h2 className="text-primary sm:text-3xl text:lg font-bold sm:my-2 my-1">
+            <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Event Overview:
             </h2>
             <p className="md:text-sm text-xs text-justify">
@@ -229,7 +244,7 @@ function EventDetails() {
           </h2>
           <div className="flex sm:mb-5 md:flex-row flex-col gap-2 justify-between w-11/12 items-center">
             <div className="flex sm:flex-row flex-col sm:gap-2 justify-between items-center ">
-              <p className="sm:text-xl text-black font-semibold">
+              <p className="sm:text-xl text-black text-center font-semibold">
                 Standard Ticket:
               </p>
               <div id="input" className="flex  items-center">

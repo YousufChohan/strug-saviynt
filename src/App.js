@@ -46,11 +46,25 @@ export default function App() {
           Read More
         </button>
       </div> */}
-      <section className="flex bg-white md:flex-row flex-col-reverse items-center w-full px-1 md:pb-12 gap-x-4">
-        <div className="md:w-4/12 2-full">
+
+      <section className="flex bg-white md:flex-row md:h-screen flex-col-reverse items-center w-full px-1 pb-6 md:pb-12 gap-x-4">
+        <div className="md:w-4/12 w-full">
+          <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
           <h1 className="text-primary text-3xl font-bold text-center md:text-right">
             Welcome to BETI
           </h1>
+
           <h2 className="text-black text-1xl font-bold text-center md:text-right">
             Where Power is Collaborating{" "}
           </h2>

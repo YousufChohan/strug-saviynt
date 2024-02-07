@@ -58,16 +58,23 @@ const Header = () => {
           : "bg-white bg-opacity-30 sm:py-4 py-2 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-out"
       }`}
     >
-      <Link
-        className={`font-bold  sm:text-5xl text-2xl text-center ${
-          scrolled
-            ? " text-white duration-500 ease-in"
-            : " text-black duration-500 ease-out"
-        }`}
-        to={"/"}
-      >
-        BETI
-      </Link>
+      <div className="group font-bold flex flex-col sm:text-5xl text-2xl text-center">
+        <Link
+          className={` ${
+            scrolled
+              ? " text-white duration-500 ease-in"
+              : " text-transparent bg-clip-text bg-gradient-to-r from-black to-primary duration-500 ease-out"
+          }`}
+          to={"/"}
+        >
+          BETI
+        </Link>
+        <span
+          className={`w-0 h-[1px] bg-black duration-400 transition-all group-hover:w-full ${
+            scrolled ? "bg-white" : "bg-black"
+          }`}
+        ></span>
+      </div>
       <ul className="justify-normal md:gap-4 gap-2 md:text-lg text-sm  font-semibold text-white sm:flex hidden">
         <li>
           <Link
@@ -166,7 +173,7 @@ const Header = () => {
           <Button link={"/signup"}>JOIN NOW</Button>
         ) : (
           <button
-            className="bg-primary md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-white hover:text-black transition duration-300"
+            className="bg-gradient-to-r from-primary to-black md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:md:py-4 transition-all duration-300"
             onClick={handleLogout}
           >
             LOGOUT {userData.name && userData.name}
