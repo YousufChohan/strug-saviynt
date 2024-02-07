@@ -40,7 +40,7 @@ export default function Events() {
         //   backgroundImage: `url(${backgroundImage2})`,
         // }}
       >
-        <div className="-z-50">
+        {/* <div className="-z-50">
           <ul class="circles">
             <li></li>
             <li></li>
@@ -53,7 +53,7 @@ export default function Events() {
             <li></li>
             <li></li>
           </ul>
-        </div>
+        </div> */}
         <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 md:pb-3 rounded-lg">
           Latest Events
         </h1>

@@ -173,10 +173,10 @@ const Header = () => {
           <Button link={"/signup"}>JOIN NOW</Button>
         ) : (
           <button
-            className="bg-gradient-to-r from-primary to-black md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary hover:md:py-4 transition-all duration-300"
+            className="hover:bg-gradient-to-l bg-gradient-to-r from-primary to-black md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary transition-all duration-300"
             onClick={handleLogout}
           >
-            LOGOUT {userData.name && userData.name}
+            LOGOUT {userData.name && `(${userData.name})`}
           </button>
         )}
       </div>

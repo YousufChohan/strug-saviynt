@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 // import backgroundImage from "./assets/images/bg-example.png";
+import backgroundImage3 from "./assets/images/aboutbetibg.png";
 import backgroundImage2 from "./assets/images/pole-bg.png"; // Replace with the actual path to your image
 // import Button from "./components/Button";
 import grid1 from "../src/assets/images/grid1.png";
@@ -80,7 +81,10 @@ export default function App() {
 
       <div
         ref={cardsWrapperRef}
-        className="flex flex-col items-center w-full my-5 md:mt-5 px-1"
+        className="flex flex-col items-center w-full px-1 bg-contain bg-no-repeat bg-bottom"
+        style={{
+          backgroundImage: `url(${backgroundImage3})`,
+        }}
       >
         <div className="h-[1px] bg-gray-300 sm:w-10/12 mb-2 w-full" />
 
@@ -178,13 +182,13 @@ export default function App() {
           </div>
           {/* Grid closing div below this comment  */}
         </div>
-        <p className="text-m font-semibold text-center max-w-[900px] mt-5 text-gray-700 mt-20">
+        <p className="font-semibold text-xs md:text-base text-center md:w-5/12 mt-5 text-gray-700 my-16 md:mb-36 md:mt-20">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation.
         </p>
       </div>
-      <div className="flex flex-col items-center w-full bg-primary sm:py-20 py-5 sm:px-10 px-3 gap-3">
+      <div className="flex flex-col items-center w-full bg-gradient-to-t from-primarydark to-primary sm:py-20 py-5 sm:px-10 px-3 gap-3">
         <div className=" text-center text-secondary text-4xl font-semibold font-['General Sans']">
           About SANPEC
         </div>
