@@ -26,7 +26,7 @@ export default function Events() {
         }}
       >
         <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-white to-white sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] bg-transparent bg-opacity-60 px-5 pb-3 rounded-lg">
-          Events at BETI{" "}
+          Events at BETI
         </h1>
         <p className="z-20 text-white sm:text-xl text-sm font-normal text-center max-w-[600px] ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

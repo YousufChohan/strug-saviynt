@@ -9,6 +9,7 @@ import bgExampe from "../../assets/images/bg-example.png";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import PayButton from "../../components/StripePayButton";
+import TicketsBG from "../../assets/images/ticketsbg.png";
 
 function EventDetails() {
   const location = useLocation(); // Use useLocation hook
@@ -132,21 +133,6 @@ function EventDetails() {
         </div>
       </section>
       <section className="flex min-h-20 relative flex-col items-center justify-center px-1">
-        <div className="-z-50">
-          <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-
         <div className="flex sm:flex-row flex-col sm:gap-32 gap-1 gap-y-2 sm:w-10/12 w-full p-2">
           <div className="flex flex-col sm:flex-row gap-2 items-center justify-between">
             <div className="flex sm:flex-col gap-2">
@@ -205,7 +191,7 @@ function EventDetails() {
           </div>
         </div>
         <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
-        <div className="flex flex-col md:flex-row-reverse sm:w-10/12 w-full px-1 md:pb-0 gap-x-3">
+        <div className="flex flex-col md:flex-row-reverse sm:w-10/12 w-full px-1 md:pb-0 gap-x-3 text-black font-sans">
           <div className="md:w-3/12 md:border-l md:border-gray-300 md:pl-3  ">
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Venue:
@@ -219,7 +205,7 @@ function EventDetails() {
             </p>
           </div>
 
-          <div className="md:w-9/12 md:pb-3 ">
+          <div className="md:w-9/12 md:pb-3 pb-2 ">
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Event Overview:
             </h2>
@@ -228,19 +214,36 @@ function EventDetails() {
             </p>
           </div>
         </div>
-        <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
+        <div className="h-[1px] bg-gray-300 mb-2 sm:w-10/12 w-full" />
+        <div className="-z-50">
+          <ul className="circles opacity-35">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
       </section>
       <section
         id="ticket_box"
         ref={ticketsWrapperRef}
-        className="bg-primary flex flex-col items-center justify-center sm:mt-5 mt-1 sm:pb-4 pb-1"
+        className="bg-primary bg-contain bg-no-repeat bg-bottom md:bg-top md:bg-cover flex flex-col items-center justify-center sm:pb-4 pb-1"
+        style={{
+          backgroundImage: `url(${TicketsBG})`,
+        }}
       >
-        <h2 className=" text-white sm:text-5xl text-lg font-bold sm:my-2 my-1">
+        <h2 className=" text-white sm:text-5xl text-lg sm:my-2 my-1 font-thin">
           TICKETS
         </h2>
         <div className="bg-white sm:gap-y-5 gap-y-3 rounded-xl sm:px-5 px-1 sm:py-5 py-1 flex flex-col items-center justify-center sm:w-8/12 w-1/2">
-          <h2 className=" text-black sm:text-3xl text-md font-bold sm:my-2 my-1">
-            Book Now!
+          <h2 className=" text-black sm:text-3xl text-md font-thin sm:my-2 my-1">
+            Checkout
           </h2>
           <div className="flex sm:mb-5 md:flex-row flex-col gap-2 justify-between w-11/12 items-center">
             <div className="flex sm:flex-row flex-col sm:gap-2 justify-between items-center ">
