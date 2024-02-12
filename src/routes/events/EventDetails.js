@@ -17,7 +17,8 @@ function EventDetails() {
   const events = useSelector((state) => state.events.events);
 
   const { state } = location;
-  const eventId = state?.data?._id;
+  // const eventId = state?.data?._id;
+  const eventId = window.location.pathname.split("/").pop();
 
   const eventData = eventId
     ? events.find((event) => event._id === eventId)

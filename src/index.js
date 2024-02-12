@@ -16,6 +16,7 @@ import EventDetails from "./routes/events/EventDetails";
 import AddEvent from "./routes/events/AddEvent";
 import EditEvent from "./routes/events/EditEvent";
 import CheckoutSuccess from "./routes/events/CheckoutSuccess";
+import Check from "./routes/check";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout-success",
         element: <CheckoutSuccess />,
+      },
+      {
+        path: "/cricket",
+        element: <Check />,
       },
     ],
   },

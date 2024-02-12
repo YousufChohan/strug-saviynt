@@ -27,7 +27,7 @@ const EventCard = (event) => {
         pathname: `/events/${data._id}`,
       }}
       state={{ data }}
-      className="cardwrapper hover:-translate-y-1 max-w-[600px] rounded-md bg-transparent hover:bg-white text-black border border-gray-300 hover:border-b-0 hover:shadow-gray-400 hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
+      className="cardwrapper hover:-translate-y-1 max-w-[600px] rounded-md bg-transparent hover:bg-white text-black border border-gray-300 hover:shadow-gray-400 hover:shadow-lg transition duration-400 gap-2 sm:flex sm:flex-row flex-col"
     >
       {image ? (
         <img
@@ -53,14 +53,16 @@ const EventCard = (event) => {
               : data.name}{" "}
           </div>
           <div className="sm:text-sm text-xs font-normal font-['General Sans'] text-left break-all">
-            {data.overview.length > 100
-              ? `${data.overview.substring(0, 130)}...`
+            {data.overview.length > 120
+              ? `${data.overview.substring(0, 120)}...`
               : data.overview}{" "}
           </div>
         </div>
         <div className="flex justify-between items-end sm:gap-3">
-          <p className="sm:text-sm text-primary text-xs font-semibold">
-            {data.venue}
+          <p className="sm:text-sm text-primary text-xs font-medium">
+            {data.venue.length > 40
+              ? `${data.venue.substring(0, 40)}...`
+              : data.venue}{" "}
           </p>
           <p className="sm:text-md text-sm text-secondary font-semibold">
             ${data.price}
