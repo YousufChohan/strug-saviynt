@@ -62,7 +62,7 @@ const Signup = () => {
         window.alert("Your account has been created. Please Login.");
         navigate("/login");
       } else {
-        // Login failed, show an alert
+        window.alert("Error in creating an account, please try again later.");
       }
     } catch (error) {
       setErrors(error);

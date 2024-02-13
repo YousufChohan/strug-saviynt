@@ -4,7 +4,7 @@ import { BsAlarmFill } from "react-icons/bs";
 import { FaCalendarAlt } from "react-icons/fa";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import axios from "axios";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgExampe from "../../assets/images/bg-example.png";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
@@ -12,11 +12,11 @@ import PayButton from "../../components/StripePayButton";
 import TicketsBG from "../../assets/images/ticketsbg.png";
 
 function EventDetails() {
-  const location = useLocation(); // Use useLocation hook
+  // const location = useLocation(); // Use useLocation hook
 
   const events = useSelector((state) => state.events.events);
 
-  const { state } = location;
+  // const { state } = location;
   // const eventId = state?.data?._id;
   const eventId = window.location.pathname.split("/").pop();
 
@@ -114,6 +114,8 @@ function EventDetails() {
 
   const ticketsWrapperRef = useRef(null);
 
+  console.log("eventoverview:", eventData.overview);
+
   return (
     <>
       <section
@@ -201,7 +203,7 @@ function EventDetails() {
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Special Features:
             </h2>
-            <p className="text-xs sm:text-sm md:pb-3">
+            <p className="text-xs md:text-sm md:pb-3">
               {eventData.specialFeatures}
             </p>
           </div>
@@ -210,7 +212,7 @@ function EventDetails() {
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Event Overview:
             </h2>
-            <p className="md:text-sm text-xs text-justify">
+            <p className="md:text-sm text-xs text-justify whitespace-pre-line">
               {eventData.overview}
             </p>
           </div>

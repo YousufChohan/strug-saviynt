@@ -42,7 +42,6 @@ export const logout = createAsyncThunk(
 
       // Dispatch an action to reset userData
       dispatch(setUserData(null));
-      window.alert("You have been logged out.");
 
       return true; // Indicate successful logout
     } catch (error) {
@@ -73,13 +72,13 @@ const AuthSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        // console.log("Login rejected with error:", action.error.message);
+        console.log("Login rejected with error:", action.error.message);
       })
       .addCase(logout.pending, (state) => {
-        // Add any loading state for logout if needed
+        //Will add any loading state for logout if needed
       })
       .addCase(logout.fulfilled, (state) => {
-        // Clear user data or perform any additional cleanup
+        // Clearing user data.
         state.userData = null;
         state.isSuccess = false;
         console.log("Logout successful");
