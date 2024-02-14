@@ -94,7 +94,7 @@ function EventDetails() {
       navigate("/events");
       window.alert("Event Deleted");
     } catch (error) {
-      console.error("Error deleting event:", error);
+      console.error("There is an error deleting event:", error);
       window.alert("There was an error deleting the event.");
     }
   };
