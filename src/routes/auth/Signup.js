@@ -84,7 +84,7 @@ const Signup = () => {
   return (
     <>
       <div
-        className="flex h-screen w-100 items-center justify-center bg-cover bg-no-repeat bg-center"
+        className="flex py-16 w-100 items-center justify-center bg-cover bg-no-repeat bg-center"
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
