@@ -49,6 +49,9 @@ const Header = () => {
     setSideMenu(!sidemenu);
   };
 
+  // scrolled ? ye karo : nahi to phir ye karo
+  // sidemenu clicked hai to && to ye kar do bas
+
   return (
     <div
       className={`justify-between z-50 flex px-3 sm:px-10 md:16 text-center items-center fixed w-full transition ${
@@ -99,6 +102,18 @@ const Header = () => {
             Events
           </Link>
         </li>
+        {/* <li>
+          <Link
+            className={`px-4 py-2 rounded-xl transition duration-300 ${
+              scrolled
+                ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
+                : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
+            }`}
+            to={"/about"}
+          >
+            About
+          </Link>
+        </li> */}
         {userRole === "Admin" && (
           <li>
             <Link
@@ -147,6 +162,11 @@ const Header = () => {
               Events
             </Link>
           </li>
+          {/* <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
+            <Link to={"/about"} onClick={handleCloseAfterRoute}>
+              About
+            </Link>
+          </li> */}
           {userRole === "Admin" && (
             <li className="hover:bg-primary px-3 py-1 text-black border-b border-black transition duration-300">
               <Link to={"/addevent"} onClick={handleCloseAfterRoute}>
@@ -171,7 +191,7 @@ const Header = () => {
         {!userData ? (
           <Link
             to={"/signup"}
-            className="hover:bg-gradient-to-l bg-gradient-to-r from-primary to-black md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary transition-all duration-300"
+            className="hover:bg-gradient-to-l bg-gradient-to-r from-primary to-black md:px-10 md:py-3 py-2 px-4 md:text-md text-xs rounded-lg font-normal text-white hover:bg-secondary transition-background duration-300"
           >
             JOIN NOW
           </Link>

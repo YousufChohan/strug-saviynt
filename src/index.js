@@ -17,6 +17,7 @@ import AddEvent from "./routes/events/AddEvent";
 import EditEvent from "./routes/events/EditEvent";
 import CheckoutSuccess from "./routes/events/CheckoutSuccess";
 import Check from "./routes/check";
+import About from "./routes/About";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/cricket",
         element: <Check />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },

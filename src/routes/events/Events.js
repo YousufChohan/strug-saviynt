@@ -11,6 +11,7 @@ export default function Events() {
 
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
+  console.log("events log 2:", events);
 
   useEffect(() => {
     // Dispatch the fetchEvents action with the token

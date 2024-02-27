@@ -60,19 +60,6 @@ export default function App() {
             <li></li>
             <li></li>
             <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
           </ul>
           <h1 className="text-primary text-3xl font-bold text-center md:text-right">
             Welcome to BETI
@@ -100,15 +87,15 @@ export default function App() {
       >
         <div className="h-[1px] bg-gray-300 sm:w-10/12 mb-2 w-full" />
 
-        <h1 className="text-primary text-3xl font-bold text-center ">
+        <h1 className="text-primary md:text-3xl text-2xl font-bold text-center ">
           About BETI
         </h1>
-        <p className="text-m font-semibold text-center max-w-[900px] mt-5 text-gray-700">
+        <p className="text-base font-medium text-center max-w-[900px] mt-5 text-gray-700">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation.sdf
         </p>
-        <div className="my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-2/3">
+        <div className="my-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-2/3">
           {/* Column 1 */}
           <div className="border border-gray-500 hover:-translate-y-2 hover:shadow-primary hover:shadow-lg shadow-md shadow-gray-500 rounded-lg transition duration-400  p-4 gap-3 flex-col flex items-center sm:items-baseline">
             <div className="Group8  h-16 ">
