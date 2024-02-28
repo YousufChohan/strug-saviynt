@@ -49,15 +49,12 @@ const Header = () => {
     setSideMenu(!sidemenu);
   };
 
-  // scrolled ? ye karo : nahi to phir ye karo
-  // sidemenu clicked hai to && to ye kar do bas
-
   return (
     <div
       className={`justify-between z-50 flex px-3 sm:px-10 md:16 text-center items-center fixed w-full transition ${
         scrolled
           ? "bg-black py-2 pb-3 bg-opacity-70 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-in"
-          : "bg-white bg-opacity-30 sm:py-4 py-2 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-out"
+          : "bg-transparent bg-opacity-30 sm:py-4 py-2 rounded-b-3xl rounded-bl-3xl transition-all duration-500 ease-out"
       }`}
     >
       <div className="group font-bold flex flex-col sm:text-5xl text-2xl text-center">

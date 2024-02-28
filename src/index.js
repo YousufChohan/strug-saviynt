@@ -18,6 +18,7 @@ import EditEvent from "./routes/events/EditEvent";
 import CheckoutSuccess from "./routes/events/CheckoutSuccess";
 import Check from "./routes/check";
 import About from "./routes/About";
+import States from "./routes/States";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/states/:name",
+        element: <States />,
       },
     ],
   },

@@ -19,12 +19,12 @@ export const fetchEvents = createAsyncThunk(
       //   console.log("Fetching events with token:", token);
 
       const response = await axios.get(
-        `${REACT_APP_BASE_URL}/event?userID=abgh`,
+        `${REACT_APP_BASE_URL}/getcventdata`,
         {}
       );
-      //   console.log("Events response:", response.data);
+      // console.log("Events response:", response.data);
 
-      return response.data.events;
+      return response.data;
     } catch (error) {
       console.error("Fetching events failed:", error);
       return rejectWithValue(
