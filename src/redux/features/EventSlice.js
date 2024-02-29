@@ -22,9 +22,9 @@ export const fetchEvents = createAsyncThunk(
         `${REACT_APP_BASE_URL}/getcventdata`,
         {}
       );
-      // console.log("Events response:", response.data);
+      // console.log("Events response in Slice File:", response.data[0].data);
 
-      return response.data;
+      return response.data[0].data;
     } catch (error) {
       console.error("Fetching events failed:", error);
       return rejectWithValue(

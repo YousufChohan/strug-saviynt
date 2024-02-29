@@ -50,7 +50,7 @@ export default function App() {
 
       <section className="flex bg-white md:flex-row md:h-screen flex-col-reverse items-center w-full px-1 pb-6 md:pb-12 gap-x-4">
         <div className="md:w-4/12 w-full">
-          <ul class="circles opacity-60">
+          <ul className="circles opacity-60">
             <li></li>
             <li></li>
             <li></li>

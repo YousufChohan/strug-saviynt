@@ -10,13 +10,13 @@ export default function Events() {
   // const { userData } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-  const events = useSelector((state) => state.events.events.data);
-  console.log("events log 2:", events);
+  const events = useSelector((state) => state.events.events);
+  // console.log("events log 2:", events);
 
-  // useEffect(() => {
-  //   // Dispatch the fetchEvents action with the token
-  //   dispatch(fetchEvents());
-  // }, [dispatch]);
+  useEffect(() => {
+    // Dispatch the fetchEvents action with the token
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function Events() {
         // }}
       >
         {/* <div className="-z-50">
-          <ul class="circles">
+          <ul className="circles">
             <li></li>
             <li></li>
             <li></li>
