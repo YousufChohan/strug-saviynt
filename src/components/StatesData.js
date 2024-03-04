@@ -5,6 +5,8 @@ const StatesData = [
     code: "HI",
     locations: ["Honolulu", "Muave"],
     services: ["Solar Energy", "Wind Energy"],
+    details:
+      "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem",
     description:
       "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ",
   },
@@ -50,6 +52,15 @@ const StatesData = [
     name: "Maryland",
     code: "MD",
     locations: ["Baltimore", "Annapolis"],
+    services: ["Solar Energy", "Wind Energy"],
+    description:
+      "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ",
+  },
+  {
+    number: 6,
+    name: "Oregon",
+    code: "OR",
+    locations: ["Portland", "Salem", "Oak Grove"],
     services: ["Solar Energy", "Wind Energy"],
     description:
       "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ",

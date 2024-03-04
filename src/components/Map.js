@@ -1512,7 +1512,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-OR" title="Oregon" className="defaultColor">
-                  <a
+                  <Link
+                    to={`/states/${StatesData[6].name}`}
                     href="/" //href="https://www.performanceexcellencenw.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
@@ -1544,7 +1545,7 @@ const Map = () => {
                         OR
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NM" title="New Mexico" className="defaultColor">

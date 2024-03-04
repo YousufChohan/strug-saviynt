@@ -14,7 +14,6 @@ export default function Events() {
   // console.log("events log 2:", events);
 
   useEffect(() => {
-    // Dispatch the fetchEvents action with the token
     dispatch(fetchEvents());
   }, [dispatch]);
 

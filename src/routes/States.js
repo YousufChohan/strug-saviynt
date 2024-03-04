@@ -128,6 +128,17 @@ const States = () => {
                 <p className="md:text-sm text-xs text-justify whitespace-pre-line">
                   {thisStateData.description}
                 </p>
+
+                {thisStateData.details && (
+                  <div>
+                    <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
+                      Details
+                    </h2>
+                    <p className="md:text-sm text-xs text-justify whitespace-pre-line">
+                      {thisStateData.details}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="h-[1px] bg-gray-300 mb-2 sm:w-10/12 w-full" />
