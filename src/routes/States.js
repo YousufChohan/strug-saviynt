@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StatesData from "../components/StatesData";
 import { useSelector } from "react-redux";
 import Map from "../components/Map";
 import EventCard from "../components/EventCard";
+import { useLocation } from "react-router-dom";
 
 const States = () => {
-  const stateName = window.location.pathname.split("/").pop();
-  // console.log(stateName, "state name log in states page");
+  const [key, setKey] = useState(0);
+  const location = useLocation(); // Use useLocation hook to get the current location
+
+  console.log("location", location);
+
+  useEffect(() => {
+    setKey((prevKey) => prevKey + 1);
+  }, [location.pathname]); // Update key state when pathname changes
+
+  const stateCode = window.location.pathname.split("/").pop();
+  console.log(stateCode, "state name log in states page");
 
   // const event = useSelector((state) => state.event);
   // console.log("event log in states page", event);
 
-  //Find the state data object with the same name as stateName
-  const thisStateData = stateName
-    ? StatesData.find((stateData) => stateData.name === stateName)
+  //Find the state data object with the same name as stateCode
+  const thisStateData = stateCode
+    ? StatesData.find((stateData) => stateData.code === stateCode)
     : null;
 
   const events = useSelector((state) => state.events.events);
@@ -44,67 +54,22 @@ const States = () => {
     : [];
 
   console.log("this State Events", thisStateEvents);
-
-  // let thisStateData;
-
-  // if (stateName.length > 0) {
-  //   thisStateData = StatesData.find(
-  //     (stateData) => stateData.name === stateName
-  //   );
-  // } else {
-  //   thisStateData = null;
-  // }
-
-  // console.log("console log in state page", thisStateData);
-
   return (
-    <div>
+    <div key={key}>
       {thisStateData ? (
         <>
-          <section
-            className="md:h-screen bg-contain bg-no-repeat flex flex-col justify-center items-center p-2 "
-            // style={{
-            //   backgroundImage: `url(${stateBackground})`,
-            // }}
-          >
-            <div className="md:w-10/12 md:ml-48 self-center w-full flex -z-10 absolute opacity-20 justify-center items-center">
-              <Map className="absolute -z-10" />
+          <section className="flex bg-white md:flex-row md:h-screen flex-col-reverse items-center w-full px-1 pb-1 md:pb-12 gap-x-4">
+            <div className=" md:p-10 md:w-4/12 w-full flex flex-row-reverse items-center justify-center">
+              <h2 className="inline-block md:text-right md:mt-0 py-3 text-transparent bg-clip-text bg-gradient-to-r from-primary to-black sm:text-4xl md:text-5xl text-2xl font-bold md:my-2 text-center">
+                The {thisStateData.name} Chapter
+              </h2>
             </div>
-            <h2 className="mt-48 md:mt-0 py-3 text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-6xl text:lg font-bold sm:my-2 my-1">
-              The {thisStateData.name} Chapter
-            </h2>
-
-            {/* <p className="mb-48 md:mb-0">{thisStateData.longitude}</p> */}
+            <div className="md:w-8/12 md:ml-0 w-full flex justify-center items-center">
+              <Map />
+            </div>
           </section>
+
           <section className="flex min-h-20 relative flex-col items-center justify-center px-1">
-            {/* <div className="flex sm:flex-row flex-col sm:gap-32 gap-1 gap-y-2 sm:w-10/12 w-full p-2">
-              <div className="flex flex-col sm:flex-row gap-2 items-center justify-between">
-                <div className="flex sm:flex-col gap-2">
-                  <div className="flex gap-1 sm:gap-2 items-center">
-                    <FaCalendarAlt className="text-primary sm:text-base text-xs" />
-                    <p className="text-black md:text-base sm:text-xs text-[10px]">
-                      eventData.dayStarts eventData.dateStarts -{" "}
-                      eventData.dayEnds eventData.dateEnds
-                    </p>
-                  </div>
-                  <div className="flex gap-1 sm:gap-2 items-center">
-                    <BsAlarmFill className="text-primary sm:text-base text-xs" />
-                    <p className="text-black md:text-base sm:text-xs text-[10px]">
-                      eventData.timeStarts - eventData.timeEnds
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-between sm:gap-x-6 items-center w-auto flex-grow">
-                <div className="flex flex-col">
-                  <p className="text-black sm:text-base text-xs">Price </p>
-                  <p className="text-primary sm:text-xl text-sm font-bold">
-                    $asd
-                  </p>
-                </div>
-                <div className="flex sm:flex-row sm:gap-3 gap-3 items-center"></div>
-              </div>
-            </div> */}
             <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
             <div className="flex flex-col md:flex-row-reverse sm:w-10/12 w-full px-1 md:pb-0 gap-x-3 text-black font-sans">
               <div className="md:w-3/12 md:border-l md:border-gray-300 md:pl-3  ">
@@ -112,13 +77,23 @@ const States = () => {
                   Locations:
                 </h2>
                 {thisStateData.locations.map((location, index) => (
-                  <div key={index}>{location}</div>
+                  <div
+                    className="md:text-sm text-xs text-justify whitespace-pre-line"
+                    key={index}
+                  >
+                    {location}
+                  </div>
                 ))}
                 <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
                   Services:
                 </h2>
                 {thisStateData.services.map((service, index) => (
-                  <div key={index}>{service}</div>
+                  <div
+                    className="md:text-sm text-xs text-justify whitespace-pre-line"
+                    key={index}
+                  >
+                    {service}
+                  </div>
                 ))}
               </div>
 
@@ -142,7 +117,8 @@ const States = () => {
                 )}
               </div>
             </div>
-            <div className="h-[1px] bg-gray-300 mb-2 sm:w-10/12 w-full" />
+            <div className="h-[1px] bg-gray-300 sm:w-10/12 w-full" />
+
             <div className="-z-50">
               <ul className="circles opacity-35">
                 <li></li>
@@ -159,8 +135,8 @@ const States = () => {
             </div>
           </section>
 
-          <section className="z-10 flex flex-col relative items-center min-h-52 w-full pb-4 md:pt-10 bg-white bg-cover bg-no-repeat bg-center px-2 gap-6">
-            <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 md:pb-3 rounded-lg">
+          <section className="mt-4 z-10 flex flex-col relative items-center  w-full pb-4 md:pt-10 bg-white bg-cover bg-no-repeat bg-center px-2 gap-6">
+            <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans sm:text-4xl md:text-6xl text:lg font-bold line text-center px-5 md:pb-3 rounded-lg leading-tight">
               Events in {thisStateData.name}
             </h1>
             {thisStateEvents.length > 0 ? (
@@ -170,7 +146,7 @@ const States = () => {
                 ))}
               </div>
             ) : (
-              <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans leading-tight text-xl font-bold line text-center px-5 md:pb-3 rounded-lg">
+              <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans leading-tight sm:text-xl text-sm font-bold line text-center px-5 md:pb-3 rounded-lg">
                 There are no events currently taking place in{" "}
                 {thisStateData.name}. Stay tuned for more information.
               </h1>
