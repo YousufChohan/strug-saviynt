@@ -4,6 +4,9 @@ import { VscClose } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/features/AuthSlice";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { REACT_APP_BASE_URL } from "../constants/url";
+import { fetchEvents } from "../redux/features/EventSlice";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -49,6 +52,30 @@ const Header = () => {
     setSideMenu(!sidemenu);
   };
 
+  const refreshEventData = async () => {
+    try {
+      const response = await axios.get(
+        `${REACT_APP_BASE_URL}/updatecventdata`,
+
+        {
+          headers: {
+            "x-auth-token": userData.token,
+          },
+        }
+      );
+
+      console.log("Cvent Data Updated Successfully:", response.data);
+      dispatch(fetchEvents());
+      window.alert("Event updated Successfully.");
+    } catch (error) {
+      console.error("Updating Event failed:", error);
+
+      // Handle Adding Event error
+
+      throw error;
+    }
+  };
+
   return (
     <div
       className={`justify-between z-50 flex px-3 sm:px-10 md:16 text-center items-center fixed w-full transition ${
@@ -74,7 +101,7 @@ const Header = () => {
           }`}
         ></span>
       </div>
-      <ul className="justify-normal md:gap-4 gap-2 md:text-lg text-sm  font-semibold text-white sm:flex hidden">
+      <ul className="justify-normal md:gap-4 gap-2 md:text-lg text-sm  font-semibold text-white sm:flex items-center hidden">
         <li>
           <Link
             className={`px-4 py-2 rounded-xl transition duration-300 ${
@@ -99,30 +126,19 @@ const Header = () => {
             Events
           </Link>
         </li>
-        {/* <li>
-          <Link
-            className={`px-4 py-2 rounded-xl transition duration-300 ${
-              scrolled
-                ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
-                : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
-            }`}
-            to={"/about"}
-          >
-            About
-          </Link>
-        </li> */}
+
         {userRole === "Admin" && (
           <li>
-            <Link
+            <button
               className={`px-4 py-2 rounded-xl transition duration-300 ${
                 scrolled
                   ? " text-white duration-500 ease-in hover:bg-white hover:text-black"
                   : " text-black duration-500 ease-out hover:bg-primary hover:text-white"
               }`}
-              to={"/addevent"}
+              onClick={refreshEventData}
             >
-              Add Event
-            </Link>
+              Refresh Events
+            </button>
           </li>
         )}
       </ul>

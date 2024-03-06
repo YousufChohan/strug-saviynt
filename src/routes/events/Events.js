@@ -1,7 +1,6 @@
 // Import your action creator
-import { fetchEvents } from "../../redux/features/EventSlice";
-import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import React from "react";
 
 import backgroundImage from "../../assets/images/pole-bg22.jpg";
 import EventCard from "../../components/EventCard";
@@ -9,13 +8,13 @@ import EventCard from "../../components/EventCard";
 export default function Events() {
   // const { userData } = useSelector((state) => state.auth);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
-  // console.log("events log 2:", events);
+  // // console.log("events log 2:", events);
 
-  useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchEvents());
+  // }, [dispatch]);
 
   return (
     <>

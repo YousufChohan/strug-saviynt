@@ -20,7 +20,8 @@ const States = () => {
 
   console.log(
     "events log in states page",
-    events[0].venues[0].address.regionCode
+    events[0].venues[0].address.regionCode,
+    events
   );
 
   console.log(events);
@@ -73,7 +74,7 @@ const States = () => {
               The {thisStateData.name} Chapter
             </h2>
 
-            <p className="mb-48 md:mb-0">{thisStateData.longitude}</p>
+            {/* <p className="mb-48 md:mb-0">{thisStateData.longitude}</p> */}
           </section>
           <section className="flex min-h-20 relative flex-col items-center justify-center px-1">
             {/* <div className="flex sm:flex-row flex-col sm:gap-32 gap-1 gap-y-2 sm:w-10/12 w-full p-2">
@@ -162,7 +163,7 @@ const States = () => {
             <h1 className="z-20 text-transparent bg-clip-text bg-gradient-to-r from-black to-primary  font-sans sm:text-[80px] leading-tight text-4xl font-bold line text-center px-5 md:pb-3 rounded-lg">
               Events in {thisStateData.name}
             </h1>
-            {thisStateEvents.length > 1 ? (
+            {thisStateEvents.length > 0 ? (
               <div className="md:my-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
                 {thisStateEvents.map((event, index) => (
                   <EventCard key={index} event={event} />

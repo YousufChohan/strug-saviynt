@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 // import backgroundImage from "./assets/images/bg-example.png";
 import backgroundImage3 from "./assets/images/aboutbetibg.png";
 import backgroundImage2 from "./assets/images/pole-bg.png"; // Replace with the actual path to your image
@@ -13,9 +13,18 @@ import intro from "../src/assets/images/intro.png";
 import { ToastContainer } from "react-toastify";
 // import { useSelector } from "react-redux";
 import Map from "./components/Map";
+import { useDispatch } from "react-redux";
+import { fetchEvents } from "./redux/features/EventSlice";
 
 export default function App() {
   const cardsWrapperRef = useRef(null);
+
+  const dispatch = useDispatch();
+  // const events = useSelector((state) => state.events.events);
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   // const handleReadMoreClick = () => {
   //   // Scroll to the cards-wrapper div when "Read More" is clicked

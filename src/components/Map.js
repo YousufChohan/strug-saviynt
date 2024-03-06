@@ -4,8 +4,6 @@ import StatesData from "./StatesData";
 import { Link } from "react-router-dom";
 
 const Map = () => {
-  console.log(StatesData[0].name);
-
   return (
     <>
       <div className="container">
@@ -76,8 +74,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-MI" className="defaultColor" title="Michigan">
-                  <a
-                    href="/" //href="https://www.miperformanceexcellence.org/"
+                  <Link
+                    to={`/states/${StatesData[28].name}`} //href="https://www.miperformanceexcellence.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -107,12 +105,12 @@ const Map = () => {
                         MI
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-ME" className="defaultColor" title="Maine">
-                  <a
-                    href="/" //href="https://excellencenorth.org/"
+                  <Link
+                    to={`/states/${StatesData[37].name}`} //href="https://excellencenorth.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -143,12 +141,12 @@ const Map = () => {
                         ME
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-PA" title="Pennsylvania" className="defaultColor">
-                  <a
-                    href="/" //href="http://midatlanticape.org/index.php"
+                  <Link
+                    to={`/states/${StatesData[39].name}`} //href="http://midatlanticape.org/index.php"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -179,12 +177,12 @@ const Map = () => {
                         PA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NY" title="New York" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.partnerspex.org/"
+                  <Link
+                    to={`/states/${StatesData[38].name}`} //href="http://www.partnerspex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -215,12 +213,12 @@ const Map = () => {
                         NY
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NJ" title="New Jersey" className="defaultColor">
-                  <a
-                    href="/" //href="http://midatlanticape.org/"
+                  <Link
+                    to={`/states/${StatesData[49].name}`} //href="http://midatlanticape.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -265,7 +263,7 @@ const Map = () => {
                         NJ
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MD" title="Maryland" className="defaultColor">
@@ -314,8 +312,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-DC" title="Washington, DC" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.spqa-va.org/"
+                  <Link
+                    to={`/states/${StatesData[34].name}`} //href="https://www.spqa-va.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -359,12 +357,12 @@ const Map = () => {
                         DC
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-DE" title="Delaware" className="defaultColor">
-                  <a
-                    href="/" //href="http://midatlanticape.org/"
+                  <Link
+                    to={`/states/${StatesData[50].name}`} //href="http://midatlanticape.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -409,12 +407,12 @@ const Map = () => {
                         DE
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-WV" title="West Virginia" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.thepartnershipforexcellence.org/"
+                  <Link
+                    to={`/states/${StatesData[40].name}`} //href="http://www.thepartnershipforexcellence.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -445,12 +443,12 @@ const Map = () => {
                         WV
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-WI" title="Wisconsin" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.forwardaward.org/"
+                  <Link
+                    to={`/states/${StatesData[25].name}`} //href="http://www.forwardaward.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -481,12 +479,12 @@ const Map = () => {
                         WI
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-VA" title="Virginia" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.spqa-va.org/"
+                  <Link
+                    to={`/states/${StatesData[41].name}`} //href="https://www.spqa-va.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -517,12 +515,12 @@ const Map = () => {
                         VA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-TN" title="Tennessee" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.tncpe.org/"
+                  <Link
+                    to={`/states/${StatesData[31].name}`} //href="https://www.tncpe.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -553,7 +551,7 @@ const Map = () => {
                         TN
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-OH" title="New Jersey" className="defaultColor">
@@ -593,8 +591,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-NC" title="North Carolina" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.ies.ncsu.edu/ncafe/"
+                  <Link
+                    to={`/states/${StatesData[42].name}`} //href="https://www.ies.ncsu.edu/ncafe/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -625,12 +623,12 @@ const Map = () => {
                         NC
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-KY" title="Kentucky" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.kycpe.org/"
+                  <Link
+                    to={`/states/${StatesData[30].name}`} //href="http://www.kycpe.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -661,12 +659,12 @@ const Map = () => {
                         KY
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-IN" title="Indiana" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.thepartnershipforexcellence.org/"
+                  <Link
+                    to={`/states/${StatesData[29].name}`} //href="http://www.thepartnershipforexcellence.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -697,12 +695,12 @@ const Map = () => {
                         IN
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-IL" title="Illinois" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.thepartnershipforexcellence.org/"
+                  <Link
+                    to={`/states/${StatesData[26].name}`} //href="http://www.thepartnershipforexcellence.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -733,11 +731,11 @@ const Map = () => {
                         IL
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
                 <g id="US-SC" title="South Carolina" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.scquality.com/"
+                  <Link
+                    to={`/states/${StatesData[43].name}`} //href="https://www.scquality.com/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -768,12 +766,12 @@ const Map = () => {
                         SC
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MS" title="Mississippi" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.tncpe.org/"
+                  <Link
+                    to={`/states/${StatesData[27].name}`} //href="https://www.tncpe.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -804,12 +802,12 @@ const Map = () => {
                         MS
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-GA" title="Georgia" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.floridasterling.com/"
+                  <Link
+                    to={`/states/${StatesData[35].name}`} //href="https://www.floridasterling.com/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -840,12 +838,12 @@ const Map = () => {
                         GA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g i="" id="US-FL" title="Florida" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.floridasterling.com/"
+                  <Link
+                    to={`/states/${StatesData[36].name}`} //href="https://www.floridasterling.com/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -876,12 +874,12 @@ const Map = () => {
                         FL
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-AL" title="Alabama" className="defaultColor">
-                  <a
-                    href="/" //href="https://alabamaexcellence.com/"
+                  <Link
+                    to={`/states/${StatesData[33].name}`} //href="https://alabamaexcellence.com/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -912,12 +910,12 @@ const Map = () => {
                         AL
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-VT" title="Vermont" className="defaultColor">
-                  <a
-                    href="/" //href="https://excellencenorth.org/"
+                  <Link
+                    to={`/states/${StatesData[48].name}`} //href="https://excellencenorth.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -962,12 +960,12 @@ const Map = () => {
                         VT
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-RI" title="Rhode Island" className="defaultColor">
-                  <a
-                    href="/" //href="http://partnerspex.org/"
+                  <Link
+                    to={`/states/${StatesData[47].name}`} //href="http://partnerspex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1012,12 +1010,12 @@ const Map = () => {
                         RI
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NH" title="New Hampshire" className="defaultColor">
-                  <a
-                    href="/" //href="https://excellencenorth.org/"
+                  <Link
+                    to={`/states/${StatesData[44].name}`} //href="https://excellencenorth.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1062,12 +1060,12 @@ const Map = () => {
                         NH
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-CT" title="Connecticut" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.partnerspex.org/"
+                  <Link
+                    to={`/states/${StatesData[46].name}`} //href="http://www.partnerspex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1112,12 +1110,12 @@ const Map = () => {
                         CT
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-TX" title="Texas" className="defaultColor">
-                  <a
-                    href="/" //href="http://quality-texas.org/"
+                  <Link
+                    to={`/states/${StatesData[2].name}`} //href="http://quality-texas.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1148,12 +1146,12 @@ const Map = () => {
                         TX
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-LA" title="Louisiana" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.louisianaquality.org/"
+                  <Link
+                    to={`/states/${StatesData[24].name}`} //href="http://www.louisianaquality.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1184,12 +1182,12 @@ const Map = () => {
                         LA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-SD" title="South Dakota" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.performanceexcellencenetwork.org/"
+                  <Link
+                    to={`/states/${StatesData[16].name}`} //href="http://www.performanceexcellencenetwork.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1220,12 +1218,12 @@ const Map = () => {
                         SD
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-OK" title="Oklahoma" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.oklahomaquality.com/"
+                  <Link
+                    to={`/states/${StatesData[19].name}`} //href="http://www.oklahomaquality.com/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1256,12 +1254,12 @@ const Map = () => {
                         OK
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NE" title="Nebraska" className="defaultColor">
-                  <a
-                    href="/" //href="http://rmpex.org/"
+                  <Link
+                    to={`/states/${StatesData[17].name}`} //href="http://rmpex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1292,12 +1290,12 @@ const Map = () => {
                         NE
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MO" title="Missouri" className="defaultColor">
-                  <a
-                    href="/" //href="https://quality-texas.org/"
+                  <Link
+                    to={`/states/${StatesData[22].name}`} //href="https://quality-texas.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1328,12 +1326,12 @@ const Map = () => {
                         MO
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-KS" title="Kansas" className="defaultColor">
-                  <a
-                    href="/" //href="https://quality-texas.org/"
+                  <Link
+                    to={`/states/${StatesData[18].name}`} //href="https://quality-texas.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1364,12 +1362,12 @@ const Map = () => {
                         KS
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-IA" title="Iowa" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.iowaqc.org/"
+                  <Link
+                    to={`/states/${StatesData[21].name}`} //href="http://www.iowaqc.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1400,12 +1398,12 @@ const Map = () => {
                         IA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-AR" title="Arkansas" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.arkansas-quality.org/"
+                  <Link
+                    to={`/states/${StatesData[23].name}`} //href="http://www.arkansas-quality.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1436,12 +1434,12 @@ const Map = () => {
                         AR
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-WY" title="Wyoming" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.rmpex.org/"
+                  <Link
+                    to={`/states/${StatesData[12].name}`} //href="http://www.rmpex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1472,12 +1470,12 @@ const Map = () => {
                         WY
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-UT" title="Utah" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.swae.org/"
+                  <Link
+                    to={`/states/${StatesData[9].name}`} //href="http://www.swae.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1508,7 +1506,7 @@ const Map = () => {
                         UT
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-OR" title="Oregon" className="defaultColor">
@@ -1549,8 +1547,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-NM" title="New Mexico" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.qualitynewmexico.org/"
+                  <Link
+                    to={`/states/${StatesData[14].name}`} //href="http://www.qualitynewmexico.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1581,7 +1579,7 @@ const Map = () => {
                         NM
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-NV" title="Nevada" className="defaultColor">
@@ -1621,8 +1619,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-CO" title="Colorado" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.rmpex.org/"
+                  <Link
+                    to={`/states/${StatesData[13].name}`} //href="http://www.rmpex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1653,7 +1651,7 @@ const Map = () => {
                         CO
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-CA" title="California" className="defaultColor">
@@ -1693,8 +1691,8 @@ const Map = () => {
                 </g>
 
                 <g id="US-AZ" title="Arizona" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.swae.org/"
+                  <Link
+                    to={`/states/${StatesData[10].name}`} //href="http://www.swae.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1725,15 +1723,11 @@ const Map = () => {
                         AZ
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-WA" title="Washington" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.performanceexcellencenw.org/"
-                    // target="_blank"
-                    // rel="noopener noreferrer"
-                  >
+                  <Link to={`/states/${StatesData[7].name}`}>
                     <path
                       d="M103.17,18.16L102.19800000000001,17.966L100.10000000000001,20.379L99.906,21.351000000000003L101.46400000000001,23.683000000000003L100.84300000000002,24.773000000000003L101.11800000000002,27.456000000000003L102.16900000000003,28.777000000000005L103.72500000000002,28.581000000000003L103.80200000000002,27.181000000000004L102.75100000000002,25.860000000000003L101.46800000000002,26.211000000000002L101.97000000000001,22.166000000000004L101.03600000000002,21.272000000000006L102.51300000000002,19.948000000000004L103.17300000000002,18.158000000000005ZM98.34400000000001,13.964L97.09700000000001,11.087L96.242,11.321L96.51700000000001,14.004L98.34500000000001,13.964ZM101.49100000000001,10.344000000000001L100.51900000000002,10.15L98.77000000000002,11.318L100.94900000000003,12.561L102.81500000000003,11.82L101.49100000000003,10.343ZM104.75300000000001,4.624000000000001L103.78300000000002,6.958000000000002L104.87500000000001,10.107000000000003L106.39200000000001,10.611000000000002L106.43500000000002,14.967000000000002L105.26900000000002,15.746000000000002L103.83300000000003,18.897000000000002L105.27400000000003,20.801000000000002L104.77200000000003,24.846000000000004L106.29100000000004,27.876000000000005L103.99700000000004,28.734000000000005L101.86100000000005,31.847000000000005L101.78400000000005,33.24700000000001L100.85200000000005,34.88100000000001L100.19500000000005,39.199000000000005L100.39100000000005,40.754000000000005L97.90400000000005,42.584L96.81400000000005,41.963L95.76500000000004,43.17L92.85000000000004,45.117000000000004L92.38200000000003,43.406000000000006L90.55400000000003,43.446000000000005L89.93000000000004,42.008L91.29000000000003,40.257000000000005L92.72800000000004,39.633L92.57500000000003,42.433L94.90700000000002,40.875L96.61800000000002,40.407L98.63800000000002,36.866L97.89700000000002,35L98.16700000000002,32.627L101.00600000000001,32.080000000000005L101.04200000000002,28.852000000000004L100.22500000000002,28.386000000000003L97.11600000000003,31.306000000000004L96.06700000000002,32.513000000000005L93.07300000000002,33.33200000000001L95.79200000000002,29.829000000000008L97.30900000000001,30.33300000000001L98.78600000000002,29.009000000000007L99.01800000000001,27.336000000000006L98.50900000000001,23.797000000000004L98.85800000000002,22.552000000000003L95.47500000000002,22.788000000000004L94.30700000000002,21.039000000000005L92.05100000000002,21.197000000000006L87.65500000000002,19.412000000000006L86.17600000000002,18.208000000000006L81.50700000000002,16.267000000000007L79.40500000000002,13.624000000000006L77.22600000000001,12.381000000000006L75.39600000000002,9.894000000000005L73.68500000000002,10.362000000000005L71.70400000000002,13.203000000000007L71.74400000000003,15.031000000000006L71.24200000000003,19.076000000000008L72.76100000000004,22.10600000000001L73.22900000000004,23.817000000000007L72.84400000000004,28.290000000000006L72.07000000000004,32.18000000000001L72.73400000000004,35.446000000000005L71.80400000000003,39.608000000000004L73.86600000000003,40.423L73.67200000000003,41.395L75.26800000000003,43.027L72.58500000000004,43.302L71.38100000000004,44.781L71.03200000000004,46.025999999999996L73.48300000000003,47.424L71.89400000000003,53.376L68.74500000000003,54.467999999999996L70.14700000000003,57.07299999999999L73.80300000000004,56.99199999999999L74.69900000000004,58.58599999999999L76.79900000000004,58.70099999999999L78.43500000000003,62.160999999999994L80.26300000000003,62.120999999999995L81.50800000000004,62.46999999999999L83.76600000000003,64.83999999999999L84.43000000000004,68.106L83.50200000000004,74.79599999999999L84.28100000000003,75.96199999999999L86.07100000000004,76.62199999999999L89.72900000000004,79.06899999999999L94.66800000000003,78.63699999999999L97.66200000000003,77.81799999999998L101.12400000000004,78.70899999999999L105.24800000000003,80.33899999999998L106.80600000000004,82.67099999999998L108.36100000000005,82.47499999999998L110.42300000000004,83.28999999999998L114.23400000000004,82.93699999999998L115.08900000000004,82.70299999999999L116.99600000000004,83.78999999999999L120.76900000000003,84.13699999999999L122.63500000000003,83.39599999999999L125.74600000000004,83.00399999999999L130.06400000000005,83.66099999999999L131.23000000000005,82.88199999999999L135.00300000000004,83.22899999999998L138.73800000000006,84.27599999999998L140.33200000000005,83.37999999999998L156.40200000000004,87.48899999999998L171.92300000000006,91.28699999999998L171.22100000000006,88.72099999999998L172.42500000000007,87.24199999999998L172.22900000000007,85.68699999999997L171.25400000000008,82.96499999999997L172.37700000000007,77.82999999999997L176.56200000000007,60.36399999999997L179.97300000000007,46.78799999999997L181.60100000000006,40.13599999999997L184.85600000000005,26.831999999999965L167.54500000000004,22.374999999999964L152.17900000000003,18.304999999999964L133.77900000000002,13.225999999999964L124.36500000000002,10.744999999999964L112.34500000000003,7.138999999999964L104.75900000000003,4.617999999999964Z"
                       className="sm_state_WA"
@@ -1761,15 +1755,11 @@ const Map = () => {
                         WA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-ID" title="Idaho" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.performanceexcellencenw.org/"
-                    // target="_blank"
-                    // rel="noopener noreferrer"
-                  >
+                  <Link to={`/states/${StatesData[8].name}`}>
                     <path
                       d="M198.58,29.973L184.84900000000002,26.835L181.59400000000002,40.139L179.96600000000004,46.791000000000004L176.55500000000004,60.367000000000004L172.37000000000003,77.833L171.24700000000004,82.968L172.22200000000004,85.69L172.41800000000003,87.245L171.21400000000003,88.724L171.91600000000003,91.29L171.80100000000002,93.39L172.697,94.984L173.787,95.60499999999999L175.77200000000002,97.82L176.20200000000003,100.231L175.69800000000004,101.74799999999999L171.81300000000005,106.029L169.91100000000006,109.99799999999999L167.69600000000005,111.98299999999999L166.99800000000005,114.47299999999998L165.05500000000004,116.61399999999999L163.46100000000004,117.50999999999999L161.16900000000004,120.89599999999999L159.26500000000004,122.33699999999999L158.33500000000004,126.499L161.21400000000003,127.78L162.22700000000003,129.8L160.71200000000005,131.824L161.06300000000005,133.107L158.26700000000005,138.01L154.04400000000004,156.18L149.31600000000003,175.863L169.97200000000004,180.784L178.72400000000005,182.527L196.50100000000003,186.16699999999997L208.44300000000004,188.646L223.03000000000003,191.54999999999998L244.03000000000003,195.22599999999997L245.84900000000002,185.07399999999998L247.97700000000003,171.849L250.26000000000002,158.35199999999998L253.28000000000003,141.66499999999996L251.17800000000003,139.02199999999996L250.086,135.87299999999996L247.98600000000002,135.75799999999995L246.782,137.23699999999997L246.395,139.18199999999996L243.633,138.32899999999995L241.922,138.79699999999994L240.988,137.90299999999993L237.488,137.71199999999993L235.426,136.89699999999993L233.87099999999998,137.09299999999993L233.094,138.45499999999993L228.26999999999998,136.78699999999992L225.665,138.1889999999999L223.992,137.9569999999999L223.213,136.7909999999999L223.445,135.1179999999999L222.70399999999998,133.2519999999999L223.44199999999998,132.5899999999999L221.96099999999998,128.8579999999999L219.588,128.58799999999988L218.537,127.26699999999988L217.796,125.40099999999988L219,123.92199999999988L218.181,120.92799999999988L215.883,116.72999999999988L215.881,114.20199999999987L215.955,110.27399999999987L213.853,107.63099999999987L210.93800000000002,109.57799999999988L207.36100000000002,110.78699999999988L205.92000000000002,108.88299999999988L204.55800000000002,108.10599999999988L205.95600000000002,105.65499999999989L205.371,103.51599999999989L206.537,102.7369999999999L208.40300000000002,101.9959999999999L208.51800000000003,99.8959999999999L207.77700000000002,98.0299999999999L208.90300000000002,95.4229999999999L208.86300000000003,93.5949999999999L210.06700000000004,92.1159999999999L211.81400000000005,88.4199999999999L212.78400000000005,86.0859999999999L212.27800000000005,85.0759999999999L209.05000000000004,85.03999999999989L208.58200000000005,83.3289999999999L205.11800000000005,79.9099999999999L205.07800000000006,78.0819999999999L201.10500000000005,71.1239999999999L200.63700000000006,69.4129999999999L198.34100000000007,67.7429999999999L197.60000000000005,65.8769999999999L195.84900000000005,64.5169999999999L197.44300000000004,63.620999999999896L196.27500000000003,61.87199999999989L197.44100000000003,61.09299999999989L197.28300000000004,58.83699999999989L195.99800000000005,56.65999999999989L196.07500000000005,55.25999999999989L194.04900000000004,51.21999999999989L198.58100000000005,29.98099999999989Z"
                       className="sm_state_ID"
@@ -1797,12 +1787,12 @@ const Map = () => {
                         ID
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-ND" title="North Dakota" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.performanceexcellencenetwork.org/"
+                  <Link
+                    to={`/states/${StatesData[15].name}`} //href="http://www.performanceexcellencenetwork.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1833,12 +1823,12 @@ const Map = () => {
                         ND
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MT" title="Montana" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.rmpex.org/"
+                  <Link
+                    to={`/states/${StatesData[11].name}`} //href="http://www.rmpex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1869,12 +1859,12 @@ const Map = () => {
                         MT
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MN" title="Minnesota" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.performanceexcellencenetwork.org/"
+                  <Link
+                    to={`/states/${StatesData[32].name}`} //href="http://www.performanceexcellencenetwork.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1905,12 +1895,12 @@ const Map = () => {
                         MN
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-MA" title="Massachusetts" className="defaultColor">
-                  <a
-                    href="/" //href="http://www.partnerspex.org/"
+                  <Link
+                    to={`/states/${StatesData[45].name}`} //href="http://www.partnerspex.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1955,12 +1945,12 @@ const Map = () => {
                         MA
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
 
                 <g id="US-AK" title="Alaska" className="defaultColor">
-                  <a
-                    href="/" //href="https://www.performanceexcellencenw.org/"
+                  <Link
+                    to={`/states/${StatesData[51].name}`} //href="https://www.performanceexcellencenw.org/"
                     // target="_blank"
                     // rel="noopener noreferrer"
                   >
@@ -1991,7 +1981,7 @@ const Map = () => {
                         AK
                       </tspan>
                     </text>
-                  </a>
+                  </Link>
                 </g>
               </svg>
             </div>
