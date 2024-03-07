@@ -30,7 +30,7 @@ const States = () => {
 
   console.log(
     "events log in states page",
-    events[0].venues[0].address.regionCode,
+
     events
   );
 

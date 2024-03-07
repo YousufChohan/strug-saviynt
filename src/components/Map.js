@@ -7,11 +7,6 @@ const Map = () => {
   return (
     <>
       <div className="container">
-        {/* <h2 className="banner-title">
-            <small>Find Performance</small>
-            <span>Improvement</span>
-            <strong>Help Near You</strong>
-          </h2> */}
         <div className="banner-map">
           <div className="map-wrapper">
             <div id="svgMap">

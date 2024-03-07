@@ -84,6 +84,7 @@
 #US-AL:hover path,
 #US-AL:hover rect {
   fill: rgb(0, 61, 147, 0.6);
+  cursor: url("../assets/images/cursor.png"), auto;
 }
 /* Color for legends
 				.legends-item::before {
@@ -808,7 +809,7 @@
 }
 @media screen and (max-width: 600px) {
   text tspan {
-    font-size: 24px;
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 600px) {
