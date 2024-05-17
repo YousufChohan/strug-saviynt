@@ -5,29 +5,29 @@ import { REACT_APP_BASE_URL } from "../constants/url";
 import axios from "axios";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-const EventCard = (event) => {
-  const data = event.event;
+const CustomerCard = (customer) => {
+  const data = customer.customer;
   const [image, setImage] = useState("");
 
   // useLayoutEffect(() => {
-  //   async function getEventImages() {
+  //   async function getCustomerImages() {
   //     axios
-  //       .get(`${REACT_APP_BASE_URL}/files/${data.eventPicture[0]}/true`)
+  //       .get(`${REACT_APP_BASE_URL}/files/${data.customerPicture[0]}/true`)
   //       .then((image) => {
   //         setImage(
   //           `data:${image.headers["content-type"]};base64,${image.data}`
   //         );
   //       });
   //   }
-  //   getEventImages();
-  // }, [data.eventPicture]);
+  //   getCustomerImages();
+  // }, [data.customerPicture]);
 
-  // console.log("data.title in event card:", data.venues[0].address.region);
+  // console.log("data.title in customer card:", data.venues[0].address.region);
 
   return (
     <a
       // to={{
-      //   pathname: `/events/${data._id}`,
+      //   pathname: `/customers/${data._id}`,
       // }}
       // state={{ data }}
       href={data._links.summary.href}
@@ -96,7 +96,7 @@ const EventCard = (event) => {
               : data.venues[0].address.country}
           </p>
           <p className="sm:text-md text-sm text-secondary font-semibold">
-            {data.eventStatus}
+            {data.customerStatus}
           </p>
         </div>
       </div>
@@ -104,4 +104,4 @@ const EventCard = (event) => {
   );
 };
 
-export default EventCard;
+export default CustomerCard;

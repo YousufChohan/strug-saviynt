@@ -11,44 +11,45 @@ import "react-clock/dist/Clock.css";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 import { useSelector } from "react-redux";
 
-const EditEvent = () => {
+const EditCustomer = () => {
   const location = useLocation(); // Use useLocation hook
 
-  const events = useSelector((state) => state.events.events);
+  const customers = useSelector((state) => state.customers.customers);
 
   const { state } = location;
-  const eventId = state?.eventData?._id;
-  //   console.log("eventId", eventId);
+  const customerId = state?.customerData?._id;
+  //   console.log("customerId", customerId);
 
-  const eventData = eventId && events.find((event) => event._id === eventId);
+  const customerData =
+    customerId && customers.find((customer) => customer._id === customerId);
 
-  const [editeventData, seteditEventData] = useState({
-    name: eventData.name,
-    overview: eventData.overview,
-    specialFeatures: eventData.specialFeatures,
-    venue: eventData.venue,
-    price: eventData.price,
-    dateStarts: eventData.dateStarts,
-    dateEnds: eventData.dateEnds,
-    dayStarts: eventData.dayStarts,
-    dayEnds: eventData.dayEnds,
-    timeStarts: eventData.timeStarts,
-    timeEnds: eventData.timeEnds,
-    eventPicture: eventData.eventPicture,
+  const [editcustomerData, seteditCustomerData] = useState({
+    name: customerData.name,
+    overview: customerData.overview,
+    specialFeatures: customerData.specialFeatures,
+    venue: customerData.venue,
+    price: customerData.price,
+    dateStarts: customerData.dateStarts,
+    dateEnds: customerData.dateEnds,
+    dayStarts: customerData.dayStarts,
+    dayEnds: customerData.dayEnds,
+    timeStarts: customerData.timeStarts,
+    timeEnds: customerData.timeEnds,
+    customerPicture: customerData.customerPicture,
   });
 
   const [editPicture, setEditPicture] = useState("");
 
   useLayoutEffect(() => {
     if (
-      editeventData &&
-      editeventData.eventPicture &&
-      editeventData.eventPicture.length > 0
+      editcustomerData &&
+      editcustomerData.customerPicture &&
+      editcustomerData.customerPicture.length > 0
     ) {
-      async function getEventImages() {
+      async function getCustomerImages() {
         try {
           const response = await axios.get(
-            `${REACT_APP_BASE_URL}/files/${editeventData.eventPicture[0]}/true`
+            `${REACT_APP_BASE_URL}/files/${editcustomerData.customerPicture[0]}/true`
           );
           setEditPicture(
             `data:${response.headers["content-type"]};base64,${response.data}`
@@ -57,16 +58,16 @@ const EditEvent = () => {
           console.error("Error fetching image:", error);
         }
       }
-      getEventImages();
+      getCustomerImages();
     }
-  }, [editeventData]);
+  }, [editcustomerData]);
 
   //   useLayoutEffect(() => {
-  //     if (editeventData) {
-  //       async function getEventImages() {
+  //     if (editcustomerData) {
+  //       async function getCustomerImages() {
   //         try {
   //           const response = await axios.get(
-  //             `${REACT_APP_BASE_URL}/files/${editeventData.eventPicture[0]}/true`
+  //             `${REACT_APP_BASE_URL}/files/${editcustomerData.customerPicture[0]}/true`
   //           );
   //           setEditPicture(
   //             `data:${response.headers["content-type"]};base64,${response.data}`
@@ -75,9 +76,9 @@ const EditEvent = () => {
   //           console.error("Error fetching image:", error);
   //         }
   //       }
-  //       getEventImages();
+  //       getCustomerImages();
   //     }
-  //   }, [editeventData]);
+  //   }, [editcustomerData]);
 
   const { userData } = useSelector((state) => state.auth);
   // console.log("token quick check", userData.token);
@@ -86,23 +87,27 @@ const EditEvent = () => {
   //   console.log(userRole);
 
   const [value, setValue] = useState({
-    startDate: dayjs(editeventData.dateStarts).format("YYYY-MM-DD"),
-    endDate: dayjs(editeventData.dateEnds).format("YYYY-MM-DD"),
+    startDate: dayjs(editcustomerData.dateStarts).format("YYYY-MM-DD"),
+    endDate: dayjs(editcustomerData.dateEnds).format("YYYY-MM-DD"),
   });
   //   console.log("value:", value);
-  //   console.log("editeventData.dateStarts:", editeventData.dateStarts);
+  //   console.log("editcustomerData.dateStarts:", editcustomerData.dateStarts);
 
   const handleValueChange = (newValue) => {
     if (newValue.startDate) {
       const dayStarts = dayjs(newValue.startDate).format("dddd");
       const dateStarts = dayjs(newValue.startDate).format("MM/DD/YYYY");
-      seteditEventData((prevData) => ({ ...prevData, dayStarts, dateStarts }));
+      seteditCustomerData((prevData) => ({
+        ...prevData,
+        dayStarts,
+        dateStarts,
+      }));
     }
 
     if (newValue.endDate) {
       const dayEnds = dayjs(newValue.endDate).format("dddd");
       const dateEnds = dayjs(newValue.endDate).format("MM/DD/YYYY");
-      seteditEventData((prevData) => ({ ...prevData, dayEnds, dateEnds }));
+      seteditCustomerData((prevData) => ({ ...prevData, dayEnds, dateEnds }));
     }
 
     setValue(newValue);
@@ -112,86 +117,90 @@ const EditEvent = () => {
   const [showNewPic, setShowNewPic] = useState(false);
 
   const handleChange = (e) => {
-    if (e.target.name === "eventPicture") {
+    if (e.target.name === "customerPicture") {
       // Handle file input separately
-      seteditEventData((prevData) => ({
+      seteditCustomerData((prevData) => ({
         ...prevData,
-        eventPicture: e.target.files[0],
+        customerPicture: e.target.files[0],
       }));
       setShowNewPic(true);
     } else {
       // Handle other inputs
-      seteditEventData({ ...editeventData, [e.target.name]: e.target.value });
+      seteditCustomerData({
+        ...editcustomerData,
+        [e.target.name]: e.target.value,
+      });
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.prcustomerDefault();
 
     // Add form validation logic here
 
     try {
       const formData = new FormData();
-      formData.append("id", eventId);
+      formData.append("id", customerId);
 
-      formData.append("name", editeventData.name);
-      formData.append("price", editeventData.price);
-      formData.append("venue", editeventData.venue);
+      formData.append("name", editcustomerData.name);
+      formData.append("price", editcustomerData.price);
+      formData.append("venue", editcustomerData.venue);
 
-      formData.append("overview", editeventData.overview);
-      formData.append("specialFeatures", editeventData.specialFeatures);
+      formData.append("overview", editcustomerData.overview);
+      formData.append("specialFeatures", editcustomerData.specialFeatures);
 
-      formData.append("dateStarts", editeventData.dateStarts);
-      formData.append("dateEnds", editeventData.dateEnds);
+      formData.append("dateStarts", editcustomerData.dateStarts);
+      formData.append("dateEnds", editcustomerData.dateEnds);
 
-      formData.append("dayStarts", editeventData.dayStarts);
-      formData.append("dayEnds", editeventData.dayEnds);
+      formData.append("dayStarts", editcustomerData.dayStarts);
+      formData.append("dayEnds", editcustomerData.dayEnds);
 
-      formData.append("timeStarts", editeventData.timeStarts);
-      formData.append("timeEnds", editeventData.timeEnds);
+      formData.append("timeStarts", editcustomerData.timeStarts);
+      formData.append("timeEnds", editcustomerData.timeEnds);
 
       formData.append("creatorName", "Tim");
 
-      showNewPic && formData.append("eventPicture", editeventData.eventPicture); // Append the image file if new available
+      showNewPic &&
+        formData.append("customerPicture", editcustomerData.customerPicture); // Append the image file if new available
 
       if (
-        !editeventData.name ||
-        !editeventData.price ||
-        !editeventData.venue ||
-        !editeventData.overview ||
-        !editeventData.specialFeatures ||
-        !editeventData.dateStarts ||
-        !editeventData.dateEnds ||
-        !editeventData.dayEnds ||
-        !editeventData.dayStarts ||
-        !editeventData.timeEnds ||
-        !editeventData.timeStarts
+        !editcustomerData.name ||
+        !editcustomerData.price ||
+        !editcustomerData.venue ||
+        !editcustomerData.overview ||
+        !editcustomerData.specialFeatures ||
+        !editcustomerData.dateStarts ||
+        !editcustomerData.dateEnds ||
+        !editcustomerData.dayEnds ||
+        !editcustomerData.dayStarts ||
+        !editcustomerData.timeEnds ||
+        !editcustomerData.timeStarts
       ) {
         window.alert("Please fill all the fields.");
         return;
       }
 
-      if (!editeventData.eventPicture) {
-        window.alert("Please upload an image for the Event");
+      if (!editcustomerData.customerPicture) {
+        window.alert("Please upload an image for the Customer");
         return;
       }
 
-      console.log("editeventData added", editeventData);
+      console.log("editcustomerData added", editcustomerData);
 
-      await addEvent(formData); // Call the addEvent function with the FormData
-      navigate("/events"); // Go back one step in history
+      await addCustomer(formData); // Call the addCustomer function with the FormData
+      navigate("/customers"); // Go back one step in history
     } catch (error) {
       setErrors(error);
 
       // Handle error if needed
-      console.error("Adding Event failed:", error);
+      console.error("Adding Customer failed:", error);
     }
   };
 
-  const addEvent = async (formData, token) => {
+  const addCustomer = async (formData, token) => {
     try {
       const response = await axios.post(
-        `${REACT_APP_BASE_URL}/event`,
+        `${REACT_APP_BASE_URL}/customer`,
         formData,
         {
           headers: {
@@ -201,13 +210,13 @@ const EditEvent = () => {
         }
       );
 
-      console.log("Adding Event response:", response.data);
-      window.alert("Event Updated Successfully.");
-      // Additional logic after successful addEvent if needed
+      console.log("Adding Customer response:", response.data);
+      window.alert("Customer Updated Successfully.");
+      // Additional logic after successful addCustomer if needed
     } catch (error) {
-      console.error("Adding Event failed:", error);
+      console.error("Adding Customer failed:", error);
 
-      // Handle Adding Event error
+      // Handle Adding Customer error
 
       throw error;
     }
@@ -231,7 +240,7 @@ const EditEvent = () => {
           <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-slate-400 min-w-[260px] max-w-[50rem] relative items-center">
             {/* Use a Link component for navigation */}
             <Link
-              to={"/events"}
+              to={"/customers"}
               className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
               //   onClick={handleGoBack}
             >
@@ -241,24 +250,24 @@ const EditEvent = () => {
               EDIT EVENT{" "}
             </h2>
 
-            {/* AddEvent Form */}
+            {/* AddCustomer Form */}
             <form
               className="mt-4 flex flex-wrap flex-grow gap-x-8 justify-between"
               onSubmit={handleSubmit}
             >
-              {/* Event Name */}
+              {/* Customer Name */}
               <div className="mb-4 md:w-[30%] w-full">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="name"
                 >
-                  Event Name
+                  Customer Name
                 </label>
                 <input
                   maxLength={100}
                   type="text"
                   name="name"
-                  value={editeventData.name}
+                  value={editcustomerData.name}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.name ? "border-red-500" : "border-gray-300"
@@ -281,7 +290,7 @@ const EditEvent = () => {
                   maxLength={60}
                   type="text"
                   name="venue"
-                  value={editeventData.venue}
+                  value={editcustomerData.venue}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.venue ? "border-red-500" : "border-gray-300"
@@ -304,7 +313,7 @@ const EditEvent = () => {
                   maxLength={10}
                   type="number"
                   name="price"
-                  value={editeventData.price}
+                  value={editcustomerData.price}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.price ? "border-red-500" : "border-gray-300"
@@ -327,7 +336,7 @@ const EditEvent = () => {
                   maxLength={3000}
                   type="text"
                   name="overview"
-                  value={editeventData.overview}
+                  value={editcustomerData.overview}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.overview ? "border-red-500" : "border-gray-300"
@@ -352,7 +361,7 @@ const EditEvent = () => {
                   maxLength={800}
                   type="text"
                   name="specialFeatures"
-                  value={editeventData.specialFeatures}
+                  value={editcustomerData.specialFeatures}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.specialFeatures
@@ -372,7 +381,7 @@ const EditEvent = () => {
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="startdate"
                 >
-                  Event Dates
+                  Customer Dates
                 </label>
                 <Datepicker
                   inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
@@ -394,17 +403,17 @@ const EditEvent = () => {
                     className="block text-gray-700 text-sm font-bold mb-2"
                     htmlFor="starttime"
                   >
-                    Event Start Time
+                    Customer Start Time
                   </label>
                   <div className="relative">
                     <TimePicker
                       onChange={(time) =>
-                        seteditEventData((prevData) => ({
+                        seteditCustomerData((prevData) => ({
                           ...prevData,
                           timeStarts: time,
                         }))
                       }
-                      value={editeventData.timeStarts}
+                      value={editcustomerData.timeStarts}
                       className="appearance-none border  bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
@@ -415,17 +424,17 @@ const EditEvent = () => {
                     className="block text-gray-700 text-sm font-bold mb-2"
                     htmlFor="endtime"
                   >
-                    Event End Time
+                    Customer End Time
                   </label>
                   <div className="relative">
                     <TimePicker
                       onChange={(time) =>
-                        seteditEventData((prevData) => ({
+                        seteditCustomerData((prevData) => ({
                           ...prevData,
                           timeEnds: time,
                         }))
                       }
-                      value={editeventData.timeEnds}
+                      value={editcustomerData.timeEnds}
                       className="appearance-none border bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
@@ -435,20 +444,20 @@ const EditEvent = () => {
               <div className="mb-4 w-full">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="eventPicture"
+                  htmlFor="customerPicture"
                 >
-                  Event Picture (Landscape 1440 x 820)
+                  Customer Picture (Landscape 1440 x 820)
                 </label>
                 {editPicture && !showNewPic && (
                   <img
                     src={editPicture}
-                    alt="Event Thumbnail"
+                    alt="Customer Thumbnail"
                     className="my-2 rounded-xl sm:min-w-80 w-full aspect-video self-center "
                   />
                 )}
                 {showNewPic && (
                   <img
-                    src={URL.createObjectURL(editeventData.eventPicture)}
+                    src={URL.createObjectURL(editcustomerData.customerPicture)}
                     alt="tachtpg"
                     className="my-2 rounded-xl sm:min-w-80 w-full aspect-video self-center"
                   />
@@ -456,18 +465,18 @@ const EditEvent = () => {
 
                 <input
                   type="file"
-                  name="eventPicture"
+                  name="customerPicture"
                   accept="image/*"
                   onChange={handleChange}
                   //   value={
-                  //     editeventData.eventPicture &&
-                  //     editeventData.eventPicture.name
+                  //     editcustomerData.customerPicture &&
+                  //     editcustomerData.customerPicture.name
                   //   }
                   className="bg-white border rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
                 />
-                {errors.eventPicture && (
+                {errors.customerPicture && (
                   <p className="text-red-500 text-xs italic">
-                    {errors.eventPicture}
+                    {errors.customerPicture}
                   </p>
                 )}
               </div>
@@ -501,4 +510,4 @@ const EditEvent = () => {
   );
 };
 
-export default EditEvent;
+export default EditCustomer;

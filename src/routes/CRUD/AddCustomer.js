@@ -12,8 +12,8 @@ import { REACT_APP_BASE_URL } from "../../constants/url";
 import { useSelector } from "react-redux";
 import { CiImageOn } from "react-icons/ci";
 
-const AddEvent = () => {
-  const [eventData, setEventData] = useState({
+const AddCustomer = () => {
+  const [customerData, setCustomerData] = useState({
     name: "",
     overview: "",
     specialFeatures: "",
@@ -25,7 +25,7 @@ const AddEvent = () => {
     dayEnds: "",
     timeStarts: "",
     timeEnds: "",
-    eventPicture: null, // New state for storing the selected image file
+    customerPicture: null, // New state for storing the selected image file
   });
 
   const { userData } = useSelector((state) => state.auth);
@@ -43,13 +43,13 @@ const AddEvent = () => {
       // console.log("newValue.startDate:", newValue);
       const dayStarts = dayjs(newValue.startDate).format("dddd");
       const dateStarts = dayjs(newValue.startDate).format("MM/DD/YYYY");
-      setEventData((prevData) => ({ ...prevData, dayStarts, dateStarts }));
+      setCustomerData((prevData) => ({ ...prevData, dayStarts, dateStarts }));
     }
 
     if (newValue.endDate) {
       const dayEnds = dayjs(newValue.endDate).format("dddd");
       const dateEnds = dayjs(newValue.endDate).format("MM/DD/YYYY");
-      setEventData((prevData) => ({ ...prevData, dayEnds, dateEnds }));
+      setCustomerData((prevData) => ({ ...prevData, dayEnds, dateEnds }));
     }
 
     setValue(newValue);
@@ -58,83 +58,83 @@ const AddEvent = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    if (e.target.name === "eventPicture") {
+    if (e.target.name === "customerPicture") {
       // Handle file input separately
-      setEventData((prevData) => ({
+      setCustomerData((prevData) => ({
         ...prevData,
-        eventPicture: e.target.files[0],
+        customerPicture: e.target.files[0],
       }));
     } else {
       // Handle other inputs
-      setEventData({ ...eventData, [e.target.name]: e.target.value });
+      setCustomerData({ ...customerData, [e.target.name]: e.target.value });
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.prcustomerDefault();
 
     // Add form validation logic here
 
     try {
       const formData = new FormData();
-      formData.append("name", eventData.name);
-      formData.append("price", eventData.price);
-      formData.append("venue", eventData.venue);
+      formData.append("name", customerData.name);
+      formData.append("price", customerData.price);
+      formData.append("venue", customerData.venue);
 
-      formData.append("overview", eventData.overview);
-      formData.append("specialFeatures", eventData.specialFeatures);
+      formData.append("overview", customerData.overview);
+      formData.append("specialFeatures", customerData.specialFeatures);
 
-      formData.append("dateStarts", eventData.dateStarts);
-      formData.append("dateEnds", eventData.dateEnds);
+      formData.append("dateStarts", customerData.dateStarts);
+      formData.append("dateEnds", customerData.dateEnds);
 
-      formData.append("dayStarts", eventData.dayStarts);
-      formData.append("dayEnds", eventData.dayEnds);
+      formData.append("dayStarts", customerData.dayStarts);
+      formData.append("dayEnds", customerData.dayEnds);
 
-      formData.append("timeStarts", eventData.timeStarts);
-      formData.append("timeEnds", eventData.timeEnds);
+      formData.append("timeStarts", customerData.timeStarts);
+      formData.append("timeEnds", customerData.timeEnds);
 
       formData.append("creatorName", "Tim");
 
-      formData.append("eventPicture", eventData.eventPicture); // Append the image file
+      formData.append("customerPicture", customerData.customerPicture); // Append the image file
 
       if (
-        !eventData.name ||
-        !eventData.price ||
-        !eventData.venue ||
-        !eventData.overview ||
-        !eventData.specialFeatures ||
-        !eventData.dateStarts ||
-        !eventData.dateEnds ||
-        !eventData.dayEnds ||
-        !eventData.dayStarts ||
-        !eventData.timeEnds ||
-        !eventData.timeStarts
+        !customerData.name ||
+        !customerData.price ||
+        !customerData.venue ||
+        !customerData.overview ||
+        !customerData.specialFeatures ||
+        !customerData.dateStarts ||
+        !customerData.dateEnds ||
+        !customerData.dayEnds ||
+        !customerData.dayStarts ||
+        !customerData.timeEnds ||
+        !customerData.timeStarts
       ) {
         window.alert("Please fill all the fields.");
         return;
       }
 
-      if (!eventData.eventPicture) {
-        window.alert("Please upload an image for the Event");
+      if (!customerData.customerPicture) {
+        window.alert("Please upload an image for the Customer");
         return;
       }
 
-      // console.log("eventData added", formData);
+      // console.log("customerData added", formData);
 
-      await addEvent(formData); // Call the addEvent function with the FormData
-      navigate("/events"); // Go back one step in history
+      await addCustomer(formData); // Call the addCustomer function with the FormData
+      navigate("/customers"); // Go back one step in history
     } catch (error) {
       setErrors(error);
 
       // Handle error if needed
-      console.error("Adding Event failed:", error);
+      console.error("Adding Customer failed:", error);
     }
   };
 
-  const addEvent = async (formData, token) => {
+  const addCustomer = async (formData, token) => {
     try {
       const response = await axios.post(
-        `${REACT_APP_BASE_URL}/event`,
+        `${REACT_APP_BASE_URL}/customer`,
         formData,
         {
           headers: {
@@ -144,12 +144,12 @@ const AddEvent = () => {
         }
       );
 
-      console.log("Adding Event response:", response.data);
-      window.alert("Event Added Successfully.");
+      console.log("Adding Customer response:", response.data);
+      window.alert("Customer Added Successfully.");
     } catch (error) {
-      console.error("Adding Event failed:", error);
+      console.error("Adding Customer failed:", error);
 
-      // Handle Adding Event error
+      // Handle Adding Customer error
 
       throw error;
     }
@@ -180,27 +180,27 @@ const AddEvent = () => {
               <VscClose className="w-5 h-5 text-secondary font-bold" />
             </Link>
             <h2 className="text-center md:text-3xl underline text-md font-bold text-secondary">
-              Add an Event
+              Add an Customer
             </h2>
 
-            {/* AddEvent Form */}
+            {/* AddCustomer Form */}
             <form
               className="mt-4 flex w-full flex-wrap flex-grow gap-x-8 justify-between"
               onSubmit={handleSubmit}
             >
-              {/* Event Name */}
+              {/* Customer Name */}
               <div className="mb-4 md:w-[30%] w-full">
                 <label
                   className="block text-white text-sm font-bold mb-2"
                   htmlFor="name"
                 >
-                  Event Name
+                  Customer Name
                 </label>
                 <input
                   type="text"
                   name="name"
                   maxLength={100}
-                  value={eventData.name}
+                  value={customerData.name}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.name ? "border-red-500" : "border-gray-300"
@@ -223,7 +223,7 @@ const AddEvent = () => {
                   maxLength={60}
                   type="text"
                   name="venue"
-                  value={eventData.venue}
+                  value={customerData.venue}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.venue ? "border-red-500" : "border-gray-300"
@@ -247,7 +247,7 @@ const AddEvent = () => {
                   max={200}
                   type="number"
                   name="price"
-                  value={eventData.price}
+                  value={customerData.price}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.price ? "border-red-500" : "border-gray-300"
@@ -270,7 +270,7 @@ const AddEvent = () => {
                   type="text"
                   name="overview"
                   maxLength={3000}
-                  value={eventData.overview}
+                  value={customerData.overview}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.overview ? "border-red-500" : "border-gray-300"
@@ -295,7 +295,7 @@ const AddEvent = () => {
                   maxLength={800}
                   type="text"
                   name="specialFeatures"
-                  value={eventData.specialFeatures}
+                  value={customerData.specialFeatures}
                   onChange={handleChange}
                   className={`appearance-none border ${
                     errors.specialFeatures
@@ -315,7 +315,7 @@ const AddEvent = () => {
                   className="block text-white text-sm font-bold mb-2"
                   htmlFor="startdate"
                 >
-                  Event Dates
+                  Customer Dates
                 </label>
                 <Datepicker
                   inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline"
@@ -337,17 +337,17 @@ const AddEvent = () => {
                     className="block text-white text-sm font-bold mb-2"
                     htmlFor="starttime"
                   >
-                    Event Start Time
+                    Customer Start Time
                   </label>
                   <div className="relative">
                     <TimePicker
                       onChange={(time) =>
-                        setEventData((prevData) => ({
+                        setCustomerData((prevData) => ({
                           ...prevData,
                           timeStarts: time,
                         }))
                       }
-                      value={eventData.timeStarts}
+                      value={customerData.timeStarts}
                       className="appearance-none border border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
@@ -358,17 +358,17 @@ const AddEvent = () => {
                     className="block text-white text-sm font-bold mb-2"
                     htmlFor="endtime"
                   >
-                    Event End Time
+                    Customer End Time
                   </label>
                   <div className="relative">
                     <TimePicker
                       onChange={(time) =>
-                        setEventData((prevData) => ({
+                        setCustomerData((prevData) => ({
                           ...prevData,
                           timeEnds: time,
                         }))
                       }
-                      value={eventData.timeEnds}
+                      value={customerData.timeEnds}
                       className="appearance-none border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
@@ -378,13 +378,13 @@ const AddEvent = () => {
               <div className="mb-4 w-full">
                 <label
                   className="block text-white text-sm font-bold mb-2"
-                  htmlFor="eventPicture"
+                  htmlFor="customerPicture"
                 >
-                  Event Picture (Landscape 1440 x 820)
+                  Customer Picture (Landscape 1440 x 820)
                 </label>
-                {eventData.eventPicture ? (
+                {customerData.customerPicture ? (
                   <img
-                    src={URL.createObjectURL(eventData.eventPicture)}
+                    src={URL.createObjectURL(customerData.customerPicture)}
                     alt="tachtpg"
                     className="my-2 rounded-xl sm:min-w-80 w-full aspect-video self-center"
                   />
@@ -404,14 +404,14 @@ const AddEvent = () => {
 
                 <input
                   type="file"
-                  name="eventPicture"
+                  name="customerPicture"
                   accept="image/*"
                   onChange={handleChange}
                   className="bg-white border rounded-lg w-full border-2 border-secondary py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
                 />
-                {errors.eventPicture && (
+                {errors.customerPicture && (
                   <p className="text-red-500 text-xs italic">
-                    {errors.eventPicture}
+                    {errors.customerPicture}
                   </p>
                 )}
               </div>
@@ -445,4 +445,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default AddCustomer;

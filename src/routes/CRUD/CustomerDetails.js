@@ -11,17 +11,17 @@ import { FaRegEdit } from "react-icons/fa";
 import PayButton from "../../components/StripePayButton";
 import TicketsBG from "../../assets/images/ticketsbg.png";
 
-function EventDetails() {
+function CustomerDetails() {
   // const location = useLocation(); // Use useLocation hook
 
-  const events = useSelector((state) => state.events.events);
+  const customers = useSelector((state) => state.customers.customers);
 
   // const { state } = location;
-  // const eventId = state?.data?._id;
-  const eventId = window.location.pathname.split("/").pop();
+  // const customerId = state?.data?._id;
+  const customerId = window.location.pathname.split("/").pop();
 
-  const eventData = eventId
-    ? events.find((event) => event._id === eventId)
+  const customerData = customerId
+    ? customers.find((customer) => customer._id === customerId)
     : null;
 
   const [image, setImage] = useState("");
@@ -32,11 +32,11 @@ function EventDetails() {
   }, []);
 
   useLayoutEffect(() => {
-    if (eventData) {
-      async function getEventImages() {
+    if (customerData) {
+      async function getCustomerImages() {
         try {
           const response = await axios.get(
-            `${REACT_APP_BASE_URL}/files/${eventData.eventPicture[0]}/true`
+            `${REACT_APP_BASE_URL}/files/${customerData.customerPicture[0]}/true`
           );
           setImage(
             `data:${response.headers["content-type"]};base64,${response.data}`
@@ -45,9 +45,9 @@ function EventDetails() {
           console.error("Error fetching image:", error);
         }
       }
-      getEventImages();
+      getCustomerImages();
     }
-  }, [eventData]);
+  }, [customerData]);
 
   const [ticketCount, setTicketCount] = useState(1);
 
@@ -70,36 +70,36 @@ function EventDetails() {
   const handleDelete = () => {
     // Use window.confirm to show a confirmation dialog
     const confirmed = window.confirm(
-      "Are you sure you want to delete this event?"
+      "Are you sure you want to delete this customer?"
     );
 
     if (confirmed) {
       // User clicked OK in the confirmation dialog
-      deleteEvent();
+      deleteCustomer();
     } else {
       // User clicked Cancel
       console.log("Deletion has been canceled");
     }
   };
 
-  const deleteEvent = async () => {
+  const deleteCustomer = async () => {
     try {
-      await axios.delete(`${REACT_APP_BASE_URL}/event?id=${eventId}`, {
+      await axios.delete(`${REACT_APP_BASE_URL}/customer?id=${customerId}`, {
         headers: {
           "x-auth-token": userData.token,
         },
       });
 
-      // Redirect to the events page after successful deletion
-      navigate("/events");
-      window.alert("Event Deleted");
+      // Redirect to the customers page after successful deletion
+      navigate("/customers");
+      window.alert("Customer Deleted");
     } catch (error) {
-      console.error("There is an error deleting event:", error);
-      window.alert("There was an error deleting the event.");
+      console.error("There is an error deleting customer:", error);
+      window.alert("There was an error deleting the customer.");
     }
   };
-  // if (!eventData) {
-  //   // Handle the case where the event data is not available
+  // if (!customerData) {
+  //   // Handle the case where the customer data is not available
   //   return (
   //     <section className="z-10 flex flex-col items-center justify-center w-full pb-4 pt-20 sm:h-screen bg-cover bg-black bg-no-repeat bg-center px-2 gap-1 bg-opacity-50">
   //       Loading...
@@ -114,7 +114,7 @@ function EventDetails() {
 
   const ticketsWrapperRef = useRef(null);
 
-  console.log("eventoverview:", eventData.overview);
+  console.log("customeroverview:", customerData.overview);
 
   return (
     <>
@@ -127,11 +127,11 @@ function EventDetails() {
         {/* <div className="absolute inset-0 sm:h-screen bg-black bg-opacity-50"></div> */}
         <div className="sm:py-2 sm:px-2 py-1 px-1 bg-black flex flex-col items-center justify-center rounded-xl bg-opacity-50">
           <p className="z-20 text-white sm:text-2xl text-md font-semibold text-center max-w-[600px] ">
-            {eventData.dayStarts} {eventData.dateStarts} - {eventData.dayEnds}{" "}
-            {eventData.dateEnds}
+            {customerData.dayStarts} {customerData.dateStarts} -{" "}
+            {customerData.dayEnds} {customerData.dateEnds}
           </p>
           <h1 className="z-20 text-white sm:text-6xl leading-tight text-2xl font-normal line text-center mb-[10px] bg-opacity-60 px-5 pb-3 rounded-lg">
-            {eventData.name}
+            {customerData.name}
           </h1>
         </div>
       </section>
@@ -142,14 +142,14 @@ function EventDetails() {
               <div className="flex gap-1 sm:gap-2 items-center">
                 <FaCalendarAlt className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
-                  {eventData.dayStarts} {eventData.dateStarts} -{" "}
-                  {eventData.dayEnds} {eventData.dateEnds}
+                  {customerData.dayStarts} {customerData.dateStarts} -{" "}
+                  {customerData.dayEnds} {customerData.dateEnds}
                 </p>
               </div>
               <div className="flex gap-1 sm:gap-2 items-center">
                 <BsAlarmFill className="text-primary sm:text-base text-xs" />
                 <p className="text-black md:text-base sm:text-xs text-[10px]">
-                  {eventData.timeStarts} - {eventData.timeEnds}
+                  {customerData.timeStarts} - {customerData.timeEnds}
                 </p>
               </div>
             </div>
@@ -158,7 +158,7 @@ function EventDetails() {
             <div className="flex flex-col">
               <p className="text-black sm:text-base text-xs">Price </p>
               <p className="text-primary sm:text-xl text-sm font-bold">
-                ${eventData.price}{" "}
+                ${customerData.price}{" "}
               </p>
             </div>
             <div className="flex sm:flex-row sm:gap-3 gap-3 items-center">
@@ -170,9 +170,9 @@ function EventDetails() {
                   />
                   <Link
                     to={{
-                      pathname: `/editevent/${eventData._id}`,
+                      pathname: `/editcustomer/${customerData._id}`,
                     }}
-                    state={{ eventData }}
+                    state={{ customerData }}
                   >
                     <FaRegEdit className="cursor-pointer hover:-translate-y-1 hover:text-secondary transition-all duration-300" />
                   </Link>
@@ -199,21 +199,21 @@ function EventDetails() {
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Venue:
             </h2>
-            <p className="text-xs sm:text-sm">{eventData.venue} </p>
+            <p className="text-xs sm:text-sm">{customerData.venue} </p>
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
               Special Features:
             </h2>
             <p className="text-xs md:text-sm md:pb-3">
-              {eventData.specialFeatures}
+              {customerData.specialFeatures}
             </p>
           </div>
 
           <div className="md:w-9/12 md:pb-3 pb-2 ">
             <h2 className="text-transparent bg-clip-text inline-block bg-gradient-to-r from-primary to-black sm:text-3xl text:lg font-bold sm:my-2 my-1">
-              Event Overview:
+              Customer Overview:
             </h2>
             <p className="md:text-sm text-xs text-justify whitespace-pre-line">
-              {eventData.overview}
+              {customerData.overview}
             </p>
           </div>
         </div>
@@ -281,10 +281,10 @@ function EventDetails() {
             </div>
 
             <p className="sm:text-xl text-black font-semibold">
-              Total: ${(eventData.price * ticketCount).toFixed(2)}
+              Total: ${(customerData.price * ticketCount).toFixed(2)}
             </p>
           </div>
-          <PayButton items={eventData} qty={ticketCount} image={image} />
+          <PayButton items={customerData} qty={ticketCount} image={image} />
           {/* <Button link={"/"}>CHECKOUT NOW</Button> */}
         </div>
       </section>
@@ -292,4 +292,4 @@ function EventDetails() {
   );
 }
 
-export default EventDetails;
+export default CustomerDetails;

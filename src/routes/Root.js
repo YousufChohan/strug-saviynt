@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
 import "../App.css";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 export default function Root() {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <section className="md:flex w-full overflow-hidden">
+        <Header />
+        <div className="flex-col w-full">
+          <Outlet />
+        </div>
+      </section>
     </>
   );
 }

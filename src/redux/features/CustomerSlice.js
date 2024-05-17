@@ -3,30 +3,30 @@ import axios from "axios";
 import { REACT_APP_BASE_URL } from "../../constants/url";
 
 const initialState = {
-  events: [],
+  customers: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
 };
 
-// Fetch events
-export const fetchEvents = createAsyncThunk(
-  "fetchEvents",
+// Fetch customers
+export const fetchCustomers = createAsyncThunk(
+  "fetchCustomers",
 
   async (params, { rejectWithValue }) => {
     try {
       // const { token } = params; // Destructure token from params
-      //   console.log("Fetching events with token:", token);
+      //   console.log("Fetching customers with token:", token);
 
       const response = await axios.get(
         `${REACT_APP_BASE_URL}/getcventdata`,
         {}
       );
-      // console.log("Events response in Slice File:", response.data[0].data);
+      // console.log("Customers response in Slice File:", response.data[0].data);
 
       return response.data[0].data;
     } catch (error) {
-      console.error("Fetching events failed:", error);
+      console.error("Fetching customers failed:", error);
       return rejectWithValue(
         error.response ? error.response.data : "An error occurred"
       );
@@ -34,28 +34,28 @@ export const fetchEvents = createAsyncThunk(
   }
 );
 
-const eventsSlice = createSlice({
-  name: "eventsSlice",
+const customersSlice = createSlice({
+  name: "customersSlice",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchEvents.pending, (state) => {
+      .addCase(fetchCustomers.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
         state.isSuccess = false;
       })
-      .addCase(fetchEvents.fulfilled, (state, action) => {
+      .addCase(fetchCustomers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.events = action.payload;
+        state.customers = action.payload;
       })
-      .addCase(fetchEvents.rejected, (state, action) => {
+      .addCase(fetchCustomers.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        console.error("Fetching events failed:", action.error);
+        console.error("Fetching customers failed:", action.error);
       });
   },
 });
 
-export default eventsSlice.reducer;
+export default customersSlice.reducer;

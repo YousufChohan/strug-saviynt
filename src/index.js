@@ -5,20 +5,11 @@ import App from "./App";
 import Root from "./routes/Root";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-
 import Error from "./routes/Error";
-import Login from "./routes/auth/Login";
-import Signup from "./routes/auth/Signup";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
-import Events from "./routes/events/Events";
-import EventDetails from "./routes/events/EventDetails";
-import AddEvent from "./routes/events/AddEvent";
-import EditEvent from "./routes/events/EditEvent";
-import CheckoutSuccess from "./routes/events/CheckoutSuccess";
-import Check from "./routes/check";
-import About from "./routes/About";
-import States from "./routes/States";
+import AddCustomer from "./routes/CRUD/AddCustomer";
+import EditCustomer from "./routes/CRUD/EditCustomer";
 
 const router = createBrowserRouter([
   {
@@ -30,48 +21,14 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "/events",
-        element: <Events />,
+        path: "/addcustomer",
+        element: <AddCustomer />,
       },
       {
-        path: "/events/:id",
-        element: <EventDetails />,
-      },
-      {
-        path: "/addevent",
-        element: <AddEvent />,
-      },
-      {
-        path: "/editevent/:id",
-        element: <EditEvent />,
-      },
-      {
-        path: "/checkout-success",
-        element: <CheckoutSuccess />,
-      },
-      {
-        path: "/cricket",
-        element: <Check />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/states/:code",
-        element: <States />,
+        path: "/editcustomer/:id",
+        element: <EditCustomer />,
       },
     ],
-  },
-  {
-    element: <Signup />,
-    path: "/signup",
-    errorElement: <Error />,
-  },
-  {
-    element: <Login />,
-    path: "/login",
-    errorElement: <Error />,
   },
 ]);
 
