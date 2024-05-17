@@ -1,59 +1,19 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import backgroundImage from "../../assets/images/bg-example.png";
-import { VscClose } from "react-icons/vsc";
-import axios from "axios";
-import Datepicker from "react-tailwindcss-datepicker";
-import dayjs from "dayjs";
-import TimePicker from "react-time-picker";
-import "react-time-picker/dist/TimePicker.css";
-import "react-clock/dist/Clock.css";
+import React from "react";
+import { useState } from "react";
 import { REACT_APP_BASE_URL } from "../../constants/url";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { CiImageOn } from "react-icons/ci";
+import { VscClose } from "react-icons/vsc";
+import addbg from "../../assets/images/addbg.png";
 
 const AddCustomer = () => {
   const [customerData, setCustomerData] = useState({
-    name: "",
-    overview: "",
-    specialFeatures: "",
-    venue: "",
-    price: "",
-    dateStarts: "",
-    dateEnds: "",
-    dayStarts: "",
-    dayEnds: "",
-    timeStarts: "",
-    timeEnds: "",
+    username: "",
+    customerName: "",
+    email: "",
     customerPicture: null, // New state for storing the selected image file
   });
-
-  const { userData } = useSelector((state) => state.auth);
-  // console.log("token quick check", userData.token);
-  // console.log("userData in header:", userData.role);
-  const userRole = userData?.role || "";
-
-  const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
-  });
-
-  const handleValueChange = (newValue) => {
-    if (newValue.startDate) {
-      // console.log("newValue.startDate:", newValue);
-      const dayStarts = dayjs(newValue.startDate).format("dddd");
-      const dateStarts = dayjs(newValue.startDate).format("MM/DD/YYYY");
-      setCustomerData((prevData) => ({ ...prevData, dayStarts, dateStarts }));
-    }
-
-    if (newValue.endDate) {
-      const dayEnds = dayjs(newValue.endDate).format("dddd");
-      const dateEnds = dayjs(newValue.endDate).format("MM/DD/YYYY");
-      setCustomerData((prevData) => ({ ...prevData, dayEnds, dateEnds }));
-    }
-
-    setValue(newValue);
-  };
 
   const [errors, setErrors] = useState({});
 
@@ -71,44 +31,21 @@ const AddCustomer = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.prcustomerDefault();
+    e.preventDefault();
 
     // Add form validation logic here
 
     try {
       const formData = new FormData();
-      formData.append("name", customerData.name);
-      formData.append("price", customerData.price);
-      formData.append("venue", customerData.venue);
-
-      formData.append("overview", customerData.overview);
-      formData.append("specialFeatures", customerData.specialFeatures);
-
-      formData.append("dateStarts", customerData.dateStarts);
-      formData.append("dateEnds", customerData.dateEnds);
-
-      formData.append("dayStarts", customerData.dayStarts);
-      formData.append("dayEnds", customerData.dayEnds);
-
-      formData.append("timeStarts", customerData.timeStarts);
-      formData.append("timeEnds", customerData.timeEnds);
-
-      formData.append("creatorName", "Tim");
-
+      formData.append("username", customerData.username);
+      formData.append("customerName", customerData.customerName);
+      formData.append("email", customerData.email);
       formData.append("customerPicture", customerData.customerPicture); // Append the image file
 
       if (
-        !customerData.name ||
-        !customerData.price ||
-        !customerData.venue ||
-        !customerData.overview ||
-        !customerData.specialFeatures ||
-        !customerData.dateStarts ||
-        !customerData.dateEnds ||
-        !customerData.dayEnds ||
-        !customerData.dayStarts ||
-        !customerData.timeEnds ||
-        !customerData.timeStarts
+        !customerData.username ||
+        !customerData.customerName ||
+        !customerData.email
       ) {
         window.alert("Please fill all the fields.");
         return;
@@ -121,12 +58,12 @@ const AddCustomer = () => {
 
       // console.log("customerData added", formData);
 
-      await addCustomer(formData); // Call the addCustomer function with the FormData
-      navigate("/customers"); // Go back one step in history
+      await addCustomer(formData);
+      navigate("/");
     } catch (error) {
       setErrors(error);
 
-      // Handle error if needed
+      // Handle error
       console.error("Adding Customer failed:", error);
     }
   };
@@ -139,7 +76,6 @@ const AddCustomer = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "x-auth-token": userData.token,
           },
         }
       );
@@ -162,286 +98,141 @@ const AddCustomer = () => {
   };
 
   return (
-    <>
-      {userRole === "Admin" ? (
+    <div className="flex min-h-screen w-full items-center justify-center bg-slate-800">
+      <div className="mx-4 mt-12 shadow-2xl flex flex-col pb-6 bg-[#fbfcfc] min-w-[260px] max-w-[500px] rounded-2xl relative items-center">
+        {/* Use a Link component for navigation */}
         <div
-          className="flex w-full items-center justify-center bg-cover bg-no-repeat bg-center"
+          className="bg-primary py-6 w-full bg-center bg-no-repeat bg-cover rounded-t-2xl"
           style={{
-            backgroundImage: `url(${backgroundImage})`,
+            backgroundImage: `url(${addbg})`,
           }}
         >
-          <div className="mx-4 my-24 flex flex-col py-6 md:px-6 px-2 rounded-md bg-black min-w-[260px] max-w-[50rem] relative items-center">
-            {/* Use a Link component for navigation */}
-            <Link
-              to="#"
-              className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
-              onClick={handleGoBack}
-            >
-              <VscClose className="w-5 h-5 text-secondary font-bold" />
-            </Link>
-            <h2 className="text-center md:text-3xl underline text-md font-bold text-secondary">
-              Add an Customer
-            </h2>
+          <Link
+            to="#"
+            className="w-5 h-5 absolute right-3 top-3 cursor-pointer"
+            onClick={handleGoBack}
+          >
+            <VscClose className="w-5 h-5 text-white font-bold" />
+          </Link>
+          <h2 className="text-center md:text-3xl  text-md font-bold font-serif text-white">
+            Add a Customer
+          </h2>
+        </div>
 
-            {/* AddCustomer Form */}
-            <form
-              className="mt-4 flex w-full flex-wrap flex-grow gap-x-8 justify-between"
-              onSubmit={handleSubmit}
-            >
-              {/* Customer Name */}
-              <div className="mb-4 md:w-[30%] w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="name"
-                >
-                  Customer Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  maxLength={100}
-                  value={customerData.name}
-                  onChange={handleChange}
-                  className={`appearance-none border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-xs italic">{errors.name}</p>
-                )}
-              </div>
-
-              {/* venue */}
-              <div className="mb-4 md:w-[30%] w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="venue"
-                >
-                  Venue
-                </label>
-                <input
-                  maxLength={60}
-                  type="text"
-                  name="venue"
-                  value={customerData.venue}
-                  onChange={handleChange}
-                  className={`appearance-none border ${
-                    errors.venue ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
-                />
-                {errors.venue && (
-                  <p className="text-red-500 text-xs italic">{errors.venue}</p>
-                )}
-              </div>
-
-              {/* price */}
-              <div className="mb-4 md:w-[30%] w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="price"
-                >
-                  Price
-                </label>
-                <input
-                  maxLength={4}
-                  max={200}
-                  type="number"
-                  name="price"
-                  value={customerData.price}
-                  onChange={handleChange}
-                  className={`appearance-none border ${
-                    errors.price ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs leading-tight border-2 border-secondary focus:outline-none focus:shadow-outline`}
-                />
-                {errors.price && (
-                  <p className="text-red-500 text-xs italic">{errors.price}</p>
-                )}
-              </div>
-
-              {/* Overview */}
-              <div className="mb-4 w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="overview"
-                >
-                  Overview
-                </label>
-                <textarea
-                  type="text"
-                  name="overview"
-                  maxLength={3000}
-                  value={customerData.overview}
-                  onChange={handleChange}
-                  className={`appearance-none border ${
-                    errors.overview ? "border-red-500" : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:min-h-48 min-h-32 md:text-base text-xs border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline`}
-                />
-                {errors.overview && (
-                  <p className="text-red-500 text-xs italic">
-                    {errors.overview}
-                  </p>
-                )}
-              </div>
-
-              {/* specialFeatures */}
-              <div className="mb-4 w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="specialFeatures"
-                >
-                  Special Features
-                </label>
-                <textarea
-                  maxLength={800}
-                  type="text"
-                  name="specialFeatures"
-                  value={customerData.specialFeatures}
-                  onChange={handleChange}
-                  className={`appearance-none border ${
-                    errors.specialFeatures
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-lg w-full py-2 px-3 md:text-base text-xs md:min-h-32 min-h-24 border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline`}
-                />
-                {errors.specialFeatures && (
-                  <p className="text-red-500 text-xs italic">
-                    {errors.specialFeatures}
-                  </p>
-                )}
-              </div>
-
-              <div className="mb-4 w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="startdate"
-                >
-                  Customer Dates
-                </label>
-                <Datepicker
-                  inputClassName="rounded-lg w-full py-2 px-3 md:text-base text-xs border-2 border-secondary leading-tight focus:outline-none focus:shadow-outline"
-                  separator={"to"}
-                  useRange={false}
-                  showFooter={true}
-                  displayFormat={"MM/DD/YYYY (dddd)"}
-                  value={value}
-                  readOnly={true}
-                  // dateFormat="MM/DD/YYYY (dddd)" // Use "dddd" for day of the week
-                  onChange={handleValueChange}
-                  showShortcuts={true}
-                />
-              </div>
-
-              <div className="w-full flex flex-col md:flex-row items-center justify-around">
-                <div className="mb-4 md:w-[30%] w-full">
-                  <label
-                    className="block text-white text-sm font-bold mb-2"
-                    htmlFor="starttime"
-                  >
-                    Customer Start Time
-                  </label>
-                  <div className="relative">
-                    <TimePicker
-                      onChange={(time) =>
-                        setCustomerData((prevData) => ({
-                          ...prevData,
-                          timeStarts: time,
-                        }))
-                      }
-                      value={customerData.timeStarts}
-                      className="appearance-none border border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4 md:w-[30%] w-full">
-                  <label
-                    className="block text-white text-sm font-bold mb-2"
-                    htmlFor="endtime"
-                  >
-                    Customer End Time
-                  </label>
-                  <div className="relative">
-                    <TimePicker
-                      onChange={(time) =>
-                        setCustomerData((prevData) => ({
-                          ...prevData,
-                          timeEnds: time,
-                        }))
-                      }
-                      value={customerData.timeEnds}
-                      className="appearance-none border-2 border-secondary bg-white rounded-lg w-full py-2 px-3 md:text-base text-sm leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-4 w-full">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="customerPicture"
-                >
-                  Customer Picture (Landscape 1440 x 820)
-                </label>
-                {customerData.customerPicture ? (
-                  <img
-                    src={URL.createObjectURL(customerData.customerPicture)}
-                    alt="tachtpg"
-                    className="my-2 rounded-xl sm:min-w-80 w-full aspect-video self-center"
-                  />
-                ) : (
-                  <div
-                    alt="tachtpg"
-                    className="my-2 rounded-xl sm:min-w-80 w-full h-36 self-center border-dashed flex flex-col-reverse border border-secondary justify-center items-center"
-                  >
-                    <div className="text-md font-normal text-white">
-                      No Image Selected
-                    </div>
-                    <div>
-                      <CiImageOn className="text-6xl font-bold text-white h-30" />
-                    </div>
-                  </div>
-                )}
-
-                <input
-                  type="file"
-                  name="customerPicture"
-                  accept="image/*"
-                  onChange={handleChange}
-                  className="bg-white border rounded-lg w-full border-2 border-secondary py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
-                />
-                {errors.customerPicture && (
-                  <p className="text-red-500 text-xs italic">
-                    {errors.customerPicture}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="bg-secondary text-white w-full self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
-              >
-                ADD EVENT
-              </button>
-            </form>
+        {/* AddCustomer Form */}
+        <form
+          className="mt-4 flex w-full flex-wrap flex-grow justify-between items-center"
+          onSubmit={handleSubmit}
+        >
+          {/* username */}
+          <div className="mb-4 w-full flex justify-center">
+            <input
+              maxLength={60}
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={customerData.username}
+              onChange={handleChange}
+              className={`appearance-none border ${
+                errors.username ? "border-red-500" : "border-gray-300"
+              } rounded-lg w-11/12 py-2 px-3 md:text-base text-xs leading-tight  border-secondary focus:outline-none focus:shadow-outline`}
+            />
+            {errors.username && (
+              <p className="text-red-500 text-xs italic">{errors.username}</p>
+            )}
           </div>
-        </div>
-      ) : (
-        <div
-          className="flex flex-col w-100 h-screen  items-center justify-center bg-cover bg-no-repeat bg-center"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-          }}
-        >
-          <h1 className="text-primary sm:text-[80px] leading-tight text-4xl font-bold line text-center mb-[10px] ">
-            Not Authorized{" "}
-          </h1>
-          <p className="text-black sm:text-xl text-sm font-normal text-center max-w-[600px] ">
-            Dear user, you are not authorised to access this page.
-          </p>
-        </div>
-      )}
-    </>
+
+          {/* customerName */}
+          <div className="mb-4 w-full flex justify-center">
+            <input
+              maxLength={60}
+              type="text"
+              placeholder="Customer Name"
+              name="customerName"
+              value={customerData.customerName}
+              onChange={handleChange}
+              className={`appearance-none border ${
+                errors.customerName ? "border-red-500" : "border-gray-300"
+              } rounded-lg w-11/12 py-2 px-3 md:text-base text-xs leading-tight  border-secondary focus:outline-none focus:shadow-outline`}
+            />
+            {errors.customerName && (
+              <p className="text-red-500 text-xs italic">
+                {errors.customerName}
+              </p>
+            )}
+          </div>
+
+          {/* email */}
+          <div className="w-full flex justify-center">
+            <input
+              maxLength={60}
+              placeholder="Email"
+              type="text"
+              name="email"
+              value={customerData.email}
+              onChange={handleChange}
+              className={`appearance-none border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } rounded-lg w-11/12 py-2 px-3 md:text-base text-xs leading-tight  border-secondary focus:outline-none focus:shadow-outline`}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-xs italic">{errors.email}</p>
+            )}
+          </div>
+
+          <div className="mb-4 w-full justify-center flex-col items-center flex">
+            <label
+              className="block text-white text-sm font-bold mb-2"
+              htmlFor="customerPicture"
+            >
+              Customer Picture (Ratio 1:1)
+            </label>
+            {customerData.customerPicture ? (
+              <img
+                src={URL.createObjectURL(customerData.customerPicture)}
+                alt="Customer"
+                className="my-2 rounded-xl w-64 aspect-video self-center"
+              />
+            ) : (
+              <div
+                alt="Fallback"
+                className="my-2 rounded-xl w-11/12 h-36 self-center border-dashed flex flex-col-reverse border border-secondary justify-center items-center"
+              >
+                <div className="text-md font-normal text-black">
+                  No Image Selected
+                </div>
+                <div>
+                  <CiImageOn className="text-6xl font-bold text-black h-30" />
+                </div>
+              </div>
+            )}
+
+            <input
+              type="file"
+              name="customerPicture"
+              accept="image/*"
+              onChange={handleChange}
+              className="bg-white  rounded-lg w-11/12 border-secondary py-2 px-3 md:text-base text-xs leading-tight focus:outline-none focus:shadow-outline"
+            />
+            {errors.customerPicture && (
+              <p className="text-red-500 text-xs italic">
+                {errors.customerPicture}
+              </p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="w-full flex justify-center">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-[#57BC90] to-primary text-white w-11/12 self-center mt-3 py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+            >
+              ADD CUSTOMER
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

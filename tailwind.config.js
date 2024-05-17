@@ -14,7 +14,7 @@ module.exports = {
         primary: "#015249",
         primarydark: "#043933",
         herobg: "#6496c8",
-        secondary: "#FF7816",
+        secondary: "#043933",
       },
       fontFamily: {
         lato: ["Lato", "sans-serif"],

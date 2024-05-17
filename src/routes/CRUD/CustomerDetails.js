@@ -85,13 +85,11 @@ function CustomerDetails() {
   const deleteCustomer = async () => {
     try {
       await axios.delete(`${REACT_APP_BASE_URL}/customer?id=${customerId}`, {
-        headers: {
-          "x-auth-token": userData.token,
-        },
+        headers: {},
       });
 
       // Redirect to the customers page after successful deletion
-      navigate("/customers");
+      navigate("/");
       window.alert("Customer Deleted");
     } catch (error) {
       console.error("There is an error deleting customer:", error);

@@ -19,12 +19,11 @@ export const fetchCustomers = createAsyncThunk(
       //   console.log("Fetching customers with token:", token);
 
       const response = await axios.get(
-        `${REACT_APP_BASE_URL}/getcventdata`,
+        `${REACT_APP_BASE_URL}/customer?userID=later`,
         {}
       );
-      // console.log("Customers response in Slice File:", response.data[0].data);
 
-      return response.data[0].data;
+      return response.data.customers;
     } catch (error) {
       console.error("Fetching customers failed:", error);
       return rejectWithValue(

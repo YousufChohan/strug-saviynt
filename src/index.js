@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import AddCustomer from "./routes/CRUD/AddCustomer";
 import EditCustomer from "./routes/CRUD/EditCustomer";
+import DeleteCustomer from "./routes/CRUD/DeleteCustomer";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/editcustomer/:id",
         element: <EditCustomer />,
+      },
+      {
+        path: "/deletecustomer/:id",
+        element: <DeleteCustomer />,
       },
     ],
   },

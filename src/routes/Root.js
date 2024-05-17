@@ -7,7 +7,7 @@ export default function Root() {
     <>
       <section className="md:flex w-full overflow-hidden">
         <Header />
-        <div className="flex-col w-full">
+        <div className="flex-col w-full overflow-y-auto">
           <Outlet />
         </div>
       </section>
